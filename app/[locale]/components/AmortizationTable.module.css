@@ -1,0 +1,93 @@
+.container {
+  background-color: var(--color-surface-container-lowest);
+  border: 1px solid var(--color-outline-variant);
+  border-radius: var(--radius-card);
+  overflow: hidden;
+}
+
+.wrapper {
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+  font-family: var(--font-body);
+}
+
+.table th {
+  padding: var(--space-sm) var(--space-md);
+  text-align: right;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-on-surface-variant);
+  background-color: var(--color-surface-container-low);
+  border-bottom: 1px solid var(--color-outline-variant);
+  white-space: nowrap;
+}
+
+.table th:first-child { text-align: left; }
+
+.table td {
+  padding: var(--space-sm) var(--space-md);
+  text-align: right;
+  color: var(--color-on-surface);
+  border-bottom: 1px solid var(--color-surface-container-high);
+}
+
+.table td:first-child {
+  text-align: left;
+  color: var(--color-on-surface-variant);
+  font-weight: 600;
+}
+
+.table tbody tr:last-child td { border-bottom: none; }
+
+.table tbody tr:hover td {
+  background-color: var(--color-surface-container-low);
+}
+
+/* Pagination */
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-md);
+  padding: var(--space-md);
+  border-top: 1px solid var(--color-outline-variant);
+}
+
+.pageBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border: 1px solid var(--color-outline-variant);
+  border-radius: var(--radius-default);
+  background: none;
+  color: var(--color-on-surface);
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color var(--transition-fast), border-color var(--transition-fast);
+}
+
+.pageBtn:hover:not(:disabled) {
+  background-color: var(--color-surface-container);
+  border-color: var(--color-outline);
+}
+
+.pageBtn:disabled {
+  opacity: 0.38;
+  cursor: not-allowed;
+}
+
+.pageInfo {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--color-on-surface-variant);
+  font-family: var(--font-body);
+}

@@ -1,1 +1,40 @@
-{"App":{"title":"Amortiza Calc","description":"Loan amortization calculator"}}
+{
+  "App": {
+    "title": "Amortiza Calc",
+    "description": "Loan amortization calculator"
+  },
+  "calculator": {
+    "title": "Amortization Calculator",
+    "subtitle": "Calculate your monthly payment and savings with extra payments",
+    "tabs": {
+      "calculator": "Calculator",
+      "table": "Schedule"
+    },
+    "form": {
+      "title": "Loan details",
+      "loanAmount": "Loan amount",
+      "interestRate": "Annual interest rate",
+      "loanTerm": "Loan term",
+      "extraPayment": "Extra monthly payment",
+      "years": "Years",
+      "months": "Months",
+      "calculate": "Calculate"
+    },
+    "results": {
+      "title": "Results",
+      "monthlyPayment": "Monthly payment",
+      "totalInterest": "Total interest",
+      "totalCost": "Total cost",
+      "interestSaved": "Interest saved",
+      "monthsSaved": "Months saved",
+      "months": "months"
+    },
+    "table": {
+      "month": "Month",
+      "payment": "Payment",
+      "principal": "Principal",
+      "interest": "Interest",
+      "balance": "Balance"
+    }
+  }
+}

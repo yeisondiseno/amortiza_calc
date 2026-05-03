@@ -1,1 +1,40 @@
-{"App":{"title":"Amortiza Calc","description":"Calculadora de amortización de préstamos"}}
+{
+  "App": {
+    "title": "Amortiza Calc",
+    "description": "Calculadora de amortización de préstamos"
+  },
+  "calculator": {
+    "title": "Calculadora de Amortización",
+    "subtitle": "Calcula tu cuota mensual y el ahorro con pagos adicionales",
+    "tabs": {
+      "calculator": "Calculadora",
+      "table": "Tabla"
+    },
+    "form": {
+      "title": "Datos del préstamo",
+      "loanAmount": "Monto del préstamo",
+      "interestRate": "Tasa de interés anual",
+      "loanTerm": "Plazo",
+      "extraPayment": "Pago extra mensual",
+      "years": "Años",
+      "months": "Meses",
+      "calculate": "Calcular"
+    },
+    "results": {
+      "title": "Resultados",
+      "monthlyPayment": "Cuota mensual",
+      "totalInterest": "Interés total",
+      "totalCost": "Costo total",
+      "interestSaved": "Interés ahorrado",
+      "monthsSaved": "Meses ahorrados",
+      "months": "meses"
+    },
+    "table": {
+      "month": "Mes",
+      "payment": "Cuota",
+      "principal": "Capital",
+      "interest": "Interés",
+      "balance": "Saldo"
+    }
+  }
+}
