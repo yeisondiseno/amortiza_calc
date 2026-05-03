@@ -1,0 +1,45 @@
+{
+  "global": {
+    "loading": "読み込み中...",
+    "backButton": "戻る"
+  },
+  "NotFound": {
+    "title": "ページが見つかりません",
+    "message": "おっと！このページは忘れられたコーヒーのように冷めてしまったようです。",
+    "cta": "ホームに戻る"
+  },
+  "CoffeeCalc": {
+    "metadataTitle": "☕ CoffeeCalc — それはコーヒー何杯分？",
+    "metadataDescription": "あらゆる価格をコーヒーの杯数に換算。多通貨対応のコーヒー計算ツール。",
+    "title": "それは<accent>コーヒー</accent>何杯分？",
+    "subtitle": "あらゆる価格をコーヒーの杯数に変換。カフェインで測ると、すべてが分かりやすくなります。",
+    "labelAmount": "金額",
+    "labelCoffee": "コーヒーを選ぶ",
+    "resultLabel": "{type}",
+    "resultDetail": "{currency}で約{price}ずつ",
+    "shareBtn": "シェア",
+    "funFactLabel": "☕ 豆知識",
+    "funFacts": [
+      "フィンランドは一人当たりのコーヒー消費量が世界一 — 年間約12kg!",
+      "コーヒーは石油に次いで世界で2番目に取引されている商品です。",
+      "日本人は年間平均で約340杯のコーヒーを飲みます。",
+      "ブラジルは世界のコーヒーの約3分の1を生産しています。",
+      "チューリッヒのラテは約7.50ドル — 世界で最も高いコーヒーの一つです。"
+    ],
+    "seoTitle": "なぜコーヒーで測るの？",
+    "seoText": "毎日コーヒーにお金を使っているからこそ、モノの本当のコストを理解するのにぴったりの単位です。予算を立てるとき、価格を比べるとき、あるいは単なる好奇心でも — CoffeeCalc は好きな一杯の目線で価格を見られます。多通貨対応で、世界中のコーヒーのコストも比較できます。",
+    "footer": "愛とカフェインで作りました",
+    "disclaimer": "価格はおおよその平均です。実際の価格は地域によって異なります。",
+    "coffeeNames": {
+      "espresso": "エスプレッソ",
+      "cappuccino": "カプチーノ",
+      "latte": "ラテ",
+      "americano": "アメリカーノ",
+      "mocha": "モカ",
+      "coldBrew": "コールドブリュー"
+    },
+    "shareText": "☕ {amount} {currency} = {count} {type}! CoffeeCalc で確認",
+    "copied": "コピーしました！☕",
+    "brandLine": "☕ CoffeeCalc — {footer}"
+  }
+}
