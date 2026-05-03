@@ -12,5 +12,8 @@ const millionConfig = {
 };
 
 export default withNextIntl(
-  million.next(nextConfig, millionConfig),
+  million.next(
+    nextConfig as unknown as Parameters<typeof million.next>[0],
+    millionConfig,
+  ),
 );
