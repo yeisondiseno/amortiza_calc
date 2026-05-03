@@ -1,45 +1,6 @@
 {
-  "global": {
-    "loading": "Carregando...",
-    "backButton": "Voltar"
-  },
-  "NotFound": {
-    "title": "Página não encontrada",
-    "message": "Ops! Esta página parece ter esfriado, como um café esquecido.",
-    "cta": "Voltar ao início"
-  },
-  "CoffeeCalc": {
-    "metadataTitle": "☕ CoffeeCalc — Quantos cafés é isso?",
-    "metadataDescription": "Converta qualquer preço em xícaras de café — espresso, latte, cappuccino e mais. Calculadora de múltiplas moedas com suporte a 14 moedas. Experimente grátis!",
-    "title": "Quantos <accent>Cafés</accent> É Isso?",
-    "subtitle": "Converta qualquer preço em xícaras de café. Porque tudo faz mais sentido medido em cafeína.",
-    "labelAmount": "Seu valor",
-    "labelCoffee": "Escolha seu café",
-    "resultLabel": "{type}",
-    "resultDetail": "a ~{price} cada em {currency}",
-    "shareBtn": "Compartilhar",
-    "funFactLabel": "☕ Curiosidade",
-    "funFacts": [
-      "A Finlândia consome mais café per capita — cerca de 12 kg por pessoa por ano!",
-      "O café é a segunda mercadoria mais negociada na Terra, logo depois do petróleo.",
-      "O americano médio gasta cerca de US$ 1.100 por ano com café.",
-      "O Brasil é o maior produtor de café do mundo!",
-      "Um brasileiro bebe em média 839 xícaras de café por ano."
-    ],
-    "seoTitle": "Por que medir em café?",
-    "seoText": "Gastamos com café todos os dias, o que o torna a unidade perfeita para entender o custo real das coisas. Esteja você fazendo orçamento, comparando preços ou só curioso — CoffeeCalc ajuda a ver qualquer preço pela lente da sua bebida favorita. Suporte a várias moedas permite comparar o custo do café no mundo todo.",
-    "footer": "Feito com amor e cafeína",
-    "disclaimer": "Os preços são médias aproximadas. Os preços reais variam conforme o local.",
-    "coffeeNames": {
-      "espresso": "Espresso",
-      "cappuccino": "Cappuccino",
-      "latte": "Latte",
-      "americano": "Americano",
-      "mocha": "Mocha",
-      "coldBrew": "Cold brew"
-    },
-    "shareText": "☕ {amount} {currency} = {count} {type}! Veja no CoffeeCalc",
-    "copied": "Copiado! ☕",
-    "brandLine": "☕ CoffeeCalc — {footer}"
+  "App": {
+    "title": "Amortiza Calc",
+    "description": "Loan amortization calculator"
   }
 }
