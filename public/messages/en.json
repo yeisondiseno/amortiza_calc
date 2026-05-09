@@ -4,37 +4,56 @@
     "description": "Loan amortization calculator"
   },
   "calculator": {
-    "title": "Amortization Calculator",
-    "subtitle": "Calculate your monthly payment and savings with extra payments",
-    "tabs": {
+    "topbar": {
       "calculator": "Calculator",
-      "table": "Schedule"
+      "amortization": "Amortization",
+      "history": "History"
     },
     "form": {
-      "title": "Loan details",
-      "loanAmount": "Loan amount",
-      "interestRate": "Annual interest rate",
-      "loanTerm": "Loan term",
-      "extraPayment": "Extra monthly payment",
-      "years": "Years",
-      "months": "Months",
-      "calculate": "Calculate"
+      "title": "Loan Parameters",
+      "loanAmount": "Loan Amount",
+      "interestRate": "Interest Rate",
+      "loanTerm": "Loan Term",
+      "extraPayment": "Monthly Extra Payment",
+      "yearsSuffix": "Yrs",
+      "calculate": "Calculate Savings",
+      "infoText": "Adding extra to your monthly payment can significantly reduce your total interest paid and shorten your loan term by several years."
     },
     "results": {
-      "title": "Results",
-      "monthlyPayment": "Monthly payment",
-      "totalInterest": "Total interest",
-      "totalCost": "Total cost",
-      "interestSaved": "Interest saved",
-      "monthsSaved": "Months saved",
-      "months": "months"
+      "interestSaved": "Total Interest Saved",
+      "timeSaved": "Time Saved",
+      "lessPct": "% less interest",
+      "paidOffBy": "Paid off by",
+      "years": "Years",
+      "months": "Months"
+    },
+    "chart": {
+      "title": "Balance Over Time",
+      "standard": "Standard",
+      "withExtra": "With Extra",
+      "monthly": "Monthly",
+      "annually": "Annually",
+      "monthlyPayment": "Monthly Payment",
+      "yearLabel": "Year {year}"
     },
     "table": {
+      "title": "Amortization Schedule",
+      "subtitle": "First-year breakdown with extra payments.",
+      "subtitleExpanded": "First five years breakdown with extra payments.",
       "month": "Month",
-      "payment": "Payment",
       "principal": "Principal",
       "interest": "Interest",
-      "balance": "Balance"
+      "extra": "Extra",
+      "remainingBalance": "Remaining Balance",
+      "exportCSV": "Export CSV",
+      "viewFull": "View Full {years}-Year Schedule",
+      "collapse": "Collapse Schedule",
+      "empty": "Enter loan details to see your schedule."
+    },
+    "bottomNav": {
+      "calculator": "Calculate",
+      "schedule": "Schedule",
+      "saved": "Saved"
     }
   }
 }

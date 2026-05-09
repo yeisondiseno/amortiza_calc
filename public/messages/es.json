@@ -4,37 +4,56 @@
     "description": "Calculadora de amortización de préstamos"
   },
   "calculator": {
-    "title": "Calculadora de Amortización",
-    "subtitle": "Calcula tu cuota mensual y el ahorro con pagos adicionales",
-    "tabs": {
+    "topbar": {
       "calculator": "Calculadora",
-      "table": "Tabla"
+      "amortization": "Amortización",
+      "history": "Historial"
     },
     "form": {
-      "title": "Datos del préstamo",
+      "title": "Parámetros del préstamo",
       "loanAmount": "Monto del préstamo",
-      "interestRate": "Tasa de interés anual",
+      "interestRate": "Tasa de interés",
       "loanTerm": "Plazo",
       "extraPayment": "Pago extra mensual",
-      "years": "Años",
-      "months": "Meses",
-      "calculate": "Calcular"
+      "yearsSuffix": "Años",
+      "calculate": "Calcular Ahorro",
+      "infoText": "Agregar un pago extra mensual puede reducir significativamente el interés total y acortar el plazo de tu préstamo varios años."
     },
     "results": {
-      "title": "Resultados",
+      "interestSaved": "Interés total ahorrado",
+      "timeSaved": "Tiempo ahorrado",
+      "lessPct": "% menos interés",
+      "paidOffBy": "Liquidado en",
+      "years": "Años",
+      "months": "Meses"
+    },
+    "chart": {
+      "title": "Saldo a lo largo del tiempo",
+      "standard": "Estándar",
+      "withExtra": "Con extra",
+      "monthly": "Mensual",
+      "annually": "Anual",
       "monthlyPayment": "Cuota mensual",
-      "totalInterest": "Interés total",
-      "totalCost": "Costo total",
-      "interestSaved": "Interés ahorrado",
-      "monthsSaved": "Meses ahorrados",
-      "months": "meses"
+      "yearLabel": "Año {year}"
     },
     "table": {
+      "title": "Tabla de amortización",
+      "subtitle": "Desglose del primer año con pagos adicionales.",
+      "subtitleExpanded": "Desglose de los primeros cinco años con pagos adicionales.",
       "month": "Mes",
-      "payment": "Cuota",
       "principal": "Capital",
       "interest": "Interés",
-      "balance": "Saldo"
+      "extra": "Extra",
+      "remainingBalance": "Saldo restante",
+      "exportCSV": "Exportar CSV",
+      "viewFull": "Ver calendario completo ({years} años)",
+      "collapse": "Colapsar calendario",
+      "empty": "Ingresa los datos del préstamo para ver el calendario."
+    },
+    "bottomNav": {
+      "calculator": "Calcular",
+      "schedule": "Tabla",
+      "saved": "Guardados"
     }
   }
 }
