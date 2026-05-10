@@ -27,6 +27,41 @@
   gap: var(--space-md);
 }
 
+.amountCurrencyRow {
+  display: grid;
+  grid-template-columns: 1fr minmax(9rem, 12rem);
+  gap: var(--space-md);
+  align-items: start;
+}
+
+@media (max-width: 480px) {
+  .amountCurrencyRow {
+    grid-template-columns: 1fr;
+  }
+}
+
+.currencyField {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.currencySelectInner {
+  flex: 1;
+  width: 100%;
+  min-height: calc(1rem + 1.5rem);
+  padding: 0.75rem var(--space-md);
+  border: none;
+  background: transparent;
+  outline: none;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--color-on-surface);
+  cursor: pointer;
+  font-variant-numeric: tabular-nums;
+}
+
 .infoRow {
   display: flex;
   align-items: flex-start;

@@ -1,3 +1,5 @@
+import type { CurrencyCode } from "@/constants";
+
 export type AmortizationRow = {
   month: number;
   principal: number;
@@ -25,6 +27,7 @@ export type FormState = {
   rate: string;
   years: string;
   extra: string;
+  currency: CurrencyCode;
 };
 
 export type ChartView = "Monthly" | "Annually";

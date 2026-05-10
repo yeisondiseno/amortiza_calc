@@ -1,66 +1,95 @@
 "use client";
 
+// React
+import { type Dispatch, type SetStateAction, useMemo } from "react";
 // Libraries
-import { useTranslations } from "next-intl";
+import { Controller, useForm, type Control } from "react-hook-form";
+import { useLocale, useTranslations } from "next-intl";
 import {
   HiOutlineCalculator,
   HiOutlineInformationCircle,
 } from "react-icons/hi";
 // Components
 import { Input } from "@/components/Input";
+import { Select } from "@/components/Select";
+// Constants
+import { CURRENCY_CODES, type CurrencyCode } from "@/constants";
 // Types
 import type { FormState } from "@/types";
+// Utils
+import { narrowCurrencySymbol } from "@/utils";
 // Styles
 import shared from "@/shared";
 import styles from "./LoanForm.module.css";
 
 type Props = {
   form: FormState;
-  setForm: (form: FormState) => void;
+  setForm: Dispatch<SetStateAction<FormState>>;
 };
 
-// Types (module-local)
-type FieldProps = {
+type NumericFormField = Exclude<keyof FormState, "currency">;
+
+type FieldRowProps = {
+  control: Control<FormState>;
+  name: NumericFormField;
   label: string;
   prefix?: string;
   suffix?: string;
-  value: string;
-  onChange: (v: string) => void;
   placeholder: string;
+  setForm: Dispatch<SetStateAction<FormState>>;
 };
 
-const Field = ({
+const FieldRow = ({
+  control,
+  name,
   label,
   prefix,
   suffix,
-  value,
-  onChange,
   placeholder,
-}: FieldProps) => (
+  setForm,
+}: FieldRowProps) => (
   <div className={styles.field}>
     <label className={shared.label}>{label}</label>
-    <div className={shared.inputWrapper}>
-      {prefix && <span className={shared.adornment}>{prefix}</span>}
-      <Input
-        className={shared.inputField}
-        type="text"
-        inputMode="decimal"
-        placeholder={placeholder}
-        value={value}
-        onChange={(e) => onChange(e.target.value)}
-      />
-      {suffix && <span className={shared.adornment}>{suffix}</span>}
-    </div>
+    <Controller
+      control={control}
+      name={name}
+      render={({ field }) => (
+        <div className={shared.inputWrapper}>
+          {prefix && <span className={shared.adornment}>{prefix}</span>}
+          <Input
+            ref={field.ref}
+            name={field.name}
+            className={shared.inputField}
+            type="text"
+            inputMode="decimal"
+            placeholder={placeholder}
+            value={field.value}
+            onBlur={field.onBlur}
+            onChange={(e) => {
+              const v = e.target.value;
+              field.onChange(v);
+              setForm((prev) => ({ ...prev, [name]: v }));
+            }}
+          />
+          {suffix && <span className={shared.adornment}>{suffix}</span>}
+        </div>
+      )}
+    />
   </div>
 );
 
 export const LoanForm = ({ form, setForm }: Props) => {
   // Hooks
   const t = useTranslations("calculator.form");
-
-  // Actions
-  const update = (key: keyof FormState) => (v: string) =>
-    setForm({ ...form, [key]: v });
+  const locale = useLocale();
+  const currencyNames = useMemo(
+    () => new Intl.DisplayNames(locale, { type: "currency" }),
+    [locale],
+  );
+  const currencySymbol = narrowCurrencySymbol(form.currency, locale);
+  const { control } = useForm<FormState>({
+    values: form,
+  });
 
   return (
     <section className={styles.section}>
@@ -70,35 +99,78 @@ export const LoanForm = ({ form, setForm }: Props) => {
           {t("title")}
         </h2>
         <div className={styles.fields}>
-          <Field
-            label={t("loanAmount")}
-            prefix="$"
-            value={form.amount}
-            onChange={update("amount")}
-            placeholder="450,000"
-          />
+          <div className={styles.amountCurrencyRow}>
+            <FieldRow
+              control={control}
+              name="amount"
+              label={t("loanAmount")}
+              prefix={currencySymbol}
+              placeholder="450,000"
+              setForm={setForm}
+            />
+            <div className={styles.currencyField}>
+              <label className={shared.label} htmlFor="loan-currency">
+                {t("currency")}
+              </label>
+              <Controller
+                control={control}
+                name="currency"
+                render={({ field }) => (
+                  <div className={shared.inputWrapper}>
+                    <Select
+                      id="loan-currency"
+                      ref={field.ref}
+                      name={field.name}
+                      value={field.value}
+                      aria-label={t("currency")}
+                      className={styles.currencySelectInner}
+                      onBlur={field.onBlur}
+                      onChange={(e) => {
+                        const next = e.target.value as CurrencyCode;
+                        field.onChange(next);
+                        setForm((prev) => ({
+                          ...prev,
+                          currency: next,
+                        }));
+                      }}
+                    >
+                      {CURRENCY_CODES.map((code) => (
+                        <option key={code} value={code}>
+                          {`${code} — ${currencyNames.of(code) ?? code}`}
+                        </option>
+                      ))}
+                    </Select>
+                  </div>
+                )}
+              />
+            </div>
+          </div>
+
           <div className={styles.twoCol}>
-            <Field
+            <FieldRow
+              control={control}
+              name="rate"
               label={t("interestRate")}
               suffix="%"
-              value={form.rate}
-              onChange={update("rate")}
               placeholder="6.5"
+              setForm={setForm}
             />
-            <Field
+            <FieldRow
+              control={control}
+              name="years"
               label={t("loanTerm")}
               suffix={t("yearsSuffix")}
-              value={form.years}
-              onChange={update("years")}
               placeholder="30"
+              setForm={setForm}
             />
           </div>
-          <Field
+          <FieldRow
+            control={control}
+            name="extra"
             label={t("extraPayment")}
-            prefix="$"
-            value={form.extra}
-            onChange={update("extra")}
+            prefix={currencySymbol}
             placeholder="500"
+            setForm={setForm}
           />
         </div>
         <button type="button" className={shared.btnCalculate}>

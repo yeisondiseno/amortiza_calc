@@ -1,18 +1,70 @@
+import { EXCHANGE_RATES, type CurrencyCode } from "@/constants";
 import type { LoanResult } from "@/types";
 
 export const parseNum = (s: string): number =>
-  Number(String(s).replace(/[^0-9.\-]/g, "")) || 0;
+  Number(String(s).replaceAll(/[^0-9.\-]/g, "")) || 0;
 
-export const formatUSD = (n: number, decimals = 0): string => {
-  if (!isFinite(n)) return "$0";
-  return (
-    "$" +
-    n.toLocaleString("en-US", {
-      minimumFractionDigits: decimals,
-      maximumFractionDigits: decimals,
-    })
-  );
+/** `amount` en `from`; tipos definidos como unidades locales por **1 USD** en `EXCHANGE_RATES`. */
+export const toUsd = (amount: number, from: CurrencyCode): number => {
+  const r = EXCHANGE_RATES[from];
+  if (!Number.isFinite(amount) || r <= 0) return 0;
+  return amount / r;
 };
+
+export const fromUsd = (usd: number, to: CurrencyCode): number => {
+  if (!Number.isFinite(usd)) return 0;
+  return usd * EXCHANGE_RATES[to];
+};
+
+export const narrowCurrencySymbol = (
+  currency: CurrencyCode,
+  locale: string,
+): string => {
+  const parts = new Intl.NumberFormat(locale, {
+    style: "currency",
+    currency,
+    currencyDisplay: "narrowSymbol",
+    numberingSystem: "latn",
+  }).formatToParts(0);
+  return parts.find((p) => p.type === "currency")?.value ?? currency;
+};
+
+export const formatCurrency = (
+  amount: number,
+  currency: CurrencyCode,
+  locale: string,
+  fractionDigits?: number,
+): string => {
+  const safe = Number.isFinite(amount) ? amount : 0;
+  const opts: Intl.NumberFormatOptions = {
+    style: "currency",
+    currency,
+    numberingSystem: "latn",
+  };
+  if (fractionDigits !== undefined) {
+    opts.minimumFractionDigits = fractionDigits;
+    opts.maximumFractionDigits = fractionDigits;
+  }
+  return new Intl.NumberFormat(locale, opts).format(safe);
+};
+
+/** Importe ya en USD (resultado interno de `amortize`) → muestra en `displayCurrency`. */
+export const formatFromUsd = (
+  usdAmount: number,
+  displayCurrency: CurrencyCode,
+  locale: string,
+  fractionDigits?: number,
+): string =>
+  formatCurrency(
+    fromUsd(usdAmount, displayCurrency),
+    displayCurrency,
+    locale,
+    fractionDigits,
+  );
+
+/** Solo para valores en USD cuando no hay contexto de moneda/locale del usuario. */
+export const formatUSD = (n: number, decimals = 0): string =>
+  formatCurrency(n, "USD", "en-US", decimals);
 
 export const payoffDate = (monthsFromNow: number): string => {
   const d = new Date();

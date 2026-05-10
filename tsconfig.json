@@ -20,6 +20,7 @@
     ],
     "paths": {
       "@/types": ["./types/types"],
+      "@/constants": ["./constants/index.ts"],
       "@/utils": ["./utils/utils"],
       "@/shared": ["./shared/index"],
       "@/*": ["./*"]

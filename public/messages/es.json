@@ -13,6 +13,7 @@
     "form": {
       "title": "Parámetros del préstamo",
       "loanAmount": "Monto del préstamo",
+      "currency": "Moneda",
       "interestRate": "Tasa de interés",
       "loanTerm": "Plazo",
       "extraPayment": "Pago extra mensual",

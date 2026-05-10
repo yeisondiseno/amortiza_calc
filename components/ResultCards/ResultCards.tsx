@@ -1,24 +1,23 @@
 "use client";
 
 // Libraries
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { HiOutlineClock, HiOutlineTrendingUp } from "react-icons/hi";
-
 // Utils
-import { payoffDate } from "@/utils";
-
+import { formatFromUsd, payoffDate } from "@/utils";
 // Types
+import type { CurrencyCode } from "@/constants";
 import type { LoanResult } from "@/types";
-
 // Styles
 import shared from "@/shared";
 import styles from "./ResultCards.module.css";
 
-type Props = { result: LoanResult | null };
+type Props = { result: LoanResult | null; currency: CurrencyCode };
 
-export const ResultCards = ({ result }: Props) => {
+export const ResultCards = ({ result, currency }: Props) => {
   // Hooks
   const t = useTranslations("calculator.results");
+  const locale = useLocale();
 
   // Values
   const interestSaved = result?.interestSaved ?? 0;
@@ -37,9 +36,8 @@ export const ResultCards = ({ result }: Props) => {
           {t("interestSaved")}
         </span>
         <div className={styles.heroNumber}>
-          <span className={styles.currencySign}>$</span>
           <span className={`${shared.numberDisplay} ${styles.savedValue}`}>
-            {Math.round(interestSaved).toLocaleString("en-US")}
+            {formatFromUsd(interestSaved, currency, locale, 0)}
           </span>
         </div>
         <div className={styles.footer}>

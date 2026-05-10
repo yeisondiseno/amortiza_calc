@@ -1,22 +1,29 @@
 "use client";
 
+// React
+import { forwardRef, type ComponentPropsWithoutRef } from "react";
+
 // Libraries
 import sanitizeHtml from "sanitize-html";
-import { ComponentPropsWithoutRef } from "react";
 
-type InputProps = ComponentPropsWithoutRef<"input">;
+export type InputProps = ComponentPropsWithoutRef<"input">;
 
 const SANITIZE_OPTIONS: sanitizeHtml.IOptions = {
   allowedTags: [],
   allowedAttributes: {},
 };
 
-export const Input = ({ onChange, ...props }: InputProps) => {
+export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
+  { onChange, ...props },
+  ref,
+) {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (!onChange) return;
     e.target.value = sanitizeHtml(e.target.value, SANITIZE_OPTIONS);
     onChange(e);
   };
 
-  return <input onChange={handleChange} {...props} />;
-};
+  return <input ref={ref} {...props} onChange={handleChange} />;
+});
+
+Input.displayName = "Input";

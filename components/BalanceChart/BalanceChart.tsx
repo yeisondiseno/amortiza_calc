@@ -1,11 +1,12 @@
 "use client";
 
 // Libraries
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 // Utils
-import { formatUSD } from "@/utils";
+import { formatFromUsd } from "@/utils";
 // Types
-import type { LoanResult, ChartView } from "@/types";
+import type { ChartView, LoanResult } from "@/types";
+import type { CurrencyCode } from "@/constants";
 // Styles
 import shared from "@/shared";
 import styles from "./BalanceChart.module.css";
@@ -28,13 +29,20 @@ const pathFor = (series: number[], maxBal: number): string => {
 
 type Props = {
   result: LoanResult | null;
+  currency: CurrencyCode;
   view: ChartView;
   setView: (v: ChartView) => void;
 };
 
-export const BalanceChart = ({ result, view, setView }: Props) => {
+export const BalanceChart = ({
+  result,
+  currency,
+  view,
+  setView,
+}: Props) => {
   // Hooks
   const t = useTranslations("calculator.chart");
+  const locale = useLocale();
 
   // Values
   const stdSeries = result?.stdSeries ?? [1, 1];
@@ -116,7 +124,7 @@ export const BalanceChart = ({ result, view, setView }: Props) => {
       <div className={styles.chartFooter}>
         <span className={shared.label}>{t("monthlyPayment")}</span>
         <span className={`${shared.numberDisplaySm} ${styles.paymentValue}`}>
-          {formatUSD(result?.basePayment ?? 0, 2)}
+          {formatFromUsd(result?.basePayment ?? 0, currency, locale)}
         </span>
       </div>
     </div>

@@ -3,12 +3,13 @@
 // React
 import { useMemo, useState } from "react";
 // Libraries
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { HiOutlineDownload } from "react-icons/hi";
 // Utils
-import { formatUSD, rowDate } from "@/utils";
+import { formatFromUsd, rowDate } from "@/utils";
 // Types
 import type { LoanResult } from "@/types";
+import type { CurrencyCode } from "@/constants";
 // Styles
 import shared from "@/shared";
 import styles from "./AmortizationTable.module.css";
@@ -16,14 +17,15 @@ import styles from "./AmortizationTable.module.css";
 const PREVIEW_ROWS = 12; // first year
 const EXPANDED_ROWS = 60; // first five years
 
-type Props = { result: LoanResult | null };
+type Props = { result: LoanResult | null; currency: CurrencyCode };
 
-export const AmortizationTable = ({ result }: Props) => {
+export const AmortizationTable = ({ result, currency }: Props) => {
   // State
   const [expanded, setExpanded] = useState(false);
 
   // Hooks
   const t = useTranslations("calculator.table");
+  const locale = useLocale();
 
   // Values
   const allRows = result?.rows ?? [];
@@ -69,13 +71,13 @@ export const AmortizationTable = ({ result }: Props) => {
               {rows.map((row, i) => (
                 <tr key={i} className={styles.row}>
                   <td className={styles.tdLeft}>{rowDate(row.month)}</td>
-                  <td>{formatUSD(row.principal, 2)}</td>
-                  <td>{formatUSD(row.interest, 2)}</td>
+                  <td>{formatFromUsd(row.principal, currency, locale)}</td>
+                  <td>{formatFromUsd(row.interest, currency, locale)}</td>
                   <td className={styles.extraCell}>
-                    {formatUSD(row.extra, 2)}
+                    {formatFromUsd(row.extra, currency, locale)}
                   </td>
                   <td className={styles.tdRight}>
-                    {formatUSD(row.balance, 2)}
+                    {formatFromUsd(row.balance, currency, locale)}
                   </td>
                 </tr>
               ))}

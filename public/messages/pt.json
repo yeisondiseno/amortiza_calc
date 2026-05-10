@@ -13,6 +13,7 @@
     "form": {
       "title": "Parâmetros do empréstimo",
       "loanAmount": "Valor do empréstimo",
+      "currency": "Moeda",
       "interestRate": "Taxa de juros",
       "loanTerm": "Prazo do empréstimo",
       "extraPayment": "Pagamento extra mensal",

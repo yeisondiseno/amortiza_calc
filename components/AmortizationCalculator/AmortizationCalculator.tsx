@@ -12,7 +12,7 @@ import { AmortizationTable } from "@/components/AmortizationTable";
 import { BottomNav } from "@/components/BottomNav";
 
 // Utils
-import { amortize, parseNum } from "@/utils";
+import { amortize, parseNum, toUsd } from "@/utils";
 
 // Types
 import type { FormState, ChartView } from "@/types";
@@ -26,6 +26,7 @@ const DEFAULT_FORM: FormState = {
   rate: "6.5",
   years: "30",
   extra: "500",
+  currency: "USD",
 };
 
 export const AmortizationCalculator = () => {
@@ -37,10 +38,10 @@ export const AmortizationCalculator = () => {
   const result = useMemo(
     () =>
       amortize(
-        parseNum(form.amount),
+        toUsd(parseNum(form.amount), form.currency),
         parseNum(form.rate),
         parseNum(form.years),
-        parseNum(form.extra),
+        toUsd(parseNum(form.extra), form.currency),
       ),
     [form],
   );
@@ -52,15 +53,16 @@ export const AmortizationCalculator = () => {
         <div className={styles.grid}>
           <LoanForm form={form} setForm={setForm} />
           <section className={styles.results}>
-            <ResultCards result={result} />
+            <ResultCards currency={form.currency} result={result} />
             <BalanceChart
+              currency={form.currency}
               result={result}
               view={chartView}
               setView={setChartView}
             />
           </section>
         </div>
-        <AmortizationTable result={result} />
+        <AmortizationTable currency={form.currency} result={result} />
       </main>
       <BottomNav />
     </>

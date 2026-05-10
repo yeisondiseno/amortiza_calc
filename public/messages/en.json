@@ -13,6 +13,7 @@
     "form": {
       "title": "Loan Parameters",
       "loanAmount": "Loan Amount",
+      "currency": "Currency",
       "interestRate": "Interest Rate",
       "loanTerm": "Loan Term",
       "extraPayment": "Monthly Extra Payment",

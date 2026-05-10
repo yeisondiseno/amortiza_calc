@@ -13,6 +13,7 @@
     "form": {
       "title": "ローン条件",
       "loanAmount": "借入額",
+      "currency": "通貨",
       "interestRate": "金利",
       "loanTerm": "返済年数",
       "extraPayment": "毎月の追加返済",

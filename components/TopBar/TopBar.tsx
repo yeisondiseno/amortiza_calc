@@ -3,11 +3,11 @@
 // Libraries
 import { useLocale, useTranslations } from "next-intl";
 import { HiOutlineCurrencyDollar } from "react-icons/hi";
-
 // i18n
 import { routing } from "@/i18n/routing";
 import { usePathname, useRouter } from "@/i18n/navigation";
-
+// Components
+import { Select } from "@/components/Select";
 // Styles
 import styles from "./TopBar.module.css";
 
@@ -47,7 +47,7 @@ export const TopBar = () => {
 
         {/* Actions */}
         <div className={styles.actions}>
-          <select
+          <Select
             className={styles.langSelect}
             value={locale}
             onChange={(e) => onLocaleChange(e.target.value)}
@@ -58,7 +58,7 @@ export const TopBar = () => {
                 {LOCALE_LABELS[loc]}
               </option>
             ))}
-          </select>
+          </Select>
         </div>
       </div>
     </header>

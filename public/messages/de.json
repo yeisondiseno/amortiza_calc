@@ -13,6 +13,7 @@
     "form": {
       "title": "Darlehensparameter",
       "loanAmount": "Darlehensbetrag",
+      "currency": "Währung",
       "interestRate": "Zinssatz",
       "loanTerm": "Laufzeit",
       "extraPayment": "Monatliche Zusatzzahlung",
