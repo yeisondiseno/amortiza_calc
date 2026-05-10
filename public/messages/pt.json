@@ -1,6 +1,60 @@
 {
   "App": {
     "title": "Amortiza Calc",
-    "description": "Loan amortization calculator"
+    "description": "Calculadora de amortização de empréstimos"
+  },
+  "calculator": {
+    "topbar": {
+      "calculator": "Calculadora",
+      "amortization": "Amortização",
+      "history": "Histórico",
+      "language": "Idioma"
+    },
+    "form": {
+      "title": "Parâmetros do empréstimo",
+      "loanAmount": "Valor do empréstimo",
+      "interestRate": "Taxa de juros",
+      "loanTerm": "Prazo do empréstimo",
+      "extraPayment": "Pagamento extra mensal",
+      "yearsSuffix": "Anos",
+      "calculate": "Calcular economia",
+      "infoText": "Acrescentar um valor extra à sua parcela mensal pode reduzir bastante os juros totais pagos e encurtar o prazo do empréstimo em vários anos."
+    },
+    "results": {
+      "interestSaved": "Juros totais economizados",
+      "timeSaved": "Tempo economizado",
+      "lessPct": "% menos em juros",
+      "paidOffBy": "Quitado até",
+      "years": "Anos",
+      "months": "Meses"
+    },
+    "chart": {
+      "title": "Saldo ao longo do tempo",
+      "standard": "Padrão",
+      "withExtra": "Com extra",
+      "monthly": "Mensal",
+      "annually": "Anual",
+      "monthlyPayment": "Prestação mensal",
+      "yearLabel": "Ano {year}"
+    },
+    "table": {
+      "title": "Tabela de amortização",
+      "subtitle": "Detalhamento do primeiro ano com pagamentos extras.",
+      "subtitleExpanded": "Detalhamento dos primeiros cinco anos com pagamentos extras.",
+      "month": "Mês",
+      "principal": "Principal",
+      "interest": "Juros",
+      "extra": "Extra",
+      "remainingBalance": "Saldo devedor",
+      "exportCSV": "Exportar CSV",
+      "viewFull": "Ver cronograma completo de {years} anos",
+      "collapse": "Recolher cronograma",
+      "empty": "Informe os dados do empréstimo para ver o cronograma."
+    },
+    "bottomNav": {
+      "calculator": "Calcular",
+      "schedule": "Cronograma",
+      "saved": "Salvos"
+    }
   }
 }

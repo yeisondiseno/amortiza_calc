@@ -1,6 +1,60 @@
 {
   "App": {
     "title": "Amortiza Calc",
-    "description": "Loan amortization calculator"
+    "description": "Darlehenstilgungsrechner"
+  },
+  "calculator": {
+    "topbar": {
+      "calculator": "Rechner",
+      "amortization": "Tilgung",
+      "history": "Verlauf",
+      "language": "Sprache"
+    },
+    "form": {
+      "title": "Darlehensparameter",
+      "loanAmount": "Darlehensbetrag",
+      "interestRate": "Zinssatz",
+      "loanTerm": "Laufzeit",
+      "extraPayment": "Monatliche Zusatzzahlung",
+      "yearsSuffix": "J.",
+      "calculate": "Ersparnis berechnen",
+      "infoText": "Eine höhere monatliche Rate kann die Gesamtzinsen deutlich senken und die Laufzeit Ihres Darlehens um mehrere Jahre verkürzen."
+    },
+    "results": {
+      "interestSaved": "Gesparte Zinsen",
+      "timeSaved": "Eingesparte Zeit",
+      "lessPct": "% weniger Zinsen",
+      "paidOffBy": "Abbezahlt bis",
+      "years": "Jahre",
+      "months": "Monate"
+    },
+    "chart": {
+      "title": "Saldo über die Zeit",
+      "standard": "Standard",
+      "withExtra": "Mit Zusatzzahlung",
+      "monthly": "Monatlich",
+      "annually": "Jährlich",
+      "monthlyPayment": "Monatliche Rate",
+      "yearLabel": "Jahr {year}"
+    },
+    "table": {
+      "title": "Tilgungsplan",
+      "subtitle": "Aufstellung des ersten Jahres mit Zusatzzahlungen.",
+      "subtitleExpanded": "Aufstellung der ersten fünf Jahre mit Zusatzzahlungen.",
+      "month": "Monat",
+      "principal": "Tilgung",
+      "interest": "Zinsen",
+      "extra": "Extra",
+      "remainingBalance": "Restsaldo",
+      "exportCSV": "CSV exportieren",
+      "viewFull": "Vollständigen {years}-Jahres-Plan anzeigen",
+      "collapse": "Plan einklappen",
+      "empty": "Geben Sie die Darlehensdaten ein, um Ihren Plan zu sehen."
+    },
+    "bottomNav": {
+      "calculator": "Berechnen",
+      "schedule": "Plan",
+      "saved": "Gespeichert"
+    }
   }
 }

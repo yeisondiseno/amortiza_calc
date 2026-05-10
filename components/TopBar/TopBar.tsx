@@ -1,25 +1,35 @@
 "use client";
 
-// React
-import { useState } from "react";
-
 // Libraries
-import { useTranslations } from "next-intl";
-import { HiOutlineCog, HiOutlineCurrencyDollar } from "react-icons/hi";
+import { useLocale, useTranslations } from "next-intl";
+import { HiOutlineCurrencyDollar } from "react-icons/hi";
+
+// i18n
+import { routing } from "@/i18n/routing";
+import { usePathname, useRouter } from "@/i18n/navigation";
 
 // Styles
 import styles from "./TopBar.module.css";
 
-// Constants
-const NAV_TABS = ["calculator", "amortization", "history"] as const;
-type NavTab = (typeof NAV_TABS)[number];
+const LOCALE_LABELS: Record<(typeof routing.locales)[number], string> = {
+  es: "Español",
+  en: "English",
+  de: "Deutsch",
+  fr: "Français",
+  pt: "Português",
+  ja: "日本語",
+};
 
 export const TopBar = () => {
-  // State
-  const [active, setActive] = useState<NavTab>("calculator");
-
   // Hooks
   const t = useTranslations("calculator.topbar");
+  const locale = useLocale();
+  const pathname = usePathname();
+  const router = useRouter();
+
+  const onLocaleChange = (nextLocale: string) => {
+    router.replace(pathname, { locale: nextLocale });
+  };
 
   return (
     <header className={styles.header}>
@@ -35,26 +45,20 @@ export const TopBar = () => {
           <span className={styles.brandName}>LoanCalc</span>
         </div>
 
-        {/* Nav tabs */}
-        <nav className={styles.nav}>
-          {NAV_TABS.map((tab) => (
-            <button
-              key={tab}
-              type="button"
-              onClick={() => setActive(tab)}
-              className={`${styles.navBtn} ${active === tab ? styles.navBtnActive : ""}`}
-            >
-              {t(tab)}
-            </button>
-          ))}
-        </nav>
-
         {/* Actions */}
         <div className={styles.actions}>
-          <button type="button" className={styles.iconBtn} aria-label="Settings">
-            <HiOutlineCog className={styles.headerIcon} aria-hidden />
-          </button>
-          <div className={styles.avatar}>JM</div>
+          <select
+            className={styles.langSelect}
+            value={locale}
+            onChange={(e) => onLocaleChange(e.target.value)}
+            aria-label={t("language")}
+          >
+            {routing.locales.map((loc) => (
+              <option key={loc} value={loc}>
+                {LOCALE_LABELS[loc]}
+              </option>
+            ))}
+          </select>
         </div>
       </div>
     </header>

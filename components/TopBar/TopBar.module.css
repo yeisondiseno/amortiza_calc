@@ -41,49 +41,12 @@
   flex-shrink: 0;
 }
 
-.headerIcon {
-  width: 1.25rem;
-  height: 1.25rem;
-  flex-shrink: 0;
-}
-
 .brandName {
   font-family: var(--font-headline);
   font-size: 1.125rem;
   font-weight: 700;
   letter-spacing: -0.02em;
   color: var(--color-on-surface);
-}
-
-/* Nav */
-.nav {
-  display: flex;
-  gap: var(--space-xl);
-}
-
-@media (max-width: 768px) {
-  .nav { display: none; }
-}
-
-.navBtn {
-  font-family: var(--font-headline);
-  font-size: 0.875rem;
-  font-weight: 600;
-  letter-spacing: -0.01em;
-  color: var(--color-on-surface-variant);
-  background: none;
-  border: none;
-  border-bottom: 2px solid transparent;
-  padding-bottom: var(--space-md);
-  cursor: pointer;
-  transition: color var(--transition-fast), border-color var(--transition-fast);
-}
-
-.navBtn:hover { color: var(--color-on-surface); }
-
-.navBtnActive {
-  color: var(--color-on-surface);
-  border-bottom-color: var(--color-on-surface);
 }
 
 /* Actions */
@@ -93,33 +56,42 @@
   gap: var(--space-md);
 }
 
-.iconBtn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 2.25rem;
+.langSelect {
+  min-width: 9rem;
+  flex-shrink: 0;
   height: 2.25rem;
-  border-radius: var(--radius-full);
-  background: none;
-  border: none;
+  padding: 0 2rem 0 0.625rem;
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  font-weight: 600;
   color: var(--color-on-surface);
+  background-color: var(--color-surface-container-lowest);
+  border: 1px solid var(--color-outline-variant);
+  border-radius: var(--radius-card);
   cursor: pointer;
-  transition: background-color var(--transition-fast);
+  appearance: none;
+  background-image:
+    linear-gradient(
+      45deg,
+      transparent 50%,
+      var(--color-on-surface-variant) 50%
+    ),
+    linear-gradient(
+      135deg,
+      var(--color-on-surface-variant) 50%,
+      transparent 50%
+    );
+  background-position:
+    calc(100% - 14px) 0.875rem,
+    calc(100% - 10px) 0.875rem;
+  background-size:
+    5px 5px,
+    5px 5px;
+  background-repeat: no-repeat;
 }
 
-.iconBtn:hover { background-color: var(--color-surface-container-low); }
-
-.avatar {
-  width: 2rem;
-  height: 2rem;
-  border-radius: var(--radius-full);
-  background-color: var(--color-primary);
-  color: var(--color-on-primary);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: var(--font-headline);
-  font-size: 0.8125rem;
-  font-weight: 600;
-  flex-shrink: 0;
+.langSelect:focus-visible {
+  outline: none;
+  border-color: var(--color-on-tertiary-container);
+  box-shadow: 0 0 0 3px rgb(57 128 244 / 0.12);
 }

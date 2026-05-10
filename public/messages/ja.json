@@ -1,6 +1,60 @@
 {
   "App": {
     "title": "Amortiza Calc",
-    "description": "Loan amortization calculator"
+    "description": "ローン返済スケジュール計算ツール"
+  },
+  "calculator": {
+    "topbar": {
+      "calculator": "計算",
+      "amortization": "返済表",
+      "history": "履歴",
+      "language": "言語"
+    },
+    "form": {
+      "title": "ローン条件",
+      "loanAmount": "借入額",
+      "interestRate": "金利",
+      "loanTerm": "返済年数",
+      "extraPayment": "毎月の追加返済",
+      "yearsSuffix": "年",
+      "calculate": "削減額を計算",
+      "infoText": "毎月の返済に上乗せを加えると、支払利息の合計を大きく抑え、返済期間を数年短くできることがあります。"
+    },
+    "results": {
+      "interestSaved": "削減した利息の合計",
+      "timeSaved": "短縮した期間",
+      "lessPct": "% の利息削減",
+      "paidOffBy": "完済目安",
+      "years": "年",
+      "months": "か月"
+    },
+    "chart": {
+      "title": "残高の推移",
+      "standard": "通常返済",
+      "withExtra": "追加あり",
+      "monthly": "月次",
+      "annually": "年次",
+      "monthlyPayment": "月々の返済額",
+      "yearLabel": "{year} 年目"
+    },
+    "table": {
+      "title": "返済スケジュール",
+      "subtitle": "追加返済込み・初年度の内訳。",
+      "subtitleExpanded": "追加返済込み・初めの5年分の内訳。",
+      "month": "月",
+      "principal": "元本",
+      "interest": "利息",
+      "extra": "追加",
+      "remainingBalance": "残高",
+      "exportCSV": "CSV で出力",
+      "viewFull": "全{years}年分のスケジュールを表示",
+      "collapse": "一覧を閉じる",
+      "empty": "ローン情報を入力するとスケジュールが表示されます。"
+    },
+    "bottomNav": {
+      "calculator": "計算",
+      "schedule": "一覧",
+      "saved": "保存"
+    }
   }
 }

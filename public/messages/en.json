@@ -7,7 +7,8 @@
     "topbar": {
       "calculator": "Calculator",
       "amortization": "Amortization",
-      "history": "History"
+      "history": "History",
+      "language": "Language"
     },
     "form": {
       "title": "Loan Parameters",

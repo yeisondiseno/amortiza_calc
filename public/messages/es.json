@@ -7,7 +7,8 @@
     "topbar": {
       "calculator": "Calculadora",
       "amortization": "Amortización",
-      "history": "Historial"
+      "history": "Historial",
+      "language": "Idioma"
     },
     "form": {
       "title": "Parámetros del préstamo",

@@ -1,6 +1,60 @@
 {
   "App": {
     "title": "Amortiza Calc",
-    "description": "Loan amortization calculator"
+    "description": "Calculateur d’amortissement de prêt"
+  },
+  "calculator": {
+    "topbar": {
+      "calculator": "Calculateur",
+      "amortization": "Amortissement",
+      "history": "Historique",
+      "language": "Langue"
+    },
+    "form": {
+      "title": "Paramètres du prêt",
+      "loanAmount": "Montant du prêt",
+      "interestRate": "Taux d’intérêt",
+      "loanTerm": "Durée du prêt",
+      "extraPayment": "Mensualité supplémentaire",
+      "yearsSuffix": "ans",
+      "calculate": "Calculer les économies",
+      "infoText": "Ajouter un complément à votre mensualité peut réduire nettement le total des intérêts payés et raccourcir la durée de votre prêt de plusieurs années."
+    },
+    "results": {
+      "interestSaved": "Intérêts économisés au total",
+      "timeSaved": "Temps gagné",
+      "lessPct": "% d’intérêts en moins",
+      "paidOffBy": "Remboursé d’ici",
+      "years": "Années",
+      "months": "Mois"
+    },
+    "chart": {
+      "title": "Solde dans le temps",
+      "standard": "Standard",
+      "withExtra": "Avec supplément",
+      "monthly": "Mensuel",
+      "annually": "Annuel",
+      "monthlyPayment": "Mensualité",
+      "yearLabel": "Année {year}"
+    },
+    "table": {
+      "title": "Tableau d’amortissement",
+      "subtitle": "Détail de la première année avec paiements supplémentaires.",
+      "subtitleExpanded": "Détail des cinq premières années avec paiements supplémentaires.",
+      "month": "Mois",
+      "principal": "Capital",
+      "interest": "Intérêts",
+      "extra": "Supplément",
+      "remainingBalance": "Solde restant",
+      "exportCSV": "Exporter en CSV",
+      "viewFull": "Voir le calendrier complet sur {years} ans",
+      "collapse": "Réduire le calendrier",
+      "empty": "Saisissez les données du prêt pour afficher votre calendrier."
+    },
+    "bottomNav": {
+      "calculator": "Calculer",
+      "schedule": "Calendrier",
+      "saved": "Enregistrés"
+    }
   }
 }
