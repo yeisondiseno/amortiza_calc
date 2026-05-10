@@ -4,13 +4,13 @@
 import { useTranslations } from "next-intl";
 
 // Utils
-import { payoffDate } from "./utils";
+import { payoffDate } from "../../utils/utils";
 
 // Types
-import type { LoanResult } from "./types";
+import type { LoanResult } from "../../types/types";
 
 // Styles
-import shared from "./shared.module.css";
+import shared from "../shared.module.css";
 import styles from "./ResultCards.module.css";
 
 type Props = { result: LoanResult | null };
@@ -25,8 +25,7 @@ export const ResultCards = ({ result }: Props) => {
   const yearsSaved = result?.yearsSaved ?? 0;
   const yearsWhole = Math.floor(yearsSaved);
   const yearsLabel = yearsWhole >= 1 ? t("years") : t("months");
-  const yearsValue =
-    yearsWhole >= 1 ? yearsWhole : Math.round(yearsSaved * 12);
+  const yearsValue = yearsWhole >= 1 ? yearsWhole : Math.round(yearsSaved * 12);
   const payoff = result ? payoffDate(result.monthsToPayoff) : "—";
 
   return (
@@ -67,7 +66,9 @@ export const ResultCards = ({ result }: Props) => {
           </span>
         </div>
         <div className={styles.footer}>
-          <span className={`${shared.iconSm} ${styles.iconBlue}`}>schedule</span>
+          <span className={`${shared.iconSm} ${styles.iconBlue}`}>
+            schedule
+          </span>
           <span className={`${styles.footerText} ${styles.footerBlue}`}>
             {t("paidOffBy")} {payoff}
           </span>

@@ -7,7 +7,7 @@ import { useState } from "react";
 import { useTranslations } from "next-intl";
 
 // Styles
-import shared from "./shared.module.css";
+import shared from "../shared.module.css";
 import styles from "./TopBar.module.css";
 
 // Constants

@@ -4,13 +4,13 @@
 import { useTranslations } from "next-intl";
 
 // Utils
-import { formatUSD } from "./utils";
+import { formatUSD } from "../../utils/utils";
 
 // Types
-import type { LoanResult, ChartView } from "./types";
+import type { LoanResult, ChartView } from "../../types/types";
 
 // Styles
-import shared from "./shared.module.css";
+import shared from "../shared.module.css";
 import styles from "./BalanceChart.module.css";
 
 // Constants
@@ -109,7 +109,9 @@ export const BalanceChart = ({ result, view, setView }: Props) => {
         <div className={styles.xAxis}>
           <span>{t("yearLabel", { year: 0 })}</span>
           <span>{t("yearLabel", { year: Math.round(totalYears / 3) })}</span>
-          <span>{t("yearLabel", { year: Math.round((totalYears * 2) / 3) })}</span>
+          <span>
+            {t("yearLabel", { year: Math.round((totalYears * 2) / 3) })}
+          </span>
           <span>{t("yearLabel", { year: totalYears })}</span>
         </div>
       </div>

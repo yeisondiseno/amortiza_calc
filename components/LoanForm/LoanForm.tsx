@@ -4,13 +4,13 @@
 import { useTranslations } from "next-intl";
 
 // Components
-import { Input } from "@/components/ui/input";
+import { Input } from "../Input/Input";
 
 // Types
-import type { FormState } from "./types";
+import type { FormState } from "../../types/types";
 
 // Styles
-import shared from "./shared.module.css";
+import shared from "../shared.module.css";
 import styles from "./LoanForm.module.css";
 
 type Props = {
@@ -28,7 +28,14 @@ type FieldProps = {
   placeholder: string;
 };
 
-const Field = ({ label, prefix, suffix, value, onChange, placeholder }: FieldProps) => (
+const Field = ({
+  label,
+  prefix,
+  suffix,
+  value,
+  onChange,
+  placeholder,
+}: FieldProps) => (
   <div className={styles.field}>
     <label className={shared.label}>{label}</label>
     <div className={shared.inputWrapper}>
@@ -58,7 +65,9 @@ export const LoanForm = ({ form, setForm }: Props) => {
     <section className={styles.section}>
       {/* Loan parameters card */}
       <div className={shared.card}>
-        <h2 className={`${shared.sectionTitle} ${styles.cardTitle}`}>{t("title")}</h2>
+        <h2 className={`${shared.sectionTitle} ${styles.cardTitle}`}>
+          {t("title")}
+        </h2>
         <div className={styles.fields}>
           <Field
             label={t("loanAmount")}

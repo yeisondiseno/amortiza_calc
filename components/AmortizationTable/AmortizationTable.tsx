@@ -2,18 +2,15 @@
 
 // React
 import { useMemo, useState } from "react";
-
 // Libraries
 import { useTranslations } from "next-intl";
-
 // Utils
-import { formatUSD, rowDate } from "./utils";
-
+import { formatUSD, rowDate } from "../../utils/utils";
 // Types
-import type { LoanResult } from "./types";
+import type { LoanResult } from "../../types/types";
 
 // Styles
-import shared from "./shared.module.css";
+import shared from "../shared.module.css";
 import styles from "./AmortizationTable.module.css";
 
 // Constants
@@ -75,8 +72,12 @@ export const AmortizationTable = ({ result }: Props) => {
                   <td className={styles.tdLeft}>{rowDate(row.month)}</td>
                   <td>{formatUSD(row.principal, 2)}</td>
                   <td>{formatUSD(row.interest, 2)}</td>
-                  <td className={styles.extraCell}>{formatUSD(row.extra, 2)}</td>
-                  <td className={styles.tdRight}>{formatUSD(row.balance, 2)}</td>
+                  <td className={styles.extraCell}>
+                    {formatUSD(row.extra, 2)}
+                  </td>
+                  <td className={styles.tdRight}>
+                    {formatUSD(row.balance, 2)}
+                  </td>
                 </tr>
               ))}
               {allRows.length === 0 && (

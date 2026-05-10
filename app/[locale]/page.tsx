@@ -2,7 +2,7 @@
 import { setRequestLocale } from "next-intl/server";
 
 // Components
-import { AmortizationCalculator } from "./components/AmortizationCalculator";
+import { AmortizationCalculator } from "@/components";
 
 type Props = Readonly<{
   params: Promise<{ locale: string }>;
