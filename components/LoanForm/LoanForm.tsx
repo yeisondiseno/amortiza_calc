@@ -4,13 +4,13 @@
 import { useTranslations } from "next-intl";
 
 // Components
-import { Input } from "../Input/Input";
+import { Input } from "@/components/Input";
 
 // Types
-import type { FormState } from "../../types/types";
+import type { FormState } from "@/types";
 
 // Styles
-import shared from "../shared.module.css";
+import shared from "@/shared";
 import styles from "./LoanForm.module.css";
 
 type Props = {

@@ -5,12 +5,12 @@ import { useMemo, useState } from "react";
 // Libraries
 import { useTranslations } from "next-intl";
 // Utils
-import { formatUSD, rowDate } from "../../utils/utils";
+import { formatUSD, rowDate } from "@/utils";
 // Types
-import type { LoanResult } from "../../types/types";
+import type { LoanResult } from "@/types";
 
 // Styles
-import shared from "../shared.module.css";
+import shared from "@/shared";
 import styles from "./AmortizationTable.module.css";
 
 // Constants

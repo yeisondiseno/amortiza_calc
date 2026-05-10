@@ -1,4 +1,4 @@
-import type { LoanResult } from "../types/types";
+import type { LoanResult } from "@/types";
 
 export const parseNum = (s: string): number =>
   Number(String(s).replace(/[^0-9.\-]/g, "")) || 0;

@@ -4,13 +4,13 @@
 import { useTranslations } from "next-intl";
 
 // Utils
-import { payoffDate } from "../../utils/utils";
+import { payoffDate } from "@/utils";
 
 // Types
-import type { LoanResult } from "../../types/types";
+import type { LoanResult } from "@/types";
 
 // Styles
-import shared from "../shared.module.css";
+import shared from "@/shared";
 import styles from "./ResultCards.module.css";
 
 type Props = { result: LoanResult | null };

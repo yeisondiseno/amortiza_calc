@@ -4,18 +4,18 @@
 import { useState, useMemo } from "react";
 
 // Components
-import { TopBar } from "../TopBar/TopBar";
-import { LoanForm } from "../LoanForm/LoanForm";
-import { ResultCards } from "../ResultCards/ResultCards";
-import { BalanceChart } from "../BalanceChart/BalanceChart";
-import { AmortizationTable } from "../AmortizationTable/AmortizationTable";
-import { BottomNav } from "../BottomNav/BottomNav";
+import { TopBar } from "@/components/TopBar";
+import { LoanForm } from "@/components/LoanForm";
+import { ResultCards } from "@/components/ResultCards";
+import { BalanceChart } from "@/components/BalanceChart";
+import { AmortizationTable } from "@/components/AmortizationTable";
+import { BottomNav } from "@/components/BottomNav";
 
 // Utils
-import { amortize, parseNum } from "../../utils/utils";
+import { amortize, parseNum } from "@/utils";
 
 // Types
-import type { FormState, ChartView } from "../../types/types";
+import type { FormState, ChartView } from "@/types";
 
 // Styles
 import styles from "./AmortizationCalculator.module.css";
