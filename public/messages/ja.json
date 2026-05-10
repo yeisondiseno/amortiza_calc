@@ -16,10 +16,14 @@
       "currency": "通貨",
       "interestRate": "金利",
       "loanTerm": "返済年数",
-      "extraPayment": "毎月の追加返済",
       "yearsSuffix": "年",
       "calculate": "削減額を計算",
-      "infoText": "毎月の返済に上乗せを加えると、支払利息の合計を大きく抑え、返済期間を数年短くできることがあります。"
+      "infoText": "追加返済を毎月行うか、12回ごとに年1回まとめて行うことで利息を抑え、返済期間を短くできます。入力する金額は選択したタイミングに対応します。",
+      "extraFrequency": "追加返済",
+      "extraFrequencyMonthly": "毎月",
+      "extraFrequencyAnnual": "年1回",
+      "extraPaymentMonthly": "毎月の追加返済額",
+      "extraPaymentAnnual": "年に一度の一括追加"
     },
     "results": {
       "interestSaved": "削減した利息の合計",

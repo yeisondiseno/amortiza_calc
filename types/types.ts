@@ -22,12 +22,16 @@ export type LoanResult = {
   n: number;
 };
 
+export type ExtraPaymentFrequency = "monthly" | "annual";
+
+/** `extra` es el monto del pago adicional mensual **o** anual según `extraFrequency`. */
 export type FormState = {
   amount: string;
   rate: string;
   years: string;
   extra: string;
   currency: CurrencyCode;
+  extraFrequency: ExtraPaymentFrequency;
 };
 
 export type ChartView = "Monthly" | "Annually";

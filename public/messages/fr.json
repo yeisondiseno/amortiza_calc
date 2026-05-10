@@ -16,10 +16,14 @@
       "currency": "Devise",
       "interestRate": "Taux d’intérêt",
       "loanTerm": "Durée du prêt",
-      "extraPayment": "Mensualité supplémentaire",
       "yearsSuffix": "ans",
       "calculate": "Calculer les économies",
-      "infoText": "Ajouter un complément à votre mensualité peut réduire nettement le total des intérêts payés et raccourcir la durée de votre prêt de plusieurs années."
+      "infoText": "Des paiements supplémentaires—chaque mois ou une fois par an après chaque série de 12 échéances—réduisent les intérêts et raccourcissent le prêt. Le montant saisi correspond au rythme choisi.",
+      "extraFrequency": "Paiement supplémentaire",
+      "extraFrequencyMonthly": "Mensuel",
+      "extraFrequencyAnnual": "Annuel",
+      "extraPaymentMonthly": "Montant supplémentaire mensuel",
+      "extraPaymentAnnual": "Versement annuel unique"
     },
     "results": {
       "interestSaved": "Intérêts économisés au total",

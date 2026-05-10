@@ -16,10 +16,14 @@
       "currency": "Currency",
       "interestRate": "Interest Rate",
       "loanTerm": "Loan Term",
-      "extraPayment": "Monthly Extra Payment",
+      "extraFrequency": "Extra payment",
+      "extraFrequencyMonthly": "Monthly",
+      "extraFrequencyAnnual": "Annual",
+      "extraPaymentMonthly": "Monthly extra amount",
+      "extraPaymentAnnual": "Annual lump sum",
       "yearsSuffix": "Yrs",
       "calculate": "Calculate Savings",
-      "infoText": "Adding extra to your monthly payment can significantly reduce your total interest paid and shorten your loan term by several years."
+      "infoText": "Extra payments—each month or once a year at the end of every 12 payments—can cut total interest and shorten the loan. The amount you enter matches the timing you select."
     },
     "results": {
       "interestSaved": "Total Interest Saved",

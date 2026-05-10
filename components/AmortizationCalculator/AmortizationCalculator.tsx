@@ -2,7 +2,8 @@
 
 // React
 import { useState, useMemo } from "react";
-
+// Libraries
+import { useLocale } from "next-intl";
 // Components
 import { TopBar } from "@/components/TopBar";
 import { LoanForm } from "@/components/LoanForm";
@@ -10,16 +11,12 @@ import { ResultCards } from "@/components/ResultCards";
 import { BalanceChart } from "@/components/BalanceChart";
 import { AmortizationTable } from "@/components/AmortizationTable";
 import { BottomNav } from "@/components/BottomNav";
-
 // Utils
-import { amortize, parseNum, toUsd } from "@/utils";
-
+import { amortize, parseNum, parseMaskedMoney, toUsd } from "@/utils";
 // Types
 import type { FormState, ChartView } from "@/types";
-
 // Styles
 import styles from "./AmortizationCalculator.module.css";
-
 // Constants
 const DEFAULT_FORM: FormState = {
   amount: "450,000",
@@ -27,9 +24,11 @@ const DEFAULT_FORM: FormState = {
   years: "30",
   extra: "500",
   currency: "USD",
+  extraFrequency: "monthly",
 };
 
 export const AmortizationCalculator = () => {
+  const locale = useLocale();
   // State
   const [form, setForm] = useState<FormState>(DEFAULT_FORM);
   const [chartView, setChartView] = useState<ChartView>("Monthly");
@@ -38,12 +37,19 @@ export const AmortizationCalculator = () => {
   const result = useMemo(
     () =>
       amortize(
-        toUsd(parseNum(form.amount), form.currency),
+        toUsd(
+          parseMaskedMoney(form.amount, locale, form.currency),
+          form.currency,
+        ),
         parseNum(form.rate),
         parseNum(form.years),
-        toUsd(parseNum(form.extra), form.currency),
+        toUsd(
+          parseMaskedMoney(form.extra, locale, form.currency),
+          form.currency,
+        ),
+        form.extraFrequency,
       ),
-    [form],
+    [form, locale],
   );
 
   return (

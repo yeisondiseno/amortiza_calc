@@ -16,10 +16,14 @@
       "currency": "Währung",
       "interestRate": "Zinssatz",
       "loanTerm": "Laufzeit",
-      "extraPayment": "Monatliche Zusatzzahlung",
       "yearsSuffix": "J.",
       "calculate": "Ersparnis berechnen",
-      "infoText": "Eine höhere monatliche Rate kann die Gesamtzinsen deutlich senken und die Laufzeit Ihres Darlehens um mehrere Jahre verkürzen."
+      "infoText": "Zusätzliche Zahlungen—monatlich oder einmal jährlich nach jeweils 12 Raten—senken die Zinslast und verkürzen die Laufzeit. Der eingegebene Betrag bezieht sich auf die gewählte Zahlungsweise.",
+      "extraFrequency": "Zusatzzahlung",
+      "extraFrequencyMonthly": "Monatlich",
+      "extraFrequencyAnnual": "Jährlich",
+      "extraPaymentMonthly": "Monatlicher Zusatzbetrag",
+      "extraPaymentAnnual": "Jährlicher Einmalbetrag"
     },
     "results": {
       "interestSaved": "Gesparte Zinsen",

@@ -16,10 +16,14 @@
       "currency": "Moeda",
       "interestRate": "Taxa de juros",
       "loanTerm": "Prazo do empréstimo",
-      "extraPayment": "Pagamento extra mensal",
       "yearsSuffix": "Anos",
       "calculate": "Calcular economia",
-      "infoText": "Acrescentar um valor extra à sua parcela mensal pode reduzir bastante os juros totais pagos e encurtar o prazo do empréstimo em vários anos."
+      "infoText": "Pagamentos extras—todo mês ou uma vez por ano ao completar cada 12 parcelas—reduzem juros e encurtram o financiamento. O valor corresponde à periodicidade escolhida.",
+      "extraFrequency": "Pagamento extra",
+      "extraFrequencyMonthly": "Mensal",
+      "extraFrequencyAnnual": "Anual",
+      "extraPaymentMonthly": "Valor extra mensal",
+      "extraPaymentAnnual": "Pagamento único anual"
     },
     "results": {
       "interestSaved": "Juros totais economizados",

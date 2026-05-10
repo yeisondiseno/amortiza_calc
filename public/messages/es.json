@@ -16,10 +16,14 @@
       "currency": "Moneda",
       "interestRate": "Tasa de interés",
       "loanTerm": "Plazo",
-      "extraPayment": "Pago extra mensual",
+      "extraFrequency": "Pago extra",
+      "extraFrequencyMonthly": "Mensual",
+      "extraFrequencyAnnual": "Anual",
+      "extraPaymentMonthly": "Pago extra mensual",
+      "extraPaymentAnnual": "Pago extra anual (una vez al año)",
       "yearsSuffix": "Años",
       "calculate": "Calcular Ahorro",
-      "infoText": "Agregar un pago extra mensual puede reducir significativamente el interés total y acortar el plazo de tu préstamo varios años."
+      "infoText": "Los pagos extra—cada mes o una vez al año al completar cada 12 cuotas—pueden reducir intereses y acortar el préstamo. El monto que ingresas corresponde al ritmo que eliges."
     },
     "results": {
       "interestSaved": "Interés total ahorrado",

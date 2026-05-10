@@ -1,5 +1,14 @@
 import { EXCHANGE_RATES, type CurrencyCode } from "@/constants";
-import type { LoanResult } from "@/types";
+import type { ExtraPaymentFrequency, LoanResult } from "@/types";
+
+export {
+  getMoneyMaskFormat,
+  maskMoneyInput,
+  parseMaskedMoney,
+  finalizeMoneyDisplay,
+  placeholderMoney,
+  type MoneyMaskFormat,
+} from "./currencyMask";
 
 export const parseNum = (s: string): number =>
   Number(String(s).replaceAll(/[^0-9.\-]/g, "")) || 0;
@@ -83,7 +92,8 @@ export const amortize = (
   principal: number,
   annualRatePct: number,
   years: number,
-  extraMonthly: number,
+  extraAmountUsd: number,
+  extraFrequency: ExtraPaymentFrequency,
 ): LoanResult | null => {
   if (principal <= 0 || years <= 0) return null;
 
@@ -116,7 +126,14 @@ export const amortize = (
   for (let i = 0; i < n && bal2 > 0.01; i++) {
     const interest = bal2 * r;
     const principalPay = Math.min(basePayment - interest, bal2);
-    const extra = Math.min(extraMonthly, Math.max(0, bal2 - principalPay));
+    const room = Math.max(0, bal2 - principalPay);
+    const applyExtraThisMonth =
+      extraAmountUsd > 0 &&
+      (extraFrequency === "monthly" ||
+        (extraFrequency === "annual" && (i + 1) % 12 === 0));
+    const extra = applyExtraThisMonth
+      ? Math.min(extraAmountUsd, room)
+      : 0;
     bal2 = Math.max(0, bal2 - principalPay - extra);
     accInterest += interest;
     accSeries.push(bal2);
