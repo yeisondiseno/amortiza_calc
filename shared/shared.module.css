@@ -132,23 +132,17 @@
 
 .btnGhost:hover { background-color: var(--color-surface-container-low); }
 
-/* ── Icon (Material Symbols) ──────────────────────────────── */
-.icon {
-  font-family: "Material Symbols Outlined";
-  font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
-  display: inline-block;
-  vertical-align: middle;
-  line-height: 1;
-  font-style: normal;
-  font-size: 1.125rem;
+/* ── Icons (SVG, e.g. react-icons/hi) ───────────────────────── */
+.iconSvg {
+  display: block;
+  flex-shrink: 0;
+  width: 1.125rem;
+  height: 1.125rem;
 }
 
-.iconSm {
-  font-family: "Material Symbols Outlined";
-  font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
-  display: inline-block;
-  vertical-align: middle;
-  line-height: 1;
-  font-style: normal;
-  font-size: 1rem;
+.iconSvgSm {
+  display: block;
+  flex-shrink: 0;
+  width: 1rem;
+  height: 1rem;
 }

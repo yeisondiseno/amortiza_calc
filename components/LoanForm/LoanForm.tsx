@@ -2,13 +2,14 @@
 
 // Libraries
 import { useTranslations } from "next-intl";
-
+import {
+  HiOutlineCalculator,
+  HiOutlineInformationCircle,
+} from "react-icons/hi";
 // Components
 import { Input } from "@/components/Input";
-
 // Types
 import type { FormState } from "@/types";
-
 // Styles
 import shared from "@/shared";
 import styles from "./LoanForm.module.css";
@@ -101,7 +102,7 @@ export const LoanForm = ({ form, setForm }: Props) => {
           />
         </div>
         <button type="button" className={shared.btnCalculate}>
-          <span className={shared.iconSm}>calculate</span>
+          <HiOutlineCalculator className={shared.iconSvgSm} aria-hidden />
           {t("calculate")}
         </button>
       </div>
@@ -109,7 +110,10 @@ export const LoanForm = ({ form, setForm }: Props) => {
       {/* Info card */}
       <div className={shared.cardSubtle}>
         <div className={styles.infoRow}>
-          <span className={`${shared.icon} ${styles.infoIcon}`}>info</span>
+          <HiOutlineInformationCircle
+            className={`${shared.iconSvg} ${styles.infoIcon}`}
+            aria-hidden
+          />
           <p className={styles.infoText}>{t("infoText")}</p>
         </div>
       </div>

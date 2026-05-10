@@ -4,15 +4,14 @@
 import { useMemo, useState } from "react";
 // Libraries
 import { useTranslations } from "next-intl";
+import { HiOutlineDownload } from "react-icons/hi";
 // Utils
 import { formatUSD, rowDate } from "@/utils";
 // Types
 import type { LoanResult } from "@/types";
-
 // Styles
 import shared from "@/shared";
 import styles from "./AmortizationTable.module.css";
-
 // Constants
 const PREVIEW_ROWS = 12; // first year
 const EXPANDED_ROWS = 60; // first five years
@@ -48,7 +47,7 @@ export const AmortizationTable = ({ result }: Props) => {
           </p>
         </div>
         <button type="button" className={shared.btnGhost}>
-          <span className={shared.iconSm}>download</span>
+          <HiOutlineDownload className={shared.iconSvgSm} aria-hidden />
           {t("exportCSV")}
         </button>
       </div>

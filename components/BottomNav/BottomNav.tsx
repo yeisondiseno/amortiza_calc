@@ -5,6 +5,11 @@ import { useState } from "react";
 
 // Libraries
 import { useTranslations } from "next-intl";
+import {
+  HiOutlineBookmark,
+  HiOutlineCalculator,
+  HiOutlineCalendar,
+} from "react-icons/hi";
 
 // Styles
 import shared from "@/shared";
@@ -12,9 +17,9 @@ import styles from "./BottomNav.module.css";
 
 // Constants
 const NAV_ITEMS = [
-  { id: "calculator", icon: "calculate" },
-  { id: "schedule", icon: "calendar_month" },
-  { id: "saved", icon: "bookmark" },
+  { id: "calculator" as const, Icon: HiOutlineCalculator },
+  { id: "schedule" as const, Icon: HiOutlineCalendar },
+  { id: "saved" as const, Icon: HiOutlineBookmark },
 ] as const;
 
 type NavId = (typeof NAV_ITEMS)[number]["id"];
@@ -28,14 +33,14 @@ export const BottomNav = () => {
 
   return (
     <footer className={styles.footer}>
-      {NAV_ITEMS.map(({ id, icon }) => (
+      {NAV_ITEMS.map(({ id, Icon }) => (
         <button
           key={id}
           type="button"
           onClick={() => setActive(id)}
           className={`${styles.navItem} ${active === id ? styles.navItemActive : ""}`}
         >
-          <span className={shared.icon}>{icon}</span>
+          <Icon className={shared.iconSvg} aria-hidden />
           <span className={styles.label}>{t(id)}</span>
         </button>
       ))}

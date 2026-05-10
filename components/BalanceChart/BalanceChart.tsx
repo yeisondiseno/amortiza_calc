@@ -2,17 +2,13 @@
 
 // Libraries
 import { useTranslations } from "next-intl";
-
 // Utils
 import { formatUSD } from "@/utils";
-
 // Types
 import type { LoanResult, ChartView } from "@/types";
-
 // Styles
 import shared from "@/shared";
 import styles from "./BalanceChart.module.css";
-
 // Constants
 const W = 400;
 const H = 100;

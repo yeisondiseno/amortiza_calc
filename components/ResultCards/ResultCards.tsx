@@ -2,6 +2,7 @@
 
 // Libraries
 import { useTranslations } from "next-intl";
+import { HiOutlineClock, HiOutlineTrendingUp } from "react-icons/hi";
 
 // Utils
 import { payoffDate } from "@/utils";
@@ -42,9 +43,10 @@ export const ResultCards = ({ result }: Props) => {
           </span>
         </div>
         <div className={styles.footer}>
-          <span className={`${shared.iconSm} ${styles.iconGreen}`}>
-            trending_up
-          </span>
+          <HiOutlineTrendingUp
+            className={`${shared.iconSvgSm} ${styles.iconGreen}`}
+            aria-hidden
+          />
           <span className={styles.footerText}>
             {pct.toFixed(1)}
             {t("lessPct")}
@@ -66,9 +68,10 @@ export const ResultCards = ({ result }: Props) => {
           </span>
         </div>
         <div className={styles.footer}>
-          <span className={`${shared.iconSm} ${styles.iconBlue}`}>
-            schedule
-          </span>
+          <HiOutlineClock
+            className={`${shared.iconSvgSm} ${styles.iconBlue}`}
+            aria-hidden
+          />
           <span className={`${styles.footerText} ${styles.footerBlue}`}>
             {t("paidOffBy")} {payoff}
           </span>

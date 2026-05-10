@@ -5,9 +5,9 @@ import { useState } from "react";
 
 // Libraries
 import { useTranslations } from "next-intl";
+import { HiOutlineCog, HiOutlineCurrencyDollar } from "react-icons/hi";
 
 // Styles
-import shared from "@/shared";
 import styles from "./TopBar.module.css";
 
 // Constants
@@ -27,7 +27,10 @@ export const TopBar = () => {
         {/* Wordmark */}
         <div className={styles.brand}>
           <div className={styles.brandIcon}>
-            <span className={shared.icon}>request_quote</span>
+            <HiOutlineCurrencyDollar
+              className={styles.brandGlyph}
+              aria-hidden
+            />
           </div>
           <span className={styles.brandName}>LoanCalc</span>
         </div>
@@ -49,7 +52,7 @@ export const TopBar = () => {
         {/* Actions */}
         <div className={styles.actions}>
           <button type="button" className={styles.iconBtn} aria-label="Settings">
-            <span className={shared.icon}>settings</span>
+            <HiOutlineCog className={styles.headerIcon} aria-hidden />
           </button>
           <div className={styles.avatar}>JM</div>
         </div>
