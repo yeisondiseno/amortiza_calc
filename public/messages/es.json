@@ -20,6 +20,55 @@
     "usageHeading": "Cómo usar esta página",
     "usageBody": "Introduce el monto del préstamo, la tasa de interés anual y el plazo para ver tu cuota mensual y la tabla de amortización completa. Opcionalmente agrega pagos extra mensuales o anuales para comparar escenarios y ver el ahorro estimado en intereses y los meses que podrías recortar del préstamo. Los cálculos se ejecutan en tu navegador."
   },
+  "footer": {
+    "brandLine": "{brand}. {footer}",
+    "brand": "Calculadora de préstamos gratuita",
+    "footer": "Calculadora de amortización y pago anticipado — todo se ejecuta en tu navegador.",
+    "disclaimer": "Las estimaciones son solo educativas y no constituyen asesoramiento financiero, legal ni fiscal.",
+    "metaNavAria": "Enlaces legales e informativos",
+    "about": "Acerca de",
+    "privacy": "Privacidad"
+  },
+  "global": {
+    "langsNavAria": "Elegir idioma de la interfaz",
+    "languageNames": {
+      "en": "Inglés",
+      "es": "Español",
+      "de": "Alemán",
+      "fr": "Francés",
+      "pt": "Portugués",
+      "ja": "Japonés"
+    }
+  },
+  "legal": {
+    "backToHome": "Volver a la calculadora"
+  },
+  "aboutPage": {
+    "metaTitle": "Acerca de",
+    "metaDescription": "Conoce la calculadora gratuita de préstamos y amortización: planifica pagos extra y entiende tu tabla de amortización para saldar deudas antes.",
+    "title": "Acerca de la calculadora de préstamos",
+    "intro": "La calculadora de préstamos es una herramienta gratuita y centrada en la privacidad que te ayuda a entender cómo funciona tu crédito y cómo los pagos extra pueden ahorrarte miles en intereses.",
+    "whatTitle": "Qué hace",
+    "whatBody": "Introduce el monto, la tasa y el plazo para ver al instante tu cuota mensual y una tabla de amortización completa. Añade pagos extra mensuales o anuales opcionales para comparar escenarios.",
+    "whoTitle": "Para quién es",
+    "whoBody": "Para cualquier persona con un préstamo a tasa fija —hipoteca, auto, estudiantil o personal— que quiera planificar mejor la devolución y reducir el interés total.",
+    "privacyTitle": "Privacidad",
+    "privacyBody": "Todos los cálculos se realizan en tu navegador. No enviamos datos personales, información financiera ni detalles del préstamo a nuestros servidores."
+  },
+  "privacyPage": {
+    "metaTitle": "Política de privacidad",
+    "metaDescription": "Política de privacidad de la calculadora de préstamos. No recopilamos ni almacenamos datos personales ni financieros. Todo se calcula localmente en tu navegador.",
+    "title": "Política de privacidad",
+    "updated": "Última actualización: mayo de 2026",
+    "dataTitle": "Datos que recopilamos",
+    "dataBody": "No recopilamos, almacenamos ni transmitimos datos personales ni financieros. Los cálculos se ejecutan localmente en tu navegador y no salen de tu dispositivo.",
+    "cookiesTitle": "Cookies",
+    "cookiesBody": "Este sitio no usa cookies de seguimiento ni analítica. El historial de préstamos se guarda en el almacenamiento local del navegador y puedes borrarlo cuando quieras.",
+    "thirdPartyTitle": "Servicios de terceros",
+    "thirdPartyBody": "Usamos Google Fonts para cargar tipografías; Google puede registrar tu dirección IP al cargarlas. No utilizamos otros servicios de terceros.",
+    "contactTitle": "Contacto",
+    "contactBody": "Si tienes preguntas sobre esta política de privacidad, puedes contactarnos mediante la información indicada en el sitio."
+  },
   "calculator": {
     "topbar": {
       "calculator": "Calculadora",

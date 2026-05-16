@@ -1,9 +1,16 @@
 // Next
 import type { Metadata } from "next";
-import { setRequestLocale } from "next-intl/server";
-
+import { getTranslations, setRequestLocale } from "next-intl/server";
+import { HiOutlineArrowLeft } from "react-icons/hi";
+// Components
+import { TopBar } from "@/components";
+// i18n
+import { Link } from "@/i18n/navigation";
 // Constants
 import { BASE_URL } from "@/constants";
+// Styles
+import shared from "@/shared";
+import staticStyles from "../staticPage.module.css";
 
 type Props = Readonly<{
   params: Promise<{ locale: string }>;
@@ -13,10 +20,11 @@ export const generateMetadata = async ({
   params,
 }: Props): Promise<Metadata> => {
   const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "aboutPage" });
+
   return {
-    title: "About",
-    description:
-      "Learn about the free Loan Payoff Calculator — a tool to help you understand your amortization schedule and plan extra payments to pay off debt faster.",
+    title: t("metaTitle"),
+    description: t("metaDescription"),
     alternates: {
       canonical: `${BASE_URL}/${locale}/about`,
     },
@@ -27,49 +35,38 @@ const AboutPage = async ({ params }: Props) => {
   const { locale } = await params;
   setRequestLocale(locale);
 
+  const t = await getTranslations({ locale, namespace: "aboutPage" });
+  const tl = await getTranslations({ locale, namespace: "legal" });
+
   return (
-    <main
-      style={{
-        maxWidth: 720,
-        margin: "0 auto",
-        padding: "48px 24px",
-        fontFamily: "var(--font-inter, system-ui, sans-serif)",
-        lineHeight: 1.7,
-        color: "#e2e8f0",
-      }}
-    >
-      <h1 style={{ fontSize: 32, fontWeight: 700, marginBottom: 16 }}>
-        About Loan Payoff Calculator
-      </h1>
-      <p>
-        Loan Payoff Calculator is a free, privacy-first tool that helps you
-        understand exactly how your loan works — and how extra payments can save
-        you thousands of dollars in interest.
-      </p>
-      <h2 style={{ fontSize: 22, fontWeight: 600, marginTop: 32 }}>
-        What it does
-      </h2>
-      <p>
-        Enter your loan amount, interest rate, and term to instantly see your
-        monthly payment and a full amortization schedule. Add optional extra
-        monthly or annual payments to compare scenarios side by side.
-      </p>
-      <h2 style={{ fontSize: 22, fontWeight: 600, marginTop: 32 }}>
-        Who it is for
-      </h2>
-      <p>
-        Anyone with a fixed-rate loan — mortgage, auto loan, student loan, or
-        personal loan — who wants to plan smarter repayment and reduce total
-        interest paid.
-      </p>
-      <h2 style={{ fontSize: 22, fontWeight: 600, marginTop: 32 }}>
-        Privacy
-      </h2>
-      <p>
-        All calculations happen entirely in your browser. No personal data,
-        financial information, or loan details are ever sent to our servers.
-      </p>
+    <>
+      <TopBar />
+      <main className={staticStyles.main}>
+      <div className={staticStyles.backRow}>
+        <Link
+          href="/"
+          className={`${shared.btnGhost} ${staticStyles.backLink}`}
+        >
+          <HiOutlineArrowLeft className={shared.iconSvgSm} aria-hidden />
+          {tl("backToHome")}
+        </Link>
+      </div>
+      <article className={`${shared.card} ${staticStyles.article}`}>
+        <h1 className={shared.sectionTitle}>{t("title")}</h1>
+        <p className={staticStyles.lead}>{t("intro")}</p>
+        <h2
+          className={`${staticStyles.subheading} ${staticStyles.subheadingFirst}`}
+        >
+          {t("whatTitle")}
+        </h2>
+        <p className={staticStyles.paragraph}>{t("whatBody")}</p>
+        <h2 className={staticStyles.subheading}>{t("whoTitle")}</h2>
+        <p className={staticStyles.paragraph}>{t("whoBody")}</p>
+        <h2 className={staticStyles.subheading}>{t("privacyTitle")}</h2>
+        <p className={staticStyles.paragraph}>{t("privacyBody")}</p>
+      </article>
     </main>
+    </>
   );
 };
 
