@@ -1,0 +1,53 @@
+.footer {
+  flex-shrink: 0;
+  width: 100%;
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding: var(--space-xl) var(--container-gutter)
+    calc(var(--space-xl) + env(safe-area-inset-bottom, 0));
+  border-top: 1px solid var(--color-outline-variant);
+  background-color: var(--color-surface-container-low);
+}
+
+.brandLine {
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.55;
+  color: var(--color-on-surface-variant);
+}
+
+.disclaimer {
+  margin-top: var(--space-sm);
+  font-family: var(--font-body);
+  font-size: 0.6875rem;
+  line-height: 1.5;
+  color: var(--color-on-surface-variant);
+  opacity: 0.75;
+}
+
+.metaNav {
+  margin-top: var(--space-md);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm) var(--space-lg);
+}
+
+.metaLink {
+  font-family: var(--font-body);
+  font-size: 0.8125rem;
+  font-weight: 600;
+}
+
+.langNav {
+  margin-top: var(--space-lg);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm) var(--space-md);
+}
+
+.langLink {
+  font-family: var(--font-body);
+  font-size: 0.8125rem;
+  font-weight: 600;
+}

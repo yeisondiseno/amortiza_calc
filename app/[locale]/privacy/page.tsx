@@ -1,9 +1,16 @@
 // Next
 import type { Metadata } from "next";
-import { setRequestLocale } from "next-intl/server";
-
+import { getTranslations, setRequestLocale } from "next-intl/server";
+import { HiOutlineArrowLeft } from "react-icons/hi";
+// Components
+import { TopBar } from "@/components";
+// i18n
+import { Link } from "@/i18n/navigation";
 // Constants
 import { BASE_URL } from "@/constants";
+// Styles
+import shared from "@/shared";
+import staticStyles from "../staticPage.module.css";
 
 type Props = Readonly<{
   params: Promise<{ locale: string }>;
@@ -13,10 +20,11 @@ export const generateMetadata = async ({
   params,
 }: Props): Promise<Metadata> => {
   const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "privacyPage" });
+
   return {
-    title: "Privacy Policy",
-    description:
-      "Privacy policy for Loan Payoff Calculator. We do not collect, store, or share any personal or financial data. All calculations run locally in your browser.",
+    title: t("metaTitle"),
+    description: t("metaDescription"),
     alternates: {
       canonical: `${BASE_URL}/${locale}/privacy`,
     },
@@ -28,54 +36,40 @@ const PrivacyPage = async ({ params }: Props) => {
   const { locale } = await params;
   setRequestLocale(locale);
 
+  const t = await getTranslations({ locale, namespace: "privacyPage" });
+  const tl = await getTranslations({ locale, namespace: "legal" });
+
   return (
-    <main
-      style={{
-        maxWidth: 720,
-        margin: "0 auto",
-        padding: "48px 24px",
-        fontFamily: "var(--font-inter, system-ui, sans-serif)",
-        lineHeight: 1.7,
-        color: "#e2e8f0",
-      }}
-    >
-      <h1 style={{ fontSize: 32, fontWeight: 700, marginBottom: 16 }}>
-        Privacy Policy
-      </h1>
-      <p style={{ color: "#94a3b8", fontSize: 14 }}>
-        Last updated: May 2026
-      </p>
-      <h2 style={{ fontSize: 22, fontWeight: 600, marginTop: 32 }}>
-        Data we collect
-      </h2>
-      <p>
-        We do not collect, store, or transmit any personal or financial data.
-        All loan calculations are performed locally in your browser and never
-        leave your device.
-      </p>
-      <h2 style={{ fontSize: 22, fontWeight: 600, marginTop: 32 }}>
-        Cookies
-      </h2>
-      <p>
-        This site does not use tracking cookies or analytics. Your loan
-        history is saved in your browser&apos;s local storage and can be
-        cleared at any time.
-      </p>
-      <h2 style={{ fontSize: 22, fontWeight: 600, marginTop: 32 }}>
-        Third-party services
-      </h2>
-      <p>
-        We use Google Fonts to load web fonts. Google may log your IP address
-        when fonts are fetched. No other third-party services are used.
-      </p>
-      <h2 style={{ fontSize: 22, fontWeight: 600, marginTop: 32 }}>
-        Contact
-      </h2>
-      <p>
-        If you have any questions about this privacy policy, you can reach us
-        via the contact information on our website.
-      </p>
+    <>
+      <TopBar />
+      <main className={staticStyles.main}>
+      <div className={staticStyles.backRow}>
+        <Link
+          href="/"
+          className={`${shared.btnGhost} ${staticStyles.backLink}`}
+        >
+          <HiOutlineArrowLeft className={shared.iconSvgSm} aria-hidden />
+          {tl("backToHome")}
+        </Link>
+      </div>
+      <article className={`${shared.card} ${staticStyles.article}`}>
+        <h1 className={shared.sectionTitle}>{t("title")}</h1>
+        <p className={staticStyles.meta}>{t("updated")}</p>
+        <h2
+          className={`${staticStyles.subheading} ${staticStyles.subheadingFirst}`}
+        >
+          {t("dataTitle")}
+        </h2>
+        <p className={staticStyles.paragraph}>{t("dataBody")}</p>
+        <h2 className={staticStyles.subheading}>{t("cookiesTitle")}</h2>
+        <p className={staticStyles.paragraph}>{t("cookiesBody")}</p>
+        <h2 className={staticStyles.subheading}>{t("thirdPartyTitle")}</h2>
+        <p className={staticStyles.paragraph}>{t("thirdPartyBody")}</p>
+        <h2 className={staticStyles.subheading}>{t("contactTitle")}</h2>
+        <p className={staticStyles.paragraph}>{t("contactBody")}</p>
+      </article>
     </main>
+    </>
   );
 };
 

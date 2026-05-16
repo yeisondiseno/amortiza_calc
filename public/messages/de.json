@@ -20,6 +20,55 @@
     "usageHeading": "So nutzen Sie diese Seite",
     "usageBody": "Geben Sie Darlehensbetrag, jährlichen Zinssatz und Laufzeit ein, um Ihre monatliche Rate und einen vollständigen Tilgungsplan zu sehen. Optional können Sie monatliche oder jährliche Sondertilgungen ergänzen, um Szenarien zu vergleichen und geschätzte Zinsersparnisse sowie eingesparte Monate abzulesen. Die Berechnungen erfolgen lokal in Ihrem Browser."
   },
+  "footer": {
+    "brandLine": "{brand}. {footer}",
+    "brand": "Tilgungsrechner",
+    "footer": "Kostenlose Tilgungs- und Vorabzahlungsplanung — läuft vollständig lokal im Browser.",
+    "disclaimer": "Die Schätzungen dienen nur zur Information und stellen keine Finanz-, Rechts- oder Steuerberatung dar.",
+    "metaNavAria": "Rechtliche und Informationslinks",
+    "about": "Über uns",
+    "privacy": "Datenschutz"
+  },
+  "global": {
+    "langsNavAria": "Sprache der Oberfläche wählen",
+    "languageNames": {
+      "en": "Englisch",
+      "es": "Spanisch",
+      "de": "Deutsch",
+      "fr": "Französisch",
+      "pt": "Portugiesisch",
+      "ja": "Japanisch"
+    }
+  },
+  "legal": {
+    "backToHome": "Zurück zum Rechner"
+  },
+  "aboutPage": {
+    "metaTitle": "Über uns",
+    "metaDescription": "Erfahren Sie mehr über den kostenlosen Tilgungsrechner — Tilgungsplan, Sondertilgungen und Zinsersparnis übersichtlich berechnen.",
+    "title": "Über den Tilgungsrechner",
+    "intro": "Der Tilgungsrechner ist ein kostenloses, datenschutzorientiertes Tool, das zeigt, wie Ihr Kredit funktioniert und wie Sondertilgungen Tausende Euro an Zinsen sparen können.",
+    "whatTitle": "Funktionen",
+    "whatBody": "Geben Sie Betrag, Zinssatz und Laufzeit ein, um sofort Rate und Tilgungsplan zu sehen. Ergänzen Sie optional monatliche oder jährliche Sondertilgungen zum Vergleich.",
+    "whoTitle": "Für wen",
+    "whoBody": "Für alle mit Festzinskredit — Immobilien, Auto, Studium oder Ratenkredit — die Rückzahlung planen und Gesamtzinsen senken möchten.",
+    "privacyTitle": "Datenschutz",
+    "privacyBody": "Alle Berechnungen laufen in Ihrem Browser. Es werden keine persönlichen oder finanziellen Daten an unsere Server übermittelt."
+  },
+  "privacyPage": {
+    "metaTitle": "Datenschutzerklärung",
+    "metaDescription": "Datenschutz für den Tilgungsrechner. Wir erheben keine persönlichen oder finanziellen Daten; Berechnungen erfolgen lokal im Browser.",
+    "title": "Datenschutzerklärung",
+    "updated": "Stand: Mai 2026",
+    "dataTitle": "Welche Daten wir erheben",
+    "dataBody": "Wir erheben, speichern oder übertragen keine persönlichen oder finanziellen Daten. Alle Berechnungen erfolgen lokal in Ihrem Browser und verlassen Ihr Gerät nicht.",
+    "cookiesTitle": "Cookies",
+    "cookiesBody": "Wir setzen keine Tracking- oder Analyse-Cookies ein. Der Verlauf wird im lokalen Speicher des Browsers gespeichert und kann jederzeit gelöscht werden.",
+    "thirdPartyTitle": "Drittanbieter",
+    "thirdPartyBody": "Wir nutzen Google Fonts; beim Abruf können Server von Google Ihre IP-Adresse protokollieren. Weitere Drittanbieter-Dienste werden nicht eingesetzt.",
+    "contactTitle": "Kontakt",
+    "contactBody": "Bei Fragen zu dieser Datenschutzerklärung erreichen Sie uns über die auf der Website angegebenen Kontaktinformationen."
+  },
   "calculator": {
     "topbar": {
       "calculator": "Rechner",

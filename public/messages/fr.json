@@ -20,6 +20,55 @@
     "usageHeading": "Comment utiliser cette page",
     "usageBody": "Saisissez le montant du prêt, le taux d'intérêt annuel et la durée pour afficher votre mensualité et un tableau d'amortissement détaillé. Ajoutez si besoin des remboursements anticipés mensuels ou annuels pour comparer les scénarios et estimer les économies d'intérêts ainsi que les mois que vous pouvez retirer au crédit. Les calculs sont effectués localement dans votre navigateur."
   },
+  "footer": {
+    "brandLine": "{brand}. {footer}",
+    "brand": "Calculateur de prêt gratuit",
+    "footer": "Calculateur d'amortissement et de remboursement anticipé — tout fonctionne localement dans votre navigateur.",
+    "disclaimer": "Les estimations sont fournies à titre éducatif uniquement et ne constituent pas un conseil financier, juridique ou fiscal.",
+    "metaNavAria": "Liens légaux et d'information",
+    "about": "À propos",
+    "privacy": "Confidentialité"
+  },
+  "global": {
+    "langsNavAria": "Choisir la langue de l'interface",
+    "languageNames": {
+      "en": "Anglais",
+      "es": "Espagnol",
+      "de": "Allemand",
+      "fr": "Français",
+      "pt": "Portugais",
+      "ja": "Japonais"
+    }
+  },
+  "legal": {
+    "backToHome": "Retour au calculateur"
+  },
+  "aboutPage": {
+    "metaTitle": "À propos",
+    "metaDescription": "Découvrez le calculateur de prêt gratuit — tableau d'amortissement, remboursements anticipés et économies d'intérêts.",
+    "title": "À propos du calculateur de prêt",
+    "intro": "Le calculateur de prêt est un outil gratuit et respectueux de la vie privée qui vous aide à comprendre votre crédit et l'impact des remboursements anticipés sur les intérêts.",
+    "whatTitle": "Fonctionnalités",
+    "whatBody": "Saisissez le montant, le taux et la durée pour voir votre mensualité et un tableau d'amortissement complet. Ajoutez des remboursements anticipés mensuels ou annuels pour comparer les scénarios.",
+    "whoTitle": "Public concerné",
+    "whoBody": "Toute personne avec un crédit à taux fixe — immobilier, auto, études ou personnel — qui souhaite mieux planifier le remboursement et réduire les intérêts.",
+    "privacyTitle": "Confidentialité",
+    "privacyBody": "Tous les calculs sont effectués dans votre navigateur. Aucune donnée personnelle ni financière n'est envoyée à nos serveurs."
+  },
+  "privacyPage": {
+    "metaTitle": "Politique de confidentialité",
+    "metaDescription": "Politique de confidentialité du calculateur de prêt. Nous ne collectons aucune donnée personnelle ou financière ; tout est calculé localement.",
+    "title": "Politique de confidentialité",
+    "updated": "Dernière mise à jour : mai 2026",
+    "dataTitle": "Données collectées",
+    "dataBody": "Nous ne collectons, ne stockons ni ne transmettons de données personnelles ou financières. Les calculs sont réalisés localement dans votre navigateur.",
+    "cookiesTitle": "Cookies",
+    "cookiesBody": "Ce site n'utilise pas de cookies de suivi ni d'analyse. L'historique est stocké localement dans le navigateur et peut être effacé à tout moment.",
+    "thirdPartyTitle": "Services tiers",
+    "thirdPartyBody": "Nous utilisons Google Fonts ; Google peut enregistrer votre adresse IP lors du chargement des polices. Aucun autre service tiers n'est utilisé.",
+    "contactTitle": "Contact",
+    "contactBody": "Pour toute question sur cette politique, contactez-nous via les coordonnées indiquées sur le site."
+  },
   "calculator": {
     "topbar": {
       "calculator": "Calculateur",

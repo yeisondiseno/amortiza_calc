@@ -5,6 +5,8 @@ import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 
+// Components
+import { SiteFooter } from "@/components";
 // Utils
 import { routing } from "@/i18n/routing";
 
@@ -13,6 +15,7 @@ import { BASE_URL } from "@/constants";
 
 // Styles
 import "../globals.css";
+import layoutStyles from "./layout.module.css";
 
 const manrope = Manrope({
   variable: "--font-manrope",
@@ -104,7 +107,12 @@ const LocaleLayout = async ({ children, params }: Props) => {
   return (
     <html lang={locale} className={`${manrope.variable} ${inter.variable}`}>
       <body>
-        <NextIntlClientProvider>{children}</NextIntlClientProvider>
+        <NextIntlClientProvider>
+          <div className={layoutStyles.shell}>
+            <div className={layoutStyles.main}>{children}</div>
+            <SiteFooter locale={locale} />
+          </div>
+        </NextIntlClientProvider>
       </body>
     </html>
   );
