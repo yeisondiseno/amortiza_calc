@@ -1,6 +1,8 @@
 "use client";
 
 // Libraries
+import dynamic from "next/dynamic";
+import { useMemo } from "react";
 import { useLocale, useTranslations } from "next-intl";
 // Utils
 import { formatFromUsd } from "@/utils";
@@ -10,22 +12,12 @@ import type { CurrencyCode } from "@/constants";
 // Styles
 import shared from "@/shared";
 import styles from "./BalanceChart.module.css";
-// Constants
-const W = 400;
-const H = 100;
-const VIEWS: ChartView[] = ["Monthly", "Annually"];
 
-const pathFor = (series: number[], maxBal: number): string => {
-  if (!series?.length) return "";
-  const step = W / (series.length - 1);
-  return series
-    .map((b, i) => {
-      const x = (i * step).toFixed(2);
-      const y = ((1 - b / maxBal) * H + 2).toFixed(2);
-      return (i === 0 ? "M" : "L") + x + "," + y;
-    })
-    .join(" ");
-};
+const ReactApexChart = dynamic(() => import("react-apexcharts"), {
+  ssr: false,
+});
+
+const VIEWS: ChartView[] = ["Monthly", "Annually"];
 
 type Props = {
   result: LoanResult | null;
@@ -34,30 +26,83 @@ type Props = {
   setView: (v: ChartView) => void;
 };
 
-export const BalanceChart = ({
-  result,
-  currency,
-  view,
-  setView,
-}: Props) => {
-  // Hooks
+export const BalanceChart = ({ result, currency, view, setView }: Props) => {
   const t = useTranslations("calculator.chart");
   const locale = useLocale();
 
-  // Values
   const stdSeries = result?.stdSeries ?? [1, 1];
   const accSeries = result?.accSeries ?? [1, 1];
-  const maxBal = Math.max(...stdSeries, 1);
   const totalYears = Math.round((result?.n ?? 360) / 12);
 
-  const stdPath = pathFor(stdSeries, maxBal);
-  const accPath = pathFor(accSeries, maxBal);
-  const stdFill = stdPath + ` L${W},${H} L0,${H} Z`;
-  const accEndX = (
-    (result?.monthsToPayoff ?? 0) *
-    (W / Math.max(stdSeries.length - 1, 1))
-  ).toFixed(2);
-  const accFill = accPath + ` L${accEndX},${H} L0,${H} Z`;
+  const series = useMemo(
+    () => [
+      { name: t("standard"), data: stdSeries },
+      { name: t("withExtra"), data: accSeries },
+    ],
+    [stdSeries, accSeries, t],
+  );
+
+  const options = useMemo(
+    () => ({
+      chart: {
+        type: "area" as const,
+        toolbar: { show: false },
+        zoom: { enabled: false },
+        animations: { enabled: false },
+        background: "transparent",
+      },
+      stroke: {
+        curve: "smooth" as const,
+        width: [1.5, 2],
+        dashArray: [4, 0],
+      },
+      fill: {
+        colors: ["#006c49", "#6cf8bb"],
+        type: "solid",
+        opacity: [0.4, 0.25],
+      },
+      // colors: ["#76777d", "#006c49"],
+      dataLabels: { enabled: false },
+      legend: { show: false },
+      grid: {
+        borderColor: "rgba(0,0,0,0.06)",
+        strokeDashArray: 3,
+        padding: { left: 0, right: 0, top: 0, bottom: 0 },
+      },
+      xaxis: {
+        min: 0,
+        tickAmount: 3,
+        axisBorder: { show: false },
+        axisTicks: { show: false },
+        labels: {
+          style: {
+            fontSize: "0.625rem",
+            fontWeight: "600",
+            colors: "#9aa0a6",
+          },
+          formatter: (val: string) => {
+            const idx = Math.round(Number(val));
+            const year = view === "Monthly" ? Math.round(idx / 12) : idx;
+            return t("yearLabel", { year });
+          },
+        },
+      },
+      yaxis: { show: false },
+      tooltip: {
+        theme: "light",
+        x: {
+          formatter: (val: number) => {
+            const year = view === "Monthly" ? Math.round(val / 12) : val;
+            return t("yearLabel", { year });
+          },
+        },
+        y: {
+          formatter: (val: number) => formatFromUsd(val, currency, locale),
+        },
+      },
+    }),
+    [view, t, currency, locale, totalYears],
+  );
 
   return (
     <div className={shared.card}>
@@ -94,30 +139,13 @@ export const BalanceChart = ({
 
       {/* Chart */}
       <div className={styles.chartWrap}>
-        <svg
-          className={styles.svg}
-          preserveAspectRatio="none"
-          viewBox={`0 0 ${W} ${H}`}
-        >
-          <path d={stdFill} fill="#e0e3e5" opacity="0.4" />
-          <path
-            d={stdPath}
-            fill="none"
-            stroke="#76777d"
-            strokeDasharray="4"
-            strokeWidth="1.5"
-          />
-          <path d={accFill} fill="#6cf8bb" opacity="0.25" />
-          <path d={accPath} fill="none" stroke="#006c49" strokeWidth="2" />
-        </svg>
-        <div className={styles.xAxis}>
-          <span>{t("yearLabel", { year: 0 })}</span>
-          <span>{t("yearLabel", { year: Math.round(totalYears / 3) })}</span>
-          <span>
-            {t("yearLabel", { year: Math.round((totalYears * 2) / 3) })}
-          </span>
-          <span>{t("yearLabel", { year: totalYears })}</span>
-        </div>
+        <ReactApexChart
+          type="area"
+          series={series}
+          options={options}
+          height="300px"
+          width="100%"
+        />
       </div>
 
       {/* Footer: monthly payment */}

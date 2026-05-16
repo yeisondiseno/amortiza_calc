@@ -1,7 +1,7 @@
 {
   "App": {
-    "title": "Amortiza Calc",
-    "description": "Calculateur d’amortissement de prêt"
+    "title": "Calculateur de Prêt",
+    "description": "Calculateur d’amortissement gratuit avec économies sur remboursements anticipés"
   },
   "calculator": {
     "topbar": {

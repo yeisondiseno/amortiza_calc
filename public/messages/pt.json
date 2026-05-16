@@ -1,7 +1,7 @@
 {
   "App": {
-    "title": "Amortiza Calc",
-    "description": "Calculadora de amortização de empréstimos"
+    "title": "Calculadora de Empréstimo",
+    "description": "Calculadora de amortização gratuita com economia em pagamentos extras"
   },
   "calculator": {
     "topbar": {

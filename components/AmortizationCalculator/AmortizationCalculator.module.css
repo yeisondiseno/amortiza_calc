@@ -7,7 +7,9 @@
 }
 
 @media (min-width: 769px) {
-  .main { padding-bottom: var(--space-xl); }
+  .main {
+    padding-bottom: var(--space-xl);
+  }
 }
 
 .grid {
@@ -18,11 +20,54 @@
 }
 
 @media (max-width: 1024px) {
-  .grid { grid-template-columns: 1fr; }
+  .grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 .results {
   display: flex;
   flex-direction: column;
   gap: var(--space-lg);
+}
+
+/* Tab bar */
+.tabBar {
+  display: flex;
+  gap: 0;
+  border-bottom: 2px solid var(--color-surface-container-high);
+  margin-bottom: var(--space-lg);
+  margin-top: 2rem;
+}
+
+.tabBtn {
+  padding: 0.5rem 1.25rem;
+  border: none;
+  background: none;
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--color-on-surface-variant);
+  cursor: pointer;
+  position: relative;
+  transition: color var(--transition-fast);
+}
+
+.tabBtn::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background-color: transparent;
+  transition: background-color var(--transition-fast);
+}
+
+.tabBtnActive {
+  color: var(--color-primary);
+}
+
+.tabBtnActive::after {
+  background-color: var(--color-primary);
 }

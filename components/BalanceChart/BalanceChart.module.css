@@ -33,8 +33,12 @@
   flex-shrink: 0;
 }
 
-.dotStandard { background-color: var(--color-outline-variant); }
-.dotAccelerated { background-color: var(--color-secondary); }
+.dotStandard {
+  background-color: var(--color-outline-variant);
+}
+.dotAccelerated {
+  background-color: var(--color-secondary);
+}
 
 .legendLabel {
   font-family: var(--font-body);
@@ -62,7 +66,9 @@
   font-family: var(--font-body);
   color: var(--color-on-surface-variant);
   cursor: pointer;
-  transition: background-color var(--transition-fast), color var(--transition-fast),
+  transition:
+    background-color var(--transition-fast),
+    color var(--transition-fast),
     box-shadow var(--transition-fast);
 }
 
@@ -72,32 +78,13 @@
   box-shadow: var(--shadow-sm);
 }
 
-/* SVG chart area */
+/* ApexCharts area */
 .chartWrap {
   height: 16rem;
-  width: 100%;
-  position: relative;
-  padding-bottom: 1.5rem;
-}
-
-.svg {
-  width: 100%;
-  height: 100%;
-  overflow: visible;
-}
-
-.xAxis {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  display: flex;
-  justify-content: space-between;
-  font-family: var(--font-body);
-  font-size: 0.625rem;
-  font-weight: 600;
-  letter-spacing: 0.01em;
-  color: var(--color-outline);
+  /* pull out ApexCharts' internal whitespace so the chart fills the card */
+  margin-left: -0.5rem;
+  margin-right: -0.5rem;
+  width: -webkit-fill-available;
 }
 
 /* Footer */

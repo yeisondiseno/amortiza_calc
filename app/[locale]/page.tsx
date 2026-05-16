@@ -1,8 +1,9 @@
 // Next
-import { setRequestLocale } from "next-intl/server";
-
+import { getTranslations, setRequestLocale } from "next-intl/server";
 // Components
 import { AmortizationCalculator } from "@/components";
+// Constants
+import { BASE_URL } from "@/constants";
 
 type Props = Readonly<{
   params: Promise<{ locale: string }>;
@@ -11,7 +12,35 @@ type Props = Readonly<{
 const Home = async ({ params }: Props) => {
   const { locale } = await params;
   setRequestLocale(locale);
-  return <AmortizationCalculator />;
+
+  const t = await getTranslations({ locale, namespace: "App" });
+
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    name: t("title"),
+    url: `${BASE_URL}/${locale}`,
+    description: t("description"),
+    applicationCategory: "FinanceApplication",
+    operatingSystem: "Any",
+    inLanguage: locale,
+    offers: {
+      "@type": "Offer",
+      price: "0",
+      priceCurrency: "USD",
+    },
+  };
+
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <h1 className="sr-only">{t("title")}</h1>
+      <AmortizationCalculator />
+    </>
+  );
 };
 
 export default Home;
