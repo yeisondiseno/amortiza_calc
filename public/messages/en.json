@@ -1,7 +1,24 @@
 {
   "App": {
-    "title": "Loan Payoff Calculator",
-    "description": "Free loan amortization calculator with extra payment savings"
+    "title": "Free Loan Payoff Calculator – Pay Off Debt Faster",
+    "description": "Free loan amortization calculator. See how extra monthly or annual payments save you thousands and cut years off your mortgage, car loan, or personal loan."
+  },
+  "faq": {
+    "q1": "How does a loan payoff calculator work?",
+    "a1": "Enter your loan amount, interest rate, and repayment term. The calculator instantly shows your monthly payment, total interest cost, and a full amortization schedule. Add extra monthly or annual payments to see how much you can save.",
+    "q2": "How much can I save with extra payments?",
+    "a2": "Extra payments reduce your principal balance faster, which lowers the interest charged each month. Even a small extra payment of $50–$100 per month can save thousands in interest and cut years off a typical mortgage.",
+    "q3": "What is an amortization schedule?",
+    "a3": "An amortization schedule is a table that breaks down every loan payment into its principal and interest components, showing how much of each payment goes to reducing your balance versus paying interest.",
+    "q4": "Is this loan calculator free?",
+    "a4": "Yes, completely free with no registration required. All calculations run instantly in your browser with no data sent to any server."
+  },
+  "seo": {
+    "heading": "Loan payoff calculator: purpose and how to use",
+    "purposeHeading": "Purpose of this tool",
+    "purposeBody": "This page provides a free loan amortization and payoff calculator so you can estimate the total cost of borrowing, see how each payment splits between principal and interest, and measure how extra payments shorten the payoff timeline and reduce interest on mortgages, auto loans, student loans, and other fixed-rate loans.",
+    "usageHeading": "How to use this page",
+    "usageBody": "Enter your loan amount, annual interest rate, and repayment term to view your monthly payment and a full amortization schedule. Optionally add monthly or annual extra payments to compare scenarios and see estimated interest savings and how many months you could remove from the loan. Calculations run locally in your browser."
   },
   "calculator": {
     "topbar": {

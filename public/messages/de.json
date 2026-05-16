@@ -1,7 +1,24 @@
 {
   "App": {
-    "title": "Tilgungsrechner",
-    "description": "Kostenloser Tilgungsrechner mit Ersparnis durch Sondertilgungen"
+    "title": "Kostenloser Tilgungsrechner mit Sondertilgung",
+    "description": "Kostenloser Tilgungsrechner. Berechne Zinsersparnis durch monatliche oder jährliche Sondertilgungen bei Immobilien-, Auto- oder Ratenkrediten. Ohne Anmeldung."
+  },
+  "faq": {
+    "q1": "Wie funktioniert ein Tilgungsrechner?",
+    "a1": "Gib Darlehensbetrag, Zinssatz und Laufzeit ein. Der Rechner zeigt sofort deine monatliche Rate, die Gesamtzinsen und einen vollständigen Tilgungsplan. Füge Sondertilgungen hinzu, um deine Ersparnis zu sehen.",
+    "q2": "Wie viel spare ich durch Sondertilgungen?",
+    "a2": "Sondertilgungen reduzieren die Restschuld schneller, wodurch monatlich weniger Zinsen anfallen. Bereits 50–100 € monatlich extra können bei einem typischen Immobilienkredit tausende Euro und mehrere Jahre sparen.",
+    "q3": "Was ist ein Tilgungsplan?",
+    "a3": "Ein Tilgungsplan ist eine Tabelle, die jede Zahlung in Tilgungsanteil und Zinsanteil aufschlüsselt und zeigt, wie der Restschuldsaldo mit jeder Rate sinkt.",
+    "q4": "Ist dieser Tilgungsrechner kostenlos?",
+    "a4": "Ja, vollständig kostenlos und ohne Registrierung. Alle Berechnungen laufen direkt im Browser, ohne dass Daten übertragen werden."
+  },
+  "seo": {
+    "heading": "Tilgungsrechner: Zweck und Nutzung",
+    "purposeHeading": "Wofür dieses Tool gedacht ist",
+    "purposeBody": "Diese Seite bietet einen kostenlosen Tilgungs- und vorzeitigen Auszahlungsrechner, um die Gesamtkosten der Finanzierung einzuschätzen, zu sehen, wie sich jede Rate in Tilgung und Zinsen aufteilt, und abzuschätzen, wie Sondertilgungen die Laufzeit verkürzen und Zinsen bei Immobilien-, Auto-, Studien- und anderen Festzinskrediten senken.",
+    "usageHeading": "So nutzen Sie diese Seite",
+    "usageBody": "Geben Sie Darlehensbetrag, jährlichen Zinssatz und Laufzeit ein, um Ihre monatliche Rate und einen vollständigen Tilgungsplan zu sehen. Optional können Sie monatliche oder jährliche Sondertilgungen ergänzen, um Szenarien zu vergleichen und geschätzte Zinsersparnisse sowie eingesparte Monate abzulesen. Die Berechnungen erfolgen lokal in Ihrem Browser."
   },
   "calculator": {
     "topbar": {

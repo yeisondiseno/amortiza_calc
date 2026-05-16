@@ -1,7 +1,24 @@
 {
   "App": {
-    "title": "Calculadora de Préstamos",
-    "description": "Calculadora de amortización gratuita con ahorro por pagos extra"
+    "title": "Calculadora de Préstamos Gratis – Ahorra en Intereses",
+    "description": "Calculadora de amortización gratuita. Descubre cuánto ahorras en intereses haciendo pagos extra mensuales o anuales en tu hipoteca, préstamo de auto o personal."
+  },
+  "faq": {
+    "q1": "¿Cómo funciona una calculadora de amortización?",
+    "a1": "Introduce el monto del préstamo, la tasa de interés y el plazo. La calculadora muestra al instante tu cuota mensual, el interés total y la tabla de amortización completa. Agrega pagos extra para ver cuánto ahorras.",
+    "q2": "¿Cuánto puedo ahorrar con pagos extra?",
+    "a2": "Los pagos extra reducen el capital más rápido, lo que disminuye los intereses que se acumulan cada mes. Incluso $50–$100 extra al mes pueden ahorrarte miles en intereses y acortar años en una hipoteca típica.",
+    "q3": "¿Qué es una tabla de amortización?",
+    "a3": "Es una tabla que desglosa cada cuota en capital e intereses, mostrando cuánto de cada pago reduce tu saldo y cuánto se destina a intereses.",
+    "q4": "¿Esta calculadora es gratuita?",
+    "a4": "Sí, completamente gratuita sin registro. Todos los cálculos se realizan en tu navegador de forma instantánea."
+  },
+  "seo": {
+    "heading": "Calculadora de préstamos: propósito y uso",
+    "purposeHeading": "Para qué sirve esta herramienta",
+    "purposeBody": "Esta página ofrece una calculadora gratuita de amortización y pago anticipado para que puedas estimar el costo total del crédito, ver cómo cada cuota se reparte entre capital e intereses y cuantificar cómo los pagos extra acortan el plazo y reducen intereses en hipotecas, préstamos de auto, estudiantiles y otros préstamos a tasa fija.",
+    "usageHeading": "Cómo usar esta página",
+    "usageBody": "Introduce el monto del préstamo, la tasa de interés anual y el plazo para ver tu cuota mensual y la tabla de amortización completa. Opcionalmente agrega pagos extra mensuales o anuales para comparar escenarios y ver el ahorro estimado en intereses y los meses que podrías recortar del préstamo. Los cálculos se ejecutan en tu navegador."
   },
   "calculator": {
     "topbar": {

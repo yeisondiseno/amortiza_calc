@@ -14,8 +14,9 @@ import { BottomNav } from "@/components/BottomNav";
 // Utils
 import { amortize, parseNum, parseMaskedMoney, toUsd } from "@/utils";
 // Types
-import type { FormState, ChartView, TabView } from "@/types";
+import type { FormState, ChartView, PageIntroCopy, TabView } from "@/types";
 // Styles
+import shared from "@/shared";
 import styles from "./AmortizationCalculator.module.css";
 // Constants
 const DEFAULT_FORM: FormState = {
@@ -29,7 +30,11 @@ const DEFAULT_FORM: FormState = {
 
 const TABS: TabView[] = ["chart", "table"];
 
-export const AmortizationCalculator = () => {
+type Props = Readonly<{
+  pageIntro: PageIntroCopy;
+}>;
+
+export const AmortizationCalculator = ({ pageIntro }: Props) => {
   const locale = useLocale();
   const t = useTranslations("calculator");
   // State
@@ -93,6 +98,28 @@ export const AmortizationCalculator = () => {
         <div hidden={activeTab !== "table"}>
           <AmortizationTable currency={form.currency} result={result} />
         </div>
+
+        <section
+          className={styles.pageIntro}
+          aria-labelledby="seo-page-summary-heading"
+        >
+          <div className={shared.card}>
+            <h2
+              id="seo-page-summary-heading"
+              className={`${shared.sectionTitle} ${styles.pageIntroTitle}`}
+            >
+              {pageIntro.heading}
+            </h2>
+            <h3 className={styles.pageIntroSubheading}>
+              {pageIntro.purposeHeading}
+            </h3>
+            <p className={styles.pageIntroBody}>{pageIntro.purposeBody}</p>
+            <h3 className={styles.pageIntroSubheading}>
+              {pageIntro.usageHeading}
+            </h3>
+            <p className={styles.pageIntroBody}>{pageIntro.usageBody}</p>
+          </div>
+        </section>
       </main>
       <BottomNav />
     </>

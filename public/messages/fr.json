@@ -1,7 +1,24 @@
 {
   "App": {
-    "title": "Calculateur de Prêt",
-    "description": "Calculateur d’amortissement gratuit avec économies sur remboursements anticipés"
+    "title": "Calculateur de Prêt Gratuit – Remboursez Plus Vite",
+    "description": "Calculateur d'amortissement gratuit. Calculez vos économies grâce aux remboursements anticipés sur votre prêt immobilier, automobile ou personnel. Sans inscription."
+  },
+  "faq": {
+    "q1": "Comment fonctionne un calculateur d'amortissement ?",
+    "a1": "Entrez le montant du prêt, le taux d'intérêt et la durée. Le calculateur affiche instantanément votre mensualité, le coût total des intérêts et un tableau d'amortissement complet. Ajoutez des remboursements anticipés pour voir vos économies.",
+    "q2": "Combien puis-je économiser avec des remboursements anticipés ?",
+    "a2": "Les remboursements anticipés réduisent le capital plus vite, diminuant ainsi les intérêts mensuels. Même 50–100 € supplémentaires par mois peuvent faire économiser des milliers d'euros sur un crédit immobilier classique.",
+    "q3": "Qu'est-ce qu'un tableau d'amortissement ?",
+    "a3": "C'est un tableau qui décompose chaque paiement en capital et intérêts, montrant comment chaque mensualité réduit votre solde restant.",
+    "q4": "Ce calculateur est-il gratuit ?",
+    "a4": "Oui, entièrement gratuit et sans inscription. Tous les calculs s'effectuent directement dans votre navigateur."
+  },
+  "seo": {
+    "heading": "Calculateur de prêt : objectif et utilisation",
+    "purposeHeading": "À quoi sert cet outil",
+    "purposeBody": "Cette page propose un calculateur gratuit d'amortissement et de remboursement anticipé pour estimer le coût total du crédit, voir comment chaque mensualité se répartit entre capital et intérêts, et mesurer l'impact des remboursements anticipés sur la durée et les intérêts pour les crédits immobiliers, auto, étudiants ou personnels à taux fixe.",
+    "usageHeading": "Comment utiliser cette page",
+    "usageBody": "Saisissez le montant du prêt, le taux d'intérêt annuel et la durée pour afficher votre mensualité et un tableau d'amortissement détaillé. Ajoutez si besoin des remboursements anticipés mensuels ou annuels pour comparer les scénarios et estimer les économies d'intérêts ainsi que les mois que vous pouvez retirer au crédit. Les calculs sont effectués localement dans votre navigateur."
   },
   "calculator": {
     "topbar": {
@@ -14,7 +31,7 @@
       "title": "Paramètres du prêt",
       "loanAmount": "Montant du prêt",
       "currency": "Devise",
-      "interestRate": "Taux d’intérêt",
+      "interestRate": "Taux d'intérêt",
       "loanTerm": "Durée du prêt",
       "yearsSuffix": "ans",
       "calculate": "Calculer les économies",
@@ -28,8 +45,8 @@
     "results": {
       "interestSaved": "Intérêts économisés au total",
       "timeSaved": "Temps gagné",
-      "lessPct": "% d’intérêts en moins",
-      "paidOffBy": "Remboursé d’ici",
+      "lessPct": "% d'intérêts en moins",
+      "paidOffBy": "Remboursé d'ici",
       "years": "Années",
       "months": "Mois"
     },
@@ -43,7 +60,7 @@
       "yearLabel": "Année {year}"
     },
     "table": {
-      "title": "Tableau d’amortissement",
+      "title": "Tableau d'amortissement",
       "subtitle": "Détail de la première année avec paiements supplémentaires.",
       "subtitleExpanded": "Détail des cinq premières années avec paiements supplémentaires.",
       "month": "Mois",

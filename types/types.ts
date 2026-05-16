@@ -37,3 +37,11 @@ export type FormState = {
 export type ChartView = "Monthly" | "Annually";
 
 export type TabView = "chart" | "table";
+
+export type PageIntroCopy = {
+  heading: string;
+  purposeHeading: string;
+  purposeBody: string;
+  usageHeading: string;
+  usageBody: string;
+};

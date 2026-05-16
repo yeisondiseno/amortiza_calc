@@ -1,5 +1,5 @@
 // Next
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Manrope, Inter } from "next/font/google";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { getTranslations, setRequestLocale } from "next-intl/server";
@@ -25,6 +25,10 @@ const inter = Inter({
   subsets: ["latin"],
   weight: ["400", "600"],
 });
+
+export const viewport: Viewport = {
+  themeColor: "#0f172a",
+};
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
@@ -75,6 +79,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       url: canonicalUrl,
       siteName: SITE_NAME,
       locale: OG_LOCALE[locale] ?? locale,
+      alternateLocale: routing.locales
+        .filter((l) => l !== locale)
+        .map((l) => OG_LOCALE[l] ?? l),
       type: "website",
     },
     twitter: {
