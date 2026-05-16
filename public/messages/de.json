@@ -1,7 +1,7 @@
 {
   "App": {
-    "title": "Amortiza Calc",
-    "description": "Darlehenstilgungsrechner"
+    "title": "Tilgungsrechner",
+    "description": "Kostenloser Tilgungsrechner mit Ersparnis durch Sondertilgungen"
   },
   "calculator": {
     "topbar": {

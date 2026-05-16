@@ -1,7 +1,7 @@
 {
   "App": {
-    "title": "Amortiza Calc",
-    "description": "ローン返済スケジュール計算ツール"
+    "title": "ローン返済計算機",
+    "description": "繰り上げ返済の節約額を計算できる無料ローン償還計算ツール"
   },
   "calculator": {
     "topbar": {

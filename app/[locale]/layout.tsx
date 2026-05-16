@@ -36,12 +36,40 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "App" });
 
+  // Constants
+  const baseUrl = "https://loanpayoff.info";
+  const canonicalUrl = `${baseUrl}/${locale}`;
+  const hreflang = Object.fromEntries(
+    routing.locales.map((l) => [l, `${baseUrl}/${l}`])
+  );
+
   return {
+    metadataBase: new URL(baseUrl),
     title: {
       default: t("title"),
       template: `%s · ${t("title")}`,
     },
     description: t("description"),
+    alternates: {
+      canonical: canonicalUrl,
+      languages: {
+        ...hreflang,
+        "x-default": `${baseUrl}/en`,
+      },
+    },
+    openGraph: {
+      title: t("title"),
+      description: t("description"),
+      url: canonicalUrl,
+      siteName: t("title"),
+      locale,
+      type: "website",
+    },
+    twitter: {
+      card: "summary",
+      title: t("title"),
+      description: t("description"),
+    },
   };
 }
 

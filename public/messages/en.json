@@ -1,7 +1,7 @@
 {
   "App": {
-    "title": "Amortiza Calc",
-    "description": "Loan amortization calculator"
+    "title": "Loan Payoff Calculator",
+    "description": "Free loan amortization calculator with extra payment savings"
   },
   "calculator": {
     "topbar": {
