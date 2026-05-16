@@ -88,6 +88,7 @@
   font-size: 1rem;
   font-family: var(--font-body);
   font-variant-numeric: tabular-nums;
+  caret-color: var(--color-on-surface);
 }
 
 .inputField::placeholder { color: var(--color-outline); }

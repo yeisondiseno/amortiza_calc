@@ -17,7 +17,40 @@ const ReactApexChart = dynamic(() => import("react-apexcharts"), {
   ssr: false,
 });
 
+/** Tokens alineados con `app/globals.css` (Apex no resuelve `var()` en opciones). */
+const CHART = {
+  onSurfaceVariant: "#45464d",
+  outline: "#76777d",
+  secondary: "#006c49",
+  surfaceHigh: "#e6e8ea",
+} as const;
+
 const VIEWS: ChartView[] = ["Monthly", "Annually"];
+
+/** Saldo al terminar `monthIndex` usando una serie mensual (permite amortización corta antes de `totalMonths`). */
+function balanceAtMonth(series: number[], monthIndex: number): number {
+  if (series.length === 0) return 0;
+  const capped = Math.min(Math.max(0, monthIndex), series.length - 1);
+  return series[capped] ?? 0;
+}
+
+/** Meses muestra anual (0,12,24,… hasta el último mes `totalMonths`). */
+function annualMonthsForChart(totalMonths: number): number[] {
+  const ms: number[] = [];
+  for (let m = 0; m < totalMonths; m += 12) ms.push(m);
+  if (ms.length === 0 || ms[ms.length - 1] !== totalMonths) {
+    ms.push(totalMonths);
+  }
+  return ms;
+}
+
+/** Balance en cada corte anual usando la serie mensual. */
+function toAnnualBalances(series: number[], totalMonths: number): number[] {
+  if (series.length <= 1) return series.length === 1 ? [...series] : [1];
+  return annualMonthsForChart(totalMonths).map((m) =>
+    balanceAtMonth(series, m),
+  );
+}
 
 type Props = {
   result: LoanResult | null;
@@ -30,17 +63,23 @@ export const BalanceChart = ({ result, currency, view, setView }: Props) => {
   const t = useTranslations("calculator.chart");
   const locale = useLocale();
 
-  const stdSeries = result?.stdSeries ?? [1, 1];
-  const accSeries = result?.accSeries ?? [1, 1];
-  const totalYears = Math.round((result?.n ?? 360) / 12);
-
-  const series = useMemo(
-    () => [
-      { name: t("standard"), data: stdSeries },
-      { name: t("withExtra"), data: accSeries },
-    ],
-    [stdSeries, accSeries, t],
-  );
+  const series = useMemo(() => {
+    const std = result?.stdSeries ?? [1, 1];
+    const acc = result?.accSeries ?? [1, 1];
+    const totalMonths =
+      result?.n ?? Math.max(std.length, acc.length) - 1;
+    const isMonthly = view === "Monthly";
+    return [
+      {
+        name: t("standard"),
+        data: isMonthly ? std : toAnnualBalances(std, totalMonths),
+      },
+      {
+        name: t("withExtra"),
+        data: isMonthly ? acc : toAnnualBalances(acc, totalMonths),
+      },
+    ];
+  }, [result, view, t]);
 
   const options = useMemo(
     () => ({
@@ -50,24 +89,32 @@ export const BalanceChart = ({ result, currency, view, setView }: Props) => {
         zoom: { enabled: false },
         animations: { enabled: false },
         background: "transparent",
+        fontFamily: 'Inter, system-ui, sans-serif',
+        foreColor: CHART.onSurfaceVariant,
       },
       stroke: {
         curve: "smooth" as const,
-        width: [1.5, 2],
-        dashArray: [4, 0],
+        width: [2, 2.5],
+        dashArray: [5, 0],
       },
       fill: {
-        colors: ["#006c49", "#6cf8bb"],
-        type: "solid",
-        opacity: [0.4, 0.25],
+        type: "gradient" as const,
+        gradient: {
+          shade: "light" as const,
+          type: "vertical" as const,
+          shadeIntensity: 0.2,
+          opacityFrom: 0.38,
+          opacityTo: 0.02,
+          stops: [0, 88, 100],
+        },
       },
-      // colors: ["#76777d", "#006c49"],
+      colors: [CHART.outline, CHART.secondary],
       dataLabels: { enabled: false },
       legend: { show: false },
       grid: {
-        borderColor: "rgba(0,0,0,0.06)",
-        strokeDashArray: 3,
-        padding: { left: 0, right: 0, top: 0, bottom: 0 },
+        borderColor: CHART.surfaceHigh,
+        strokeDashArray: 4,
+        padding: { left: 4, right: 8, top: 8, bottom: 0 },
       },
       xaxis: {
         min: 0,
@@ -76,32 +123,40 @@ export const BalanceChart = ({ result, currency, view, setView }: Props) => {
         axisTicks: { show: false },
         labels: {
           style: {
-            fontSize: "0.625rem",
+            fontSize: "11px",
             fontWeight: "600",
-            colors: "#9aa0a6",
+            fontFamily: 'Inter, system-ui, sans-serif',
+            colors: CHART.onSurfaceVariant,
           },
           formatter: (val: string) => {
-            const idx = Math.round(Number(val));
-            const year = view === "Monthly" ? Math.round(idx / 12) : idx;
+            const x = Math.round(Number(val));
+            const year =
+              view === "Monthly"
+                ? Math.round(x / 12)
+                : x;
             return t("yearLabel", { year });
           },
         },
       },
       yaxis: { show: false },
       tooltip: {
-        theme: "light",
+        theme: "light" as const,
+        cssClass: "balance-chart-tooltip",
         x: {
-          formatter: (val: number) => {
-            const year = view === "Monthly" ? Math.round(val / 12) : val;
-            return t("yearLabel", { year });
-          },
+          formatter: (val: number) =>
+            t("yearLabel", {
+              year:
+                view === "Monthly"
+                  ? Math.round(val / 12)
+                  : Math.round(val),
+            }),
         },
         y: {
           formatter: (val: number) => formatFromUsd(val, currency, locale),
         },
       },
     }),
-    [view, t, currency, locale, totalYears],
+    [view, t, currency, locale],
   );
 
   return (
@@ -140,6 +195,7 @@ export const BalanceChart = ({ result, currency, view, setView }: Props) => {
       {/* Chart */}
       <div className={styles.chartWrap}>
         <ReactApexChart
+          key={view}
           type="area"
           series={series}
           options={options}

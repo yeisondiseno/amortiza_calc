@@ -1,9 +1,12 @@
 "use client";
 
 // React
-import { useState, useMemo } from "react";
+import { useMemo, useState } from "react";
 // Libraries
+import { useForm, useWatch } from "react-hook-form";
 import { useLocale, useTranslations } from "next-intl";
+// Hooks
+import { usePersistor } from "@/hooks";
 // Components
 import { TopBar } from "@/components/TopBar";
 import { LoanForm } from "@/components/LoanForm";
@@ -18,7 +21,10 @@ import type { FormState, ChartView, PageIntroCopy, TabView } from "@/types";
 // Styles
 import shared from "@/shared";
 import styles from "./AmortizationCalculator.module.css";
+
 // Constants
+const LOAN_CALC_FORM_COOKIE = "amortiza_loan_form_v1";
+
 const DEFAULT_FORM: FormState = {
   amount: "450,000",
   rate: "6.5",
@@ -34,11 +40,28 @@ type Props = Readonly<{
   pageIntro: PageIntroCopy;
 }>;
 
-export const AmortizationCalculator = ({ pageIntro }: Props) => {
+type LoadedProps = Readonly<{
+  pageIntro: PageIntroCopy;
+  /** Valores leídos de la cookie (o `DEFAULT_FORM` si no había datos válidos) — solo se usan como `defaultValues` en el primer montaje de `useForm`. */
+  defaultFormValues: FormState;
+}>;
+
+const AmortizationCalculatorLoaded = ({
+  pageIntro,
+  defaultFormValues,
+}: LoadedProps) => {
   const locale = useLocale();
   const t = useTranslations("calculator");
+  // Hooks
+  const loanForm = useForm<FormState>({
+    defaultValues: defaultFormValues,
+  });
+  const form = useWatch({ control: loanForm.control }) as FormState;
+  usePersistor(LOAN_CALC_FORM_COOKIE, DEFAULT_FORM, form, {
+    readOnMount: false,
+    persistOnChange: true,
+  });
   // State
-  const [form, setForm] = useState<FormState>(DEFAULT_FORM);
   const [chartView, setChartView] = useState<ChartView>("Monthly");
   const [activeTab, setActiveTab] = useState<TabView>("chart");
 
@@ -66,13 +89,12 @@ export const AmortizationCalculator = ({ pageIntro }: Props) => {
       <TopBar />
       <main className={styles.main}>
         <div className={styles.grid}>
-          <LoanForm form={form} setForm={setForm} />
+          <LoanForm methods={loanForm} />
           <section className={styles.results}>
             <ResultCards currency={form.currency} result={result} />
           </section>
         </div>
 
-        {/* Tab bar */}
         <div className={styles.tabBar}>
           {TABS.map((tab) => (
             <button
@@ -86,7 +108,6 @@ export const AmortizationCalculator = ({ pageIntro }: Props) => {
           ))}
         </div>
 
-        {/* Tab panels */}
         <div hidden={activeTab !== "chart"}>
           <BalanceChart
             currency={form.currency}
@@ -123,5 +144,36 @@ export const AmortizationCalculator = ({ pageIntro }: Props) => {
       </main>
       <BottomNav />
     </>
+  );
+};
+
+export const AmortizationCalculator = ({ pageIntro }: Props) => {
+  // Hooks
+  const { valueFromStorage, isHydrated: persistHydrated } = usePersistor(
+    LOAN_CALC_FORM_COOKIE,
+    DEFAULT_FORM,
+    DEFAULT_FORM,
+    { persistOnChange: false },
+  );
+
+  if (!persistHydrated) {
+    return (
+      <>
+        <TopBar />
+        <main
+          className={styles.main}
+          aria-busy="true"
+          aria-label="Cargando calculadora"
+        />
+        <BottomNav />
+      </>
+    );
+  }
+
+  return (
+    <AmortizationCalculatorLoaded
+      pageIntro={pageIntro}
+      defaultFormValues={valueFromStorage}
+    />
   );
 };

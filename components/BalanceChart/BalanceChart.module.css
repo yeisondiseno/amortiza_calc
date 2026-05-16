@@ -34,7 +34,7 @@
 }
 
 .dotStandard {
-  background-color: var(--color-outline-variant);
+  background-color: var(--color-outline);
 }
 .dotAccelerated {
   background-color: var(--color-secondary);
@@ -78,13 +78,39 @@
   box-shadow: var(--shadow-sm);
 }
 
-/* ApexCharts area */
+/* ApexCharts — panel alineado con superficies de la página */
 .chartWrap {
-  height: 16rem;
-  /* pull out ApexCharts' internal whitespace so the chart fills the card */
-  margin-left: -0.5rem;
-  margin-right: -0.5rem;
+  --chart-panel-pad: var(--space-md);
+
+  height: fit-content;
+  margin-left: calc(-1 * var(--chart-panel-pad));
+  margin-right: calc(-1 * var(--chart-panel-pad));
   width: -webkit-fill-available;
+  padding: var(--space-md) var(--chart-panel-pad) var(--space-sm);
+  border-radius: var(--radius-card);
+  background-color: var(--color-surface-container-low);
+  border: 1px solid var(--color-outline-variant);
+}
+
+/* Tooltip Apex (clase inyectada en el portal del gráfico) */
+:global(.balance-chart-tooltip) {
+  border-radius: var(--radius-card) !important;
+  border: 1px solid var(--color-outline-variant) !important;
+  box-shadow: var(--shadow-md) !important;
+  font-family: var(--font-body) !important;
+  overflow: hidden;
+}
+
+:global(.balance-chart-tooltip .apexcharts-tooltip-title) {
+  background-color: var(--color-surface-container-low) !important;
+  border-bottom: 1px solid var(--color-outline-variant) !important;
+  font-family: var(--font-headline) !important;
+  font-weight: 600 !important;
+  color: var(--color-on-surface) !important;
+}
+
+:global(.balance-chart-tooltip .apexcharts-tooltip-series-group) {
+  padding: var(--space-xs) var(--space-sm) !important;
 }
 
 /* Footer */
