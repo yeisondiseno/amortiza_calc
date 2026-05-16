@@ -14,9 +14,11 @@
     "a4": "Oui, entièrement gratuit et sans inscription. Tous les calculs s'effectuent directement dans votre navigateur."
   },
   "seo": {
-    "heading": "Comment fonctionne le calculateur de prêt",
-    "p1": "Entrez le montant, le taux et la durée de votre prêt pour voir instantanément votre mensualité et un tableau d'amortissement complet. Chaque paiement est décomposé en capital et intérêts.",
-    "p2": "Ajoutez des remboursements anticipés mensuels ou annuels pour voir exactement le nombre de mois économisés et les intérêts évités. Applicable aux prêts immobiliers, auto, étudiants ou personnels."
+    "heading": "Calculateur de prêt : objectif et utilisation",
+    "purposeHeading": "À quoi sert cet outil",
+    "purposeBody": "Cette page propose un calculateur gratuit d'amortissement et de remboursement anticipé pour estimer le coût total du crédit, voir comment chaque mensualité se répartit entre capital et intérêts, et mesurer l'impact des remboursements anticipés sur la durée et les intérêts pour les crédits immobiliers, auto, étudiants ou personnels à taux fixe.",
+    "usageHeading": "Comment utiliser cette page",
+    "usageBody": "Saisissez le montant du prêt, le taux d'intérêt annuel et la durée pour afficher votre mensualité et un tableau d'amortissement détaillé. Ajoutez si besoin des remboursements anticipés mensuels ou annuels pour comparer les scénarios et estimer les économies d'intérêts ainsi que les mois que vous pouvez retirer au crédit. Les calculs sont effectués localement dans votre navigateur."
   },
   "calculator": {
     "topbar": {

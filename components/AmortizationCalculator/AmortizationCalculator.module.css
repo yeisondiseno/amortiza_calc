@@ -71,3 +71,34 @@
 .tabBtnActive::after {
   background-color: var(--color-primary);
 }
+
+/* Intro copy — matches LoanForm card + typography tokens */
+.pageIntro {
+  margin-top: var(--space-xl);
+}
+
+.pageIntroTitle {
+  margin-bottom: var(--space-lg);
+}
+
+.pageIntroSubheading {
+  font-family: var(--font-headline);
+  font-size: 1.0625rem;
+  font-weight: 600;
+  line-height: 1.35;
+  color: var(--color-primary);
+  margin-top: var(--space-lg);
+  margin-bottom: var(--space-sm);
+}
+
+.pageIntro h3:first-of-type {
+  margin-top: var(--space-md);
+}
+
+.pageIntroBody {
+  font-family: var(--font-body);
+  font-size: 0.9375rem;
+  font-weight: 400;
+  line-height: 1.65;
+  color: var(--color-on-surface-variant);
+}
