@@ -20,7 +20,7 @@ const Home = async ({ params }: Props) => {
   const webAppJsonLd = {
     "@context": "https://schema.org",
     "@type": "WebApplication",
-    name: "Loan Payoff Calculator",
+    name: t("title"),
     url: `${BASE_URL}/${locale}`,
     description: t("description"),
     applicationCategory: "FinanceApplication",
@@ -36,7 +36,7 @@ const Home = async ({ params }: Props) => {
     ],
     creator: {
       "@type": "Organization",
-      name: "Loan Payoff Calculator",
+      name: t("title"),
       url: BASE_URL,
     },
     offers: {
@@ -70,12 +70,15 @@ const Home = async ({ params }: Props) => {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
       />
       <h1 className="sr-only">{t("title")}</h1>
-      <AmortizationCalculator />
-      <section className="sr-only">
-        <h2>{tSeo("heading")}</h2>
-        <p>{tSeo("p1")}</p>
-        <p>{tSeo("p2")}</p>
-      </section>
+      <AmortizationCalculator
+        pageIntro={{
+          heading: tSeo("heading"),
+          purposeHeading: tSeo("purposeHeading"),
+          purposeBody: tSeo("purposeBody"),
+          usageHeading: tSeo("usageHeading"),
+          usageBody: tSeo("usageBody"),
+        }}
+      />
     </>
   );
 };

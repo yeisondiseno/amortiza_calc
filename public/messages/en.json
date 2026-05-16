@@ -14,9 +14,11 @@
     "a4": "Yes, completely free with no registration required. All calculations run instantly in your browser with no data sent to any server."
   },
   "seo": {
-    "heading": "How the Loan Payoff Calculator Works",
-    "p1": "Enter your loan amount, interest rate, and term to instantly see your monthly payment and a complete amortization schedule. Every payment is broken down into principal and interest so you know exactly where your money goes.",
-    "p2": "Adding extra monthly or annual payments shows you exactly how many months you save and how much interest you avoid. Use it for mortgages, auto loans, student loans, or any fixed-rate personal loan."
+    "heading": "Loan payoff calculator: purpose and how to use",
+    "purposeHeading": "Purpose of this tool",
+    "purposeBody": "This page provides a free loan amortization and payoff calculator so you can estimate the total cost of borrowing, see how each payment splits between principal and interest, and measure how extra payments shorten the payoff timeline and reduce interest on mortgages, auto loans, student loans, and other fixed-rate loans.",
+    "usageHeading": "How to use this page",
+    "usageBody": "Enter your loan amount, annual interest rate, and repayment term to view your monthly payment and a full amortization schedule. Optionally add monthly or annual extra payments to compare scenarios and see estimated interest savings and how many months you could remove from the loan. Calculations run locally in your browser."
   },
   "calculator": {
     "topbar": {

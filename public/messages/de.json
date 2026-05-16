@@ -14,9 +14,11 @@
     "a4": "Ja, vollständig kostenlos und ohne Registrierung. Alle Berechnungen laufen direkt im Browser, ohne dass Daten übertragen werden."
   },
   "seo": {
-    "heading": "So funktioniert der Tilgungsrechner",
-    "p1": "Gib Darlehensbetrag, Zinssatz und Laufzeit ein, um sofort deine monatliche Rate und einen vollständigen Tilgungsplan zu erhalten. Jede Zahlung wird in Tilgungs- und Zinsanteil aufgeschlüsselt.",
-    "p2": "Durch die Eingabe von Sondertilgungen siehst du genau, wie viele Monate du sparst und wie viel Zinsen du vermeidest. Geeignet für Immobilienkredite, Autokredite und Ratenkredite."
+    "heading": "Tilgungsrechner: Zweck und Nutzung",
+    "purposeHeading": "Wofür dieses Tool gedacht ist",
+    "purposeBody": "Diese Seite bietet einen kostenlosen Tilgungs- und vorzeitigen Auszahlungsrechner, um die Gesamtkosten der Finanzierung einzuschätzen, zu sehen, wie sich jede Rate in Tilgung und Zinsen aufteilt, und abzuschätzen, wie Sondertilgungen die Laufzeit verkürzen und Zinsen bei Immobilien-, Auto-, Studien- und anderen Festzinskrediten senken.",
+    "usageHeading": "So nutzen Sie diese Seite",
+    "usageBody": "Geben Sie Darlehensbetrag, jährlichen Zinssatz und Laufzeit ein, um Ihre monatliche Rate und einen vollständigen Tilgungsplan zu sehen. Optional können Sie monatliche oder jährliche Sondertilgungen ergänzen, um Szenarien zu vergleichen und geschätzte Zinsersparnisse sowie eingesparte Monate abzulesen. Die Berechnungen erfolgen lokal in Ihrem Browser."
   },
   "calculator": {
     "topbar": {

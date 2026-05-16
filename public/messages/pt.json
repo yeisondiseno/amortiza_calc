@@ -14,9 +14,11 @@
     "a4": "Sim, completamente gratuita sem cadastro. Todos os cálculos são feitos instantaneamente no seu navegador."
   },
   "seo": {
-    "heading": "Como funciona a calculadora de empréstimo",
-    "p1": "Insira o valor, a taxa de juros e o prazo do seu empréstimo para ver instantaneamente sua prestação mensal e uma tabela de amortização completa. Cada pagamento é detalhado em amortização e juros.",
-    "p2": "Adicionar pagamentos extras mensais ou anuais mostra exatamente quantos meses você economiza e quais juros evita pagar. Use para financiamentos imobiliários, veículos, estudantis ou empréstimos pessoais."
+    "heading": "Calculadora de empréstimo: propósito e uso",
+    "purposeHeading": "Para que serve esta ferramenta",
+    "purposeBody": "Esta página oferece uma calculadora gratuita de amortização e quitação antecipada para estimar o custo total do empréstimo, ver como cada parcela se divide entre amortização e juros e medir como pagamentos extras encurtam o prazo e reduzem juros em financiamentos imobiliários, veículos, estudantis e outros empréstimos com taxa fixa.",
+    "usageHeading": "Como usar esta página",
+    "usageBody": "Informe o valor do empréstimo, a taxa de juros anual e o prazo para ver sua prestação mensal e a tabela de amortização completa. Opcionalmente inclua pagamentos extras mensais ou anuais para comparar cenários e ver a economia estimada em juros e quantos meses você pode eliminar do financiamento. Os cálculos rodam localmente no seu navegador."
   },
   "calculator": {
     "topbar": {

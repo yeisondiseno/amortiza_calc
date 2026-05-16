@@ -14,9 +14,11 @@
     "a4": "Sí, completamente gratuita sin registro. Todos los cálculos se realizan en tu navegador de forma instantánea."
   },
   "seo": {
-    "heading": "Cómo funciona la calculadora de préstamos",
-    "p1": "Introduce el monto del préstamo, la tasa de interés y el plazo para ver al instante tu cuota mensual y una tabla de amortización completa. Cada pago se desglosa en capital e intereses.",
-    "p2": "Agregar pagos extra mensuales o anuales muestra exactamente cuántos meses ahorras y cuánto interés evitas pagar. Úsala para hipotecas, préstamos para autos, estudiantiles o cualquier préstamo personal a tasa fija."
+    "heading": "Calculadora de préstamos: propósito y uso",
+    "purposeHeading": "Para qué sirve esta herramienta",
+    "purposeBody": "Esta página ofrece una calculadora gratuita de amortización y pago anticipado para que puedas estimar el costo total del crédito, ver cómo cada cuota se reparte entre capital e intereses y cuantificar cómo los pagos extra acortan el plazo y reducen intereses en hipotecas, préstamos de auto, estudiantiles y otros préstamos a tasa fija.",
+    "usageHeading": "Cómo usar esta página",
+    "usageBody": "Introduce el monto del préstamo, la tasa de interés anual y el plazo para ver tu cuota mensual y la tabla de amortización completa. Opcionalmente agrega pagos extra mensuales o anuales para comparar escenarios y ver el ahorro estimado en intereses y los meses que podrías recortar del préstamo. Los cálculos se ejecutan en tu navegador."
   },
   "calculator": {
     "topbar": {
