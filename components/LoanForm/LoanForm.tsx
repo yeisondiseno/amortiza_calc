@@ -1,14 +1,14 @@
 "use client";
 
 // React
-import {
-  type Dispatch,
-  type SetStateAction,
-  useEffect,
-  useMemo,
-} from "react";
+import { useEffect, useId, useMemo } from "react";
 // Libraries
-import { Controller, useForm, type Control } from "react-hook-form";
+import {
+  Controller,
+  useWatch,
+  type Control,
+  type UseFormReturn,
+} from "react-hook-form";
 import { useLocale, useTranslations } from "next-intl";
 import {
   HiOutlineCalculator,
@@ -33,8 +33,7 @@ import shared from "@/shared";
 import styles from "./LoanForm.module.css";
 
 type Props = {
-  form: FormState;
-  setForm: Dispatch<SetStateAction<FormState>>;
+  methods: UseFormReturn<FormState>;
 };
 
 type NumericFormField = Exclude<keyof FormState, "currency" | "extraFrequency">;
@@ -46,7 +45,6 @@ type FieldRowProps = {
   prefix?: string;
   suffix?: string;
   placeholder: string;
-  setForm: Dispatch<SetStateAction<FormState>>;
 };
 
 type MoneyFieldRowProps = {
@@ -55,7 +53,6 @@ type MoneyFieldRowProps = {
   label: string;
   prefix?: string;
   placeholder: string;
-  setForm: Dispatch<SetStateAction<FormState>>;
   locale: string;
   currency: CurrencyCode;
 };
@@ -67,7 +64,6 @@ const FieldRow = ({
   prefix,
   suffix,
   placeholder,
-  setForm,
 }: FieldRowProps) => (
   <div className={styles.field}>
     <label className={shared.label}>{label}</label>
@@ -86,11 +82,7 @@ const FieldRow = ({
             placeholder={placeholder}
             value={field.value}
             onBlur={field.onBlur}
-            onChange={(e) => {
-              const v = e.target.value;
-              field.onChange(v);
-              setForm((prev) => ({ ...prev, [name]: v }));
-            }}
+            onChange={(e) => field.onChange(e.target.value)}
           />
           {suffix && <span className={shared.adornment}>{suffix}</span>}
         </div>
@@ -105,7 +97,6 @@ const MoneyFieldRow = ({
   label,
   prefix,
   placeholder,
-  setForm,
   locale,
   currency,
 }: MoneyFieldRowProps) => (
@@ -127,19 +118,13 @@ const MoneyFieldRow = ({
             value={field.value}
             onBlur={(e) => {
               field.onBlur();
-              const finalized = finalizeMoneyDisplay(
-                e.target.value,
-                locale,
-                currency,
+              field.onChange(
+                finalizeMoneyDisplay(e.target.value, locale, currency),
               );
-              field.onChange(finalized);
-              setForm((prev) => ({ ...prev, [name]: finalized }));
             }}
-            onChange={(e) => {
-              const masked = maskMoneyInput(e.target.value, locale, currency);
-              field.onChange(masked);
-              setForm((prev) => ({ ...prev, [name]: masked }));
-            }}
+            onChange={(e) =>
+              field.onChange(maskMoneyInput(e.target.value, locale, currency))
+            }
           />
         </div>
       )}
@@ -147,47 +132,45 @@ const MoneyFieldRow = ({
   </div>
 );
 
-export const LoanForm = ({ form, setForm }: Props) => {
+export const LoanForm = ({ methods }: Props) => {
   // Hooks
   const t = useTranslations("calculator.form");
   const locale = useLocale();
+  const { control, setValue, getValues } = methods;
+  const currency = useWatch({ control, name: "currency" });
+  const extraFrequency = useWatch({ control, name: "extraFrequency" });
   const currencyNames = useMemo(
     () => new Intl.DisplayNames(locale, { type: "currency" }),
     [locale],
   );
-  const currencySymbol = narrowCurrencySymbol(form.currency, locale);
-  const { control } = useForm<FormState>({
-    values: form,
-  });
+  const currencySymbol = narrowCurrencySymbol(currency, locale);
 
   const placeholderLoan = useMemo(
-    () => placeholderMoney(450_000, locale, form.currency),
-    [locale, form.currency],
+    () => placeholderMoney(450_000, locale, currency),
+    [locale, currency],
   );
   const placeholderExtra = useMemo(
     () =>
-      form.extraFrequency === "monthly"
-        ? placeholderMoney(500, locale, form.currency)
-        : placeholderMoney(12_000, locale, form.currency),
-    [locale, form.currency, form.extraFrequency],
+      extraFrequency === "monthly"
+        ? placeholderMoney(500, locale, currency)
+        : placeholderMoney(12_000, locale, currency),
+    [locale, currency, extraFrequency],
   );
 
   useEffect(() => {
-    setForm((prev) => {
-      const nextAmount =
-        prev.amount.trim() === ""
-          ? ""
-          : finalizeMoneyDisplay(prev.amount, locale, prev.currency);
-      const nextExtra =
-        prev.extra.trim() === ""
-          ? ""
-          : finalizeMoneyDisplay(prev.extra, locale, prev.currency);
-      if (nextAmount === prev.amount && nextExtra === prev.extra) {
-        return prev;
-      }
-      return { ...prev, amount: nextAmount, extra: nextExtra };
-    });
-  }, [locale, form.currency, setForm]);
+    const amount = getValues("amount");
+    const extra = getValues("extra");
+    const nextAmount =
+      amount.trim() === ""
+        ? ""
+        : finalizeMoneyDisplay(amount, locale, currency);
+    const nextExtra =
+      extra.trim() === ""
+        ? ""
+        : finalizeMoneyDisplay(extra, locale, currency);
+    if (nextAmount !== amount) setValue("amount", nextAmount);
+    if (nextExtra !== extra) setValue("extra", nextExtra);
+  }, [locale, currency, getValues, setValue]);
 
   return (
     <section className={styles.section}>
@@ -204,9 +187,8 @@ export const LoanForm = ({ form, setForm }: Props) => {
               label={t("loanAmount")}
               prefix={currencySymbol}
               placeholder={placeholderLoan}
-              setForm={setForm}
               locale={locale}
-              currency={form.currency}
+              currency={currency}
             />
             <div className={styles.currencyField}>
               <label className={shared.label} htmlFor="loan-currency">
@@ -225,14 +207,9 @@ export const LoanForm = ({ form, setForm }: Props) => {
                       aria-label={t("currency")}
                       className={styles.currencySelectInner}
                       onBlur={field.onBlur}
-                      onChange={(e) => {
-                        const next = e.target.value as CurrencyCode;
-                        field.onChange(next);
-                        setForm((prev) => ({
-                          ...prev,
-                          currency: next,
-                        }));
-                      }}
+                      onChange={(e) =>
+                        field.onChange(e.target.value as CurrencyCode)
+                      }
                     >
                       {CURRENCY_CODES.map((code) => (
                         <option key={code} value={code}>
@@ -253,7 +230,6 @@ export const LoanForm = ({ form, setForm }: Props) => {
               label={t("interestRate")}
               suffix="%"
               placeholder="6.5"
-              setForm={setForm}
             />
             <FieldRow
               control={control}
@@ -261,7 +237,6 @@ export const LoanForm = ({ form, setForm }: Props) => {
               label={t("loanTerm")}
               suffix={t("yearsSuffix")}
               placeholder="30"
-              setForm={setForm}
             />
           </div>
           <div className={styles.extraFreqRow}>
@@ -281,13 +256,7 @@ export const LoanForm = ({ form, setForm }: Props) => {
                       type="button"
                       aria-pressed={field.value === "monthly"}
                       className={`${styles.freqBtn} ${field.value === "monthly" ? styles.freqBtnActive : ""}`}
-                      onClick={() => {
-                        field.onChange("monthly");
-                        setForm((p) => ({
-                          ...p,
-                          extraFrequency: "monthly",
-                        }));
-                      }}
+                      onClick={() => field.onChange("monthly")}
                     >
                       {t("extraFrequencyMonthly")}
                     </button>
@@ -295,13 +264,7 @@ export const LoanForm = ({ form, setForm }: Props) => {
                       type="button"
                       aria-pressed={field.value === "annual"}
                       className={`${styles.freqBtn} ${field.value === "annual" ? styles.freqBtnActive : ""}`}
-                      onClick={() => {
-                        field.onChange("annual");
-                        setForm((p) => ({
-                          ...p,
-                          extraFrequency: "annual",
-                        }));
-                      }}
+                      onClick={() => field.onChange("annual")}
                     >
                       {t("extraFrequencyAnnual")}
                     </button>
@@ -314,15 +277,14 @@ export const LoanForm = ({ form, setForm }: Props) => {
             control={control}
             name="extra"
             label={
-              form.extraFrequency === "monthly"
+              extraFrequency === "monthly"
                 ? t("extraPaymentMonthly")
                 : t("extraPaymentAnnual")
             }
             prefix={currencySymbol}
             placeholder={placeholderExtra}
-            setForm={setForm}
             locale={locale}
-            currency={form.currency}
+            currency={currency}
           />
         </div>
         <button type="button" className={shared.btnCalculate}>

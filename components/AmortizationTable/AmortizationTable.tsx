@@ -6,7 +6,7 @@ import { useMemo, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import { HiOutlineDownload } from "react-icons/hi";
 // Utils
-import { formatFromUsd, rowDate } from "@/utils";
+import { formatFromUsd, fromUsd, rowDate } from "@/utils";
 // Types
 import type { LoanResult } from "@/types";
 import type { CurrencyCode } from "@/constants";
@@ -29,6 +29,39 @@ export const AmortizationTable = ({ result, currency }: Props) => {
 
   // Values
   const allRows = result?.rows ?? [];
+
+  const handleExportCSV = () => {
+    if (allRows.length === 0) return;
+
+    const headers = [
+      t("month"),
+      t("principal"),
+      t("interest"),
+      t("extra"),
+      t("remainingBalance"),
+    ];
+
+    const fmt = (usd: number) => fromUsd(usd, currency).toFixed(2);
+
+    const csvRows = allRows.map((row) =>
+      [
+        rowDate(row.month),
+        fmt(row.principal),
+        fmt(row.interest),
+        fmt(row.extra),
+        fmt(row.balance),
+      ].join(","),
+    );
+
+    const csv = [headers.join(","), ...csvRows].join("\n");
+    const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = `amortization-schedule-${currency}.csv`;
+    a.click();
+    URL.revokeObjectURL(url);
+  };
   const limit = expanded ? EXPANDED_ROWS : PREVIEW_ROWS;
   const rows = useMemo(() => allRows.slice(0, limit), [allRows, limit]);
   const remainingYears = Math.max(
@@ -48,7 +81,12 @@ export const AmortizationTable = ({ result, currency }: Props) => {
             {t(expanded ? "subtitleExpanded" : "subtitle")}
           </p>
         </div>
-        <button type="button" className={shared.btnGhost}>
+        <button
+          type="button"
+          className={shared.btnGhost}
+          onClick={handleExportCSV}
+          disabled={allRows.length === 0}
+        >
           <HiOutlineDownload className={shared.iconSvgSm} aria-hidden />
           {t("exportCSV")}
         </button>
