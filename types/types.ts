@@ -35,3 +35,5 @@ export type FormState = {
 };
 
 export type ChartView = "Monthly" | "Annually";
+
+export type TabView = "chart" | "table";
