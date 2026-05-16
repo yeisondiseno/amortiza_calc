@@ -32,41 +32,51 @@ type Props = Readonly<{
   params: Promise<{ locale: string }>;
 }>;
 
+// Constants
+const BASE_URL = "https://loanpayoff.info";
+const SITE_NAME = "Loan Payoff Calculator";
+const OG_LOCALE: Record<string, string> = {
+  en: "en_US",
+  es: "es_ES",
+  de: "de_DE",
+  fr: "fr_FR",
+  pt: "pt_BR",
+  ja: "ja_JP",
+};
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "App" });
 
-  // Constants
-  const baseUrl = "https://loanpayoff.info";
-  const canonicalUrl = `${baseUrl}/${locale}`;
+  const canonicalUrl = `${BASE_URL}/${locale}`;
   const hreflang = Object.fromEntries(
-    routing.locales.map((l) => [l, `${baseUrl}/${l}`])
+    routing.locales.map((l) => [l, `${BASE_URL}/${l}`])
   );
 
   return {
-    metadataBase: new URL(baseUrl),
+    metadataBase: new URL(BASE_URL),
     title: {
       default: t("title"),
-      template: `%s · ${t("title")}`,
+      template: `%s · ${SITE_NAME}`,
     },
     description: t("description"),
     alternates: {
       canonical: canonicalUrl,
       languages: {
         ...hreflang,
-        "x-default": `${baseUrl}/en`,
+        "x-default": `${BASE_URL}/en`,
       },
     },
     openGraph: {
       title: t("title"),
       description: t("description"),
       url: canonicalUrl,
-      siteName: t("title"),
-      locale,
+      siteName: SITE_NAME,
+      locale: OG_LOCALE[locale] ?? locale,
       type: "website",
     },
     twitter: {
-      card: "summary",
+      card: "summary_large_image",
       title: t("title"),
       description: t("description"),
     },
