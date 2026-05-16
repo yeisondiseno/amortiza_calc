@@ -1,15 +1,13 @@
 // Next
 import { getTranslations, setRequestLocale } from "next-intl/server";
-
 // Components
 import { AmortizationCalculator } from "@/components";
+// Constants
+import { BASE_URL } from "@/constants";
 
 type Props = Readonly<{
   params: Promise<{ locale: string }>;
 }>;
-
-// Constants
-const BASE_URL = "https://loanpayoff.info";
 
 const Home = async ({ params }: Props) => {
   const { locale } = await params;

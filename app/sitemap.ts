@@ -1,11 +1,9 @@
 // Next
 import type { MetadataRoute } from "next";
-
 // Utils
 import { routing } from "@/i18n/routing";
-
 // Constants
-const BASE_URL = "https://loanpayoff.info";
+import { BASE_URL } from "@/constants";
 
 const sitemap = (): MetadataRoute.Sitemap =>
   routing.locales.map((locale) => ({
@@ -15,7 +13,7 @@ const sitemap = (): MetadataRoute.Sitemap =>
     priority: locale === routing.defaultLocale ? 1 : 0.8,
     alternates: {
       languages: Object.fromEntries(
-        routing.locales.map((l) => [l, `${BASE_URL}/${l}`])
+        routing.locales.map((l) => [l, `${BASE_URL}/${l}`]),
       ),
     },
   }));

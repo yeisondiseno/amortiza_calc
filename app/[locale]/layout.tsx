@@ -8,6 +8,9 @@ import { notFound } from "next/navigation";
 // Utils
 import { routing } from "@/i18n/routing";
 
+// Constants
+import { BASE_URL } from "@/constants";
+
 // Styles
 import "../globals.css";
 
@@ -33,7 +36,6 @@ type Props = Readonly<{
 }>;
 
 // Constants
-const BASE_URL = "https://loanpayoff.info";
 const SITE_NAME = "Loan Payoff Calculator";
 const OG_LOCALE: Record<string, string> = {
   en: "en_US",

@@ -1,8 +1,7 @@
 // Next
 import type { MetadataRoute } from "next";
-
 // Constants
-const BASE_URL = "https://loanpayoff.info";
+import { BASE_URL } from "@/constants";
 
 const robots = (): MetadataRoute.Robots => ({
   rules: {
