@@ -1,7 +1,22 @@
 {
   "App": {
-    "title": "Calculadora de Empréstimo",
-    "description": "Calculadora de amortização gratuita com economia em pagamentos extras"
+    "title": "Calculadora de Empréstimo Grátis – Quite Mais Rápido",
+    "description": "Calculadora de amortização gratuita. Veja quanto economiza em juros com pagamentos extras mensais ou anuais no seu financiamento imobiliário, veículo ou pessoal."
+  },
+  "faq": {
+    "q1": "Como funciona uma calculadora de amortização?",
+    "a1": "Insira o valor do empréstimo, a taxa de juros e o prazo. A calculadora mostra instantaneamente sua prestação mensal, o total de juros e uma tabela de amortização completa. Adicione pagamentos extras para ver sua economia.",
+    "q2": "Quanto posso economizar com pagamentos extras?",
+    "a2": "Pagamentos extras reduzem o saldo devedor mais rápido, diminuindo os juros cobrados a cada mês. Mesmo R$100 extras por mês podem economizar milhares em juros e encurtar anos num financiamento imobiliário.",
+    "q3": "O que é uma tabela de amortização?",
+    "a3": "É uma tabela que detalha cada parcela em amortização e juros, mostrando quanto de cada pagamento reduz o saldo e quanto vai para os juros.",
+    "q4": "Esta calculadora é gratuita?",
+    "a4": "Sim, completamente gratuita sem cadastro. Todos os cálculos são feitos instantaneamente no seu navegador."
+  },
+  "seo": {
+    "heading": "Como funciona a calculadora de empréstimo",
+    "p1": "Insira o valor, a taxa de juros e o prazo do seu empréstimo para ver instantaneamente sua prestação mensal e uma tabela de amortização completa. Cada pagamento é detalhado em amortização e juros.",
+    "p2": "Adicionar pagamentos extras mensais ou anuais mostra exatamente quantos meses você economiza e quais juros evita pagar. Use para financiamentos imobiliários, veículos, estudantis ou empréstimos pessoais."
   },
   "calculator": {
     "topbar": {
@@ -18,7 +33,7 @@
       "loanTerm": "Prazo do empréstimo",
       "yearsSuffix": "Anos",
       "calculate": "Calcular economia",
-      "infoText": "Pagamentos extras—todo mês ou uma vez por ano ao completar cada 12 parcelas—reduzem juros e encurtram o financiamento. O valor corresponde à periodicidade escolhida.",
+      "infoText": "Pagamentos extras—todo mês ou uma vez por ano ao completar cada 12 parcelas—reduzem juros e encurtam o financiamento. O valor corresponde à periodicidade escolhida.",
       "extraFrequency": "Pagamento extra",
       "extraFrequencyMonthly": "Mensal",
       "extraFrequencyAnnual": "Anual",
