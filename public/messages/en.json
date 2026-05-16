@@ -20,6 +20,55 @@
     "usageHeading": "How to use this page",
     "usageBody": "Enter your loan amount, annual interest rate, and repayment term to view your monthly payment and a full amortization schedule. Optionally add monthly or annual extra payments to compare scenarios and see estimated interest savings and how many months you could remove from the loan. Calculations run locally in your browser."
   },
+  "footer": {
+    "brandLine": "{brand}. {footer}",
+    "brand": "Loan Payoff Calculator",
+    "footer": "Free amortization and payoff calculator — runs locally in your browser.",
+    "disclaimer": "Estimates are for educational purposes only and are not financial, legal, or tax advice.",
+    "metaNavAria": "Legal and informational links",
+    "about": "About",
+    "privacy": "Privacy"
+  },
+  "global": {
+    "langsNavAria": "Choose interface language",
+    "languageNames": {
+      "en": "English",
+      "es": "Spanish",
+      "de": "German",
+      "fr": "French",
+      "pt": "Portuguese",
+      "ja": "Japanese"
+    }
+  },
+  "legal": {
+    "backToHome": "Back to calculator"
+  },
+  "aboutPage": {
+    "metaTitle": "About",
+    "metaDescription": "Learn about the free Loan Payoff Calculator — a tool to help you understand your amortization schedule and plan extra payments to pay off debt faster.",
+    "title": "About Loan Payoff Calculator",
+    "intro": "Loan Payoff Calculator is a free, privacy-first tool that helps you understand exactly how your loan works — and how extra payments can save you thousands of dollars in interest.",
+    "whatTitle": "What it does",
+    "whatBody": "Enter your loan amount, interest rate, and term to instantly see your monthly payment and a full amortization schedule. Add optional extra monthly or annual payments to compare scenarios side by side.",
+    "whoTitle": "Who it is for",
+    "whoBody": "Anyone with a fixed-rate loan — mortgage, auto loan, student loan, or personal loan — who wants to plan smarter repayment and reduce total interest paid.",
+    "privacyTitle": "Privacy",
+    "privacyBody": "All calculations happen entirely in your browser. No personal data, financial information, or loan details are ever sent to our servers."
+  },
+  "privacyPage": {
+    "metaTitle": "Privacy Policy",
+    "metaDescription": "Privacy policy for Loan Payoff Calculator. We do not collect, store, or share any personal or financial data. All calculations run locally in your browser.",
+    "title": "Privacy Policy",
+    "updated": "Last updated: May 2026",
+    "dataTitle": "Data we collect",
+    "dataBody": "We do not collect, store, or transmit any personal or financial data. All loan calculations are performed locally in your browser and never leave your device.",
+    "cookiesTitle": "Cookies",
+    "cookiesBody": "This site does not use tracking cookies or analytics. Your loan history is saved in your browser's local storage and can be cleared at any time.",
+    "thirdPartyTitle": "Third-party services",
+    "thirdPartyBody": "We use Google Fonts to load web fonts. Google may log your IP address when fonts are fetched. No other third-party services are used.",
+    "contactTitle": "Contact",
+    "contactBody": "If you have any questions about this privacy policy, you can reach us via the contact information on our website."
+  },
   "calculator": {
     "topbar": {
       "calculator": "Calculator",

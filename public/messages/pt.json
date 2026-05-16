@@ -20,6 +20,55 @@
     "usageHeading": "Como usar esta página",
     "usageBody": "Informe o valor do empréstimo, a taxa de juros anual e o prazo para ver sua prestação mensal e a tabela de amortização completa. Opcionalmente inclua pagamentos extras mensais ou anuais para comparar cenários e ver a economia estimada em juros e quantos meses você pode eliminar do financiamento. Os cálculos rodam localmente no seu navegador."
   },
+  "footer": {
+    "brandLine": "{brand}. {footer}",
+    "brand": "Calculadora de empréstimo gratuita",
+    "footer": "Calculadora de amortização e quitação antecipada — executada localmente no navegador.",
+    "disclaimer": "As estimativas são apenas educativas e não constituem aconselhamento financeiro, jurídico ou tributário.",
+    "metaNavAria": "Links legais e informativos",
+    "about": "Sobre",
+    "privacy": "Privacidade"
+  },
+  "global": {
+    "langsNavAria": "Escolher idioma da interface",
+    "languageNames": {
+      "en": "Inglês",
+      "es": "Espanhol",
+      "de": "Alemão",
+      "fr": "Francês",
+      "pt": "Português",
+      "ja": "Japonês"
+    }
+  },
+  "legal": {
+    "backToHome": "Voltar à calculadora"
+  },
+  "aboutPage": {
+    "metaTitle": "Sobre",
+    "metaDescription": "Saiba mais sobre a calculadora gratuita de empréstimo — amortização, pagamentos extras e economia de juros.",
+    "title": "Sobre a calculadora de empréstimo",
+    "intro": "A calculadora de empréstimo é uma ferramenta gratuita e focada em privacidade que ajuda você a entender seu financiamento e como pagamentos extras reduzem juros.",
+    "whatTitle": "O que faz",
+    "whatBody": "Informe valor, taxa e prazo para ver a prestação e a tabela de amortização. Inclua pagamentos extras mensais ou anuais opcionais para comparar cenários.",
+    "whoTitle": "Para quem é",
+    "whoBody": "Para quem tem financiamento ou empréstimo a taxa fixa — imóvel, veículo, estudantil ou pessoal — e quer planejar melhor e pagar menos juros.",
+    "privacyTitle": "Privacidade",
+    "privacyBody": "Todos os cálculos rodam no seu navegador. Não enviamos dados pessoais, financeiros nem detalhes do empréstimo aos nossos servidores."
+  },
+  "privacyPage": {
+    "metaTitle": "Política de privacidade",
+    "metaDescription": "Política de privacidade da calculadora de empréstimo. Não coletamos dados pessoais nem financeiros; tudo é calculado localmente no navegador.",
+    "title": "Política de privacidade",
+    "updated": "Última atualização: maio de 2026",
+    "dataTitle": "Dados que coletamos",
+    "dataBody": "Não coletamos, armazenamos nem transmitimos dados pessoais ou financeiros. Os cálculos são feitos localmente no navegador e não saem do seu dispositivo.",
+    "cookiesTitle": "Cookies",
+    "cookiesBody": "Este site não usa cookies de rastreamento ou analytics. O histórico fica no armazenamento local do navegador e pode ser apagado a qualquer momento.",
+    "thirdPartyTitle": "Serviços de terceiros",
+    "thirdPartyBody": "Usamos o Google Fonts para carregar fontes; o Google pode registrar seu IP ao baixá-las. Nenhum outro serviço de terceiros é usado.",
+    "contactTitle": "Contato",
+    "contactBody": "Em caso de dúvidas sobre esta política, entre em contato pelos dados indicados no site."
+  },
   "calculator": {
     "topbar": {
       "calculator": "Calculadora",
