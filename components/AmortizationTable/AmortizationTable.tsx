@@ -22,6 +22,7 @@ type Props = { result: LoanResult | null; currency: CurrencyCode };
 export const AmortizationTable = ({ result, currency }: Props) => {
   // State
   const [expanded, setExpanded] = useState(false);
+  const [exportAnnouncement, setExportAnnouncement] = useState("");
 
   // Hooks
   const t = useTranslations("calculator.table");
@@ -30,6 +31,7 @@ export const AmortizationTable = ({ result, currency }: Props) => {
   // Values
   const allRows = result?.rows ?? [];
 
+  // Actions
   const handleExportCSV = () => {
     if (allRows.length === 0) return;
 
@@ -61,6 +63,8 @@ export const AmortizationTable = ({ result, currency }: Props) => {
     a.download = `amortization-schedule-${currency}.csv`;
     a.click();
     URL.revokeObjectURL(url);
+    setExportAnnouncement(t("csvDownloaded"));
+    globalThis.setTimeout(() => setExportAnnouncement(""), 4000);
   };
   const limit = expanded ? EXPANDED_ROWS : PREVIEW_ROWS;
   const rows = useMemo(() => allRows.slice(0, limit), [allRows, limit]);
@@ -92,22 +96,29 @@ export const AmortizationTable = ({ result, currency }: Props) => {
         </button>
       </div>
 
+      {/* aria-live region for download feedback */}
+      <p role="status" aria-live="polite" className={shared.srOnly}>
+        {exportAnnouncement}
+      </p>
+
       {/* Table */}
       <div className={styles.tableCard}>
         <div className={styles.tableWrap}>
-          <table className={styles.table}>
+          <table className={styles.table} id="amortization-table">
             <thead>
               <tr>
-                <th className={styles.thLeft}>{t("month")}</th>
-                <th>{t("principal")}</th>
-                <th>{t("interest")}</th>
-                <th>{t("extra")}</th>
-                <th className={styles.thRight}>{t("remainingBalance")}</th>
+                <th scope="col" className={styles.thLeft}>{t("month")}</th>
+                <th scope="col">{t("principal")}</th>
+                <th scope="col">{t("interest")}</th>
+                <th scope="col">{t("extra")}</th>
+                <th scope="col" className={styles.thRight}>
+                  {t("remainingBalance")}
+                </th>
               </tr>
             </thead>
             <tbody>
-              {rows.map((row, i) => (
-                <tr key={i} className={styles.row}>
+              {rows.map((row) => (
+                <tr key={`row-${row.month}`} className={styles.row}>
                   <td className={styles.tdLeft}>{rowDate(row.month)}</td>
                   <td>{formatFromUsd(row.principal, currency, locale)}</td>
                   <td>{formatFromUsd(row.interest, currency, locale)}</td>
@@ -136,6 +147,8 @@ export const AmortizationTable = ({ result, currency }: Props) => {
             type="button"
             onClick={() => setExpanded((v) => !v)}
             className={styles.expandBtn}
+            aria-expanded={expanded}
+            aria-controls="amortization-table"
           >
             {expanded
               ? t("collapse")

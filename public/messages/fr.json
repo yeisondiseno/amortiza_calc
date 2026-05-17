@@ -70,6 +70,7 @@
     "contactBody": "Pour toute question sur cette politique, contactez-nous via les coordonnées indiquées sur le site."
   },
   "calculator": {
+    "loading": "Chargement du calculateur",
     "topbar": {
       "calculator": "Calculateur",
       "amortization": "Amortissement",
@@ -120,7 +121,8 @@
       "exportCSV": "Exporter en CSV",
       "viewFull": "Voir le calendrier complet sur {years} ans",
       "collapse": "Réduire le calendrier",
-      "empty": "Saisissez les données du prêt pour afficher votre calendrier."
+      "empty": "Saisissez les données du prêt pour afficher votre calendrier.",
+      "csvDownloaded": "Fichier CSV téléchargé."
     },
     "bottomNav": {
       "calculator": "Calculer",

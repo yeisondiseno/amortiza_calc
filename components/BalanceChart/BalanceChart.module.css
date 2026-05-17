@@ -57,7 +57,7 @@
 }
 
 .segBtn {
-  padding: 0.25rem 0.75rem;
+  padding: var(--space-xs) var(--space-3);
   border: none;
   border-radius: var(--radius-full);
   background: none;
@@ -70,6 +70,11 @@
     background-color var(--transition-fast),
     color var(--transition-fast),
     box-shadow var(--transition-fast);
+}
+
+.segBtn:focus-visible {
+  outline: 2px solid var(--color-on-tertiary-container);
+  outline-offset: 2px;
 }
 
 .segBtnActive {

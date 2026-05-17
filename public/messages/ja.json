@@ -70,6 +70,7 @@
     "contactBody": "本ポリシーに関するご質問は、サイトに記載の連絡先までお問い合わせください。"
   },
   "calculator": {
+    "loading": "計算機能を読み込み中",
     "topbar": {
       "calculator": "計算",
       "amortization": "返済表",
@@ -120,7 +121,8 @@
       "exportCSV": "CSV で出力",
       "viewFull": "全{years}年分のスケジュールを表示",
       "collapse": "一覧を閉じる",
-      "empty": "ローン情報を入力するとスケジュールが表示されます。"
+      "empty": "ローン情報を入力するとスケジュールが表示されます。",
+      "csvDownloaded": "CSVファイルをダウンロードしました。"
     },
     "bottomNav": {
       "calculator": "計算",

@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 148 32" width="148" height="32" role="img" aria-label="LoanCalc">
+  <title>LoanCalc</title>
+  <g fill="#000000">
+    <rect width="32" height="32" rx="7" opacity="0.12"/>
+    <rect x="6"  y="8"  width="4"  height="16" rx="1"/>
+    <rect x="14" y="13" width="4"  height="11" rx="1"/>
+    <rect x="22" y="18" width="4"  height="6"  rx="1"/>
+    <rect x="5"  y="25" width="22" height="2"  rx="1"/>
+  </g>
+  <text
+    x="42"
+    y="23"
+    font-family="Manrope, system-ui, sans-serif"
+    font-size="22"
+    font-weight="700"
+    letter-spacing="-0.4"
+    fill="#000000"
+  >LoanCalc</text>
+</svg>

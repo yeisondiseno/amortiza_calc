@@ -70,6 +70,7 @@
     "contactBody": "If you have any questions about this privacy policy, you can reach us via the contact information on our website."
   },
   "calculator": {
+    "loading": "Loading calculator",
     "topbar": {
       "calculator": "Calculator",
       "amortization": "Amortization",
@@ -120,7 +121,8 @@
       "exportCSV": "Export CSV",
       "viewFull": "View Full {years}-Year Schedule",
       "collapse": "Collapse Schedule",
-      "empty": "Enter loan details to see your schedule."
+      "empty": "Enter loan details to see your schedule.",
+      "csvDownloaded": "CSV file downloaded."
     },
     "bottomNav": {
       "calculator": "Calculate",

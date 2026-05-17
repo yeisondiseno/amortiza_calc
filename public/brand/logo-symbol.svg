@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" role="img" aria-label="LoanCalc">
+  <title>LoanCalc</title>
+  <rect width="32" height="32" rx="7" fill="#000000"/>
+  <rect x="6"  y="8"  width="4"  height="16" rx="1" fill="#6cf8bb"/>
+  <rect x="14" y="13" width="4"  height="11" rx="1" fill="#6cf8bb"/>
+  <rect x="22" y="18" width="4"  height="6"  rx="1" fill="#6cf8bb"/>
+  <rect x="5"  y="25" width="22" height="2"  rx="1" fill="#6cf8bb"/>
+</svg>

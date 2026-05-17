@@ -2,11 +2,11 @@
 
 // Libraries
 import { useLocale, useTranslations } from "next-intl";
-import { HiOutlineCurrencyDollar } from "react-icons/hi";
 // i18n
 import { routing } from "@/i18n/routing";
 import { usePathname, useRouter } from "@/i18n/navigation";
 // Components
+import { Logo } from "@/components/Logo";
 import { Select } from "@/components/Select";
 // Styles
 import styles from "./TopBar.module.css";
@@ -35,20 +35,12 @@ export const TopBar = () => {
     <header className={styles.header}>
       <div className={styles.inner}>
         {/* Wordmark */}
-        <div className={styles.brand}>
-          <div className={styles.brandIcon}>
-            <HiOutlineCurrencyDollar
-              className={styles.brandGlyph}
-              aria-hidden
-            />
-          </div>
-          <span className={styles.brandName}>LoanCalc</span>
-        </div>
+        <Logo variant="primary" height={32} />
 
         {/* Actions */}
         <div className={styles.actions}>
           <Select
-            className={styles.langSelect}
+            shellClassName={styles.langShell}
             value={locale}
             onChange={(e) => onLocaleChange(e.target.value)}
             aria-label={t("language")}
