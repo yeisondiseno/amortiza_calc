@@ -40,7 +40,7 @@ export const TopBar = () => {
         {/* Actions */}
         <div className={styles.actions}>
           <Select
-            className={styles.langSelect}
+            shellClassName={styles.langShell}
             value={locale}
             onChange={(e) => onLocaleChange(e.target.value)}
             aria-label={t("language")}

@@ -15,7 +15,7 @@ import {
   HiOutlineInformationCircle,
 } from "react-icons/hi";
 // Components
-import { Input } from "@/components/Input";
+import { Input, inputClasses } from "@/components/Input";
 import { Select } from "@/components/Select";
 // Constants
 import { CURRENCY_CODES, type CurrencyCode } from "@/constants";
@@ -71,12 +71,11 @@ const FieldRow = ({
       control={control}
       name={name}
       render={({ field }) => (
-        <div className={shared.inputWrapper}>
-          {prefix && <span className={shared.adornment}>{prefix}</span>}
+        <div className={inputClasses.shell}>
+          {prefix && <span className={inputClasses.adornment}>{prefix}</span>}
           <Input
             ref={field.ref}
             name={field.name}
-            className={shared.inputField}
             type="text"
             inputMode="decimal"
             placeholder={placeholder}
@@ -84,7 +83,7 @@ const FieldRow = ({
             onBlur={field.onBlur}
             onChange={(e) => field.onChange(e.target.value)}
           />
-          {suffix && <span className={shared.adornment}>{suffix}</span>}
+          {suffix && <span className={inputClasses.adornment}>{suffix}</span>}
         </div>
       )}
     />
@@ -106,12 +105,11 @@ const MoneyFieldRow = ({
       control={control}
       name={name}
       render={({ field }) => (
-        <div className={shared.inputWrapper}>
-          {prefix && <span className={shared.adornment}>{prefix}</span>}
+        <div className={inputClasses.shell}>
+          {prefix && <span className={inputClasses.adornment}>{prefix}</span>}
           <Input
             ref={field.ref}
             name={field.name}
-            className={shared.inputField}
             type="text"
             inputMode="decimal"
             placeholder={placeholder}
@@ -215,28 +213,27 @@ export const LoanForm = ({ methods }: Props) => {
                 control={control}
                 name="currency"
                 render={({ field }) => (
-                  <div className={shared.inputWrapper}>
-                    <Select
-                      id="loan-currency"
-                      ref={field.ref}
-                      name={field.name}
-                      value={field.value}
-                      aria-label={t("currency")}
-                      className={styles.currencySelectInner}
-                      onBlur={field.onBlur}
-                      onChange={(e) => {
-                        const next = e.target.value as CurrencyCode;
-                        field.onChange(next);
-                        reformatMoneyFields(next);
-                      }}
-                    >
-                      {CURRENCY_CODES.map((code) => (
-                        <option key={code} value={code}>
-                          {`${code} — ${currencyNames.of(code) ?? code}`}
-                        </option>
-                      ))}
-                    </Select>
-                  </div>
+                  <Select
+                    id="loan-currency"
+                    ref={field.ref}
+                    name={field.name}
+                    value={field.value}
+                    aria-label={t("currency")}
+                    shellClassName={styles.currencyShell}
+                    className={styles.currencySelect}
+                    onBlur={field.onBlur}
+                    onChange={(e) => {
+                      const next = e.target.value as CurrencyCode;
+                      field.onChange(next);
+                      reformatMoneyFields(next);
+                    }}
+                  >
+                    {CURRENCY_CODES.map((code) => (
+                      <option key={code} value={code}>
+                        {`${code} — ${currencyNames.of(code) ?? code}`}
+                      </option>
+                    ))}
+                  </Select>
                 )}
               />
             </div>
