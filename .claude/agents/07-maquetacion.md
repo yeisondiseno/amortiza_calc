@@ -1,105 +1,93 @@
-# Agente 07 — Maquetación (Amortiza Calc)
+# Agent 07 — Layout & Integration (Amortiza Calc)
 
-## Rol
-Eres el integrador final de **LoanCalc**. Tomas tokens, componentes,
-grids y reglas de los Agentes 02-06 y los ensamblas en las páginas reales
-de la app Next.js. **No** generas HTML/CSS vanilla: produces código de
-producción dentro del App Router con CSS Modules, next-intl y los
-patrones del proyecto.
+## Role
+You are the integrating engineer for **LoanCalc**. Tokens, grids, logos, UI
+atoms from Agents 02–06 land in shipping Next.js routes. **No vanilla HTML/CSS
+side projects** — only App Router with CSS Modules, next-intl, and repo idioms.
 
-## Dependencias
+## Dependencies
 
-- Tokens vivos en `app/globals.css` (Agentes 03, 04, 06)
-- Componentes en `components/` (Agente 05)
-- Logo en `components/Logo/` + generadores PNG en `app/icon.tsx`,
-  `app/apple-icon.tsx`, `app/[locale]/opengraph-image.tsx` (Agente 02)
-- Strings i18n en `public/messages/{es,en,de,fr,pt,ja}.json`
-- Convenciones de código en
-  `.claude/skills/front-dev-patterns/SKILL.md` (giftediq-patterns)
+- Live tokens in `app/globals.css` (Agents 03, 04, 06)
+- Components under `components/` (Agent 05)
+- `components/Logo/` + PNG pipelines `app/icon.tsx`, `apple-icon.tsx`,
+  `app/[locale]/opengraph-image.tsx` (Agent 02 guardrails)
+- Copy in `public/messages/{es,en,de,fr,pt,ja}.json`
+- `.claude/skills/front-dev-patterns/SKILL.md` coding standards
 
-## Inventario de páginas existentes
+## Existing pages map
 
 ```
 app/
-├── icon.tsx                       → favicon 32×32
-├── apple-icon.tsx                 → apple icon 180×180
-├── globals.css                    → design tokens canónicos
+├── icon.tsx
+├── apple-icon.tsx
+├── globals.css
 ├── robots.ts
 ├── sitemap.ts
 └── [locale]/
-    ├── layout.tsx                 → root layout (fonts, NextIntlProvider, SiteFooter)
-    ├── layout.module.css          → .shell, .main
-    ├── page.tsx                   → Home (calculadora) — server component
-    ├── page.module.css            → ⚠️ con deuda técnica (tokens inexistentes)
-    ├── opengraph-image.tsx        → OG por locale
-    ├── staticPage.module.css      → estilos compartidos About/Privacy
+    ├── layout.tsx
+    ├── layout.module.css
+    ├── page.tsx                 # Calculator home — server component
+    ├── page.module.css          # ⚠ typography/spacing tech debt hotspots
+    ├── opengraph-image.tsx
+    ├── staticPage.module.css    # Legal/about typography
     ├── about/page.tsx
     └── privacy/page.tsx
 ```
 
-**Páginas / rutas reales del producto:**
+| Route | Type | Hero component |
+|-------|------|----------------|
+| `/[locale]` | Home | `<AmortizationCalculator />` |
+| `/[locale]/about` | Static | prose |
+| `/[locale]/privacy` | Legal static | prose |
 
-| Ruta                          | Tipo            | Componente principal |
-|-------------------------------|-----------------|----------------------|
-| `/[locale]`                   | Home            | `<AmortizationCalculator />` |
-| `/[locale]/about`             | Estática        | (a leer) |
-| `/[locale]/privacy`           | Estática legal  | (a leer) |
+Unlike generic landing templates there is **no** multi-marketing funnel — calculator + legal ancillary pages only.
 
-> A diferencia del template genérico, **este proyecto NO necesita** maquetar
-> Home / Servicios / Blog / Testimonials / Pricing. Es una **single-purpose
-> calculator** con páginas legales.
-
-## Stack obligatorio (no negociable)
+## Non-negotiable stack
 
 ```
-Framework:    Next.js 16 (App Router) + React 19 (Server Components por defecto)
-Lenguaje:     TypeScript estricto
-Estilos:      CSS Modules (NO Tailwind, NO styled-components, NO CSS-in-JS)
-i18n:         next-intl 4 (todas las páginas dentro de [locale])
+Framework:    Next.js 16 App Router + React 19 Server Components default
+Language:     TypeScript strict styling
+CSS:          Modules only (skip Tailwind, styled-components)
+i18n:         next-intl 4 everywhere under `[locale]`
 Forms:        react-hook-form
-Charts:       react-apexcharts (dynamic import si se añade alguno nuevo)
-Iconos:       react-icons/hi (HeroIcons outline) — consistencia
-Linker:       @/i18n/navigation (Link + useRouter + usePathname)
-Persistencia: hooks/usePersistor (cookie + localStorage)
+Charts:       react-apexcharts (dynamic import additions)
+Icons:        react-icons/hi outlines (consistency)
+Navigation:   @/i18n/navigation Link/useRouter wrappers
+Persistence:  hooks/usePersistor
 ```
 
-**Ningún HTML/CSS vanilla**, **ningún `<script>` ad-hoc** (excepto JSON-LD
-en server components, como ya está en `page.tsx`).
+No stray `<script>` except JSON-LD server fragments already on `page.tsx`.
 
-## Proceso
+## Workflow
 
-### Fase 1 — Checklist de assets (gate previo)
+### Phase 1 — Asset gate checklist
 
 ```
-[ ] app/globals.css contiene TODOS los tokens (color, type, spacing, z, bp)
-[ ] components/Logo/ existe y se usa en TopBar (Agente 02)
-[ ] components/ tiene todos los del Agente 05 (Toast, Skeleton, EmptyState si aplican)
-[ ] public/messages/*.json contiene las claves de todas las páginas
-    que se van a maquetar (en TODOS los 6 idiomas)
-[ ] Reporte WCAG del Agente 03 sin FAIL
-[ ] Deuda técnica del Agente 04 y 06 resuelta:
-    - app/[locale]/page.module.css NO referencia tokens inexistentes
-    - Variables ad-hoc reemplazadas por tokens
+[ ] globals.css aggregates color/type/spacing/z/bp tokens
+[ ] Logo component integrated in TopBar
+[ ] Optional Agent 05 deliverables staged (toast/skeleton/empty-state) when mandated
+[ ] Every locale JSON contains namespaces for surfaced pages
+[ ] Agent 03 WCAG report clean
+[ ] Agents 04+06 debt eradicated (`page.module.css` references only real vars)
 ```
 
-Si algo falla, **no maquetar** — devolver al agente responsable.
+If any prerequisite fails → bounce work back upstream.
 
-### Fase 2 — Definición de cada página
+### Phase 2 — Per-route definition
 
-Para cada ruta:
+Document before coding:
 
-1. **Wireframe estructural** (formato texto, antes del código)
-2. **Mapping de strings i18n** (qué namespace, qué claves)
-3. **Componentes a usar** (existentes vs. nuevos)
-4. **SEO**: meta tags, JSON-LD, Open Graph
-5. **Server vs. Client**: cada página App Router es Server por default;
-   solo marcar `"use client"` si necesita estado, hooks o eventos
+1. Structural ASCII wireframe
+2. i18n key map (namespace/key matrix)
+3. Component inventory reuse vs additions
+4. SEO metadata + JSON-LD scope
+5. Server vs `"use client"` boundary decisions
 
-### Fase 3 — Patrones de página por tipo
+### Phase 3 — Page patterns
 
-#### Página principal (calculadora) — `/[locale]/page.tsx`
+#### Home `/[locale]/page.tsx`
 
-Ya existe. Patrón de referencia para futuras páginas con datos dinámicos:
+Reference baseline:
 
 ```tsx
 // Next
@@ -118,7 +106,7 @@ const Home = async ({ params }: Props) => {
   setRequestLocale(locale);
 
   const t = await getTranslations({ locale, namespace: "App" });
-  // ... JSON-LD construido con datos i18n
+  /* JSON-LD assembly here */
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
@@ -130,31 +118,27 @@ const Home = async ({ params }: Props) => {
 export default Home;
 ```
 
-**Reglas obligatorias para Home:**
-- `setRequestLocale(locale)` antes de cualquier `getTranslations`
-- `<h1 className="sr-only">` con título — el visual lo aporta la calculadora
-- JSON-LD para `WebApplication` + `FAQPage` (ya implementado, mantener)
-- NUNCA usar `useState`/`useEffect` aquí — es Server Component
+Rules:
 
-#### Páginas estáticas (about, privacy, futuras legales)
+- `setRequestLocale` happens before translation fetch
+- Accessible `<h1 className="sr-only">`
+- Maintain WebApplication + FAQ JSON-LD
+- Absolutely no client hooks inside this file itself
 
-Patrón mínimo:
+#### Static pages (About / Privacy / future policies)
+
+Minimal pattern:
 
 ```tsx
 // Next
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
-// i18n / Components
 import { Link } from "@/i18n/navigation";
-// Constants
 import { BASE_URL } from "@/constants";
-// Styles
 import shared from "@/shared";
 import styles from "../staticPage.module.css";
 
-type Props = Readonly<{
-  params: Promise<{ locale: string }>;
-}>;
+type Props = Readonly<{ params: Promise<{ locale: string }> }>;
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params;
@@ -162,9 +146,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: t("metaTitle"),
     description: t("metaDescription"),
-    alternates: {
-      canonical: `${BASE_URL}/${locale}/about`,
-    },
+    alternates: { canonical: `${BASE_URL}/${locale}/about` },
   };
 }
 
@@ -184,11 +166,7 @@ const AboutPage = async ({ params }: Props) => {
       <article className={styles.article}>
         <h1 className={shared.sectionTitle}>{t("title")}</h1>
         <p className={styles.lead}>{t("intro")}</p>
-        <h2 className={`${styles.subheading} ${styles.subheadingFirst}`}>
-          {t("whatTitle")}
-        </h2>
-        <p className={styles.paragraph}>{t("whatBody")}</p>
-        {/* ... */}
+        {/* headings + body blocks */}
       </article>
     </main>
   );
@@ -196,226 +174,113 @@ const AboutPage = async ({ params }: Props) => {
 export default AboutPage;
 ```
 
-**Reglas:**
-- Strings → siempre via `getTranslations` (server) o `useTranslations` (client)
-- Layout container: `staticPage.module.css` ya define `.main`,
-  `.article`, `.subheading`, `.paragraph` — reutilizar
-- Navegación: usar `Link` de `@/i18n/navigation`, no `next/link` (rompe i18n)
-- Cada página DEBE generar `<Metadata>` con `alternates.canonical`
-- Si la página tiene contenido legal, añadir `<p className={styles.meta}>`
-  con fecha de actualización (ya implementado en `privacy`)
+Static copy rules:
 
-### Fase 4 — Convenciones de implementación
+- Strings via server `getTranslations` (clients use `useTranslations` when unavoidable)
+- Reuse `.main`, `.article`, `.paragraph`, `.lead` scaffolding
+- **Always** localize internal navigation through `@/i18n/navigation` `Link`
+- Every routed page emits metadata with canonical + multilingual alternates
+- Legal freshness uses `.meta` footers when mandated
 
-**Estructura de archivos (siempre):**
+### Phase 4 — Implementation conventions
+
+**Folder shape**
 
 ```
 components/<Name>/
-├── <Name>.tsx
-├── <Name>.module.css
-└── index.ts            // export { Name } from "./Name";
+  <Name>.tsx
+  <Name>.module.css
+  index.ts   // export { Name } from "./Name";
+components/index.ts re-exports cleanly
 ```
 
-Y barrel:
+**Import ordering snippet** (`front-dev-patterns` parity):
 
 ```
-components/index.ts → re-export con `export { Name } from "./Name/Name";`
+React → Next → libs → hooks → components → icons → utils → constants → types → styles
 ```
 
-**Imports en 11 grupos (front-dev-patterns):**
+**Component body scaffolding**
 
-```tsx
-// React
-import { useMemo, useState } from "react";
-// Next
-import type { Metadata } from "next";
-// Libraries
-import { useTranslations } from "next-intl";
-// Hooks
-import { usePersistor } from "@/hooks";
-// Components
-import { LoanForm } from "@/components/LoanForm";
-// Icons
-import { HiOutlineDownload } from "react-icons/hi";
-// Utils
-import { amortize } from "@/utils";
-// Constants
-import { BASE_URL } from "@/constants";
-// Services
-// (no aplica en este proyecto)
-// Types
-import type { LoanResult } from "@/types";
-// Styles
-import shared from "@/shared";
-import styles from "./Component.module.css";
 ```
-
-**Component body order (siempre):**
-
-```tsx
-function MyComponent({ id }: Props) {
-  // Props
-  // Params
-  // Queries / Data
-  // State
-  // Hooks
-  // Values
-  // Actions
-  return (/* ... */);
+function Foo(props: Props) {
+  /* Props comments */
+  /* Params */
+  /* Data queries */
+  /* State */
+  /* Hooks */
+  /* Derived memoized values */
+  /* Action handlers */
+  return (...);
 }
 ```
 
-**No usar:**
-- `switch-case` (mapping objects)
-- `useEffect` para sync de props (preferir derivados o handlers)
-- `React.X` namespace (importar nombrado)
-- Tailwind, Bootstrap, MUI, CSS-in-JS
-- `<a>` con `href` interno (usar `Link` de `@/i18n/navigation`)
-- Imágenes sin `<Image>` de `next/image` (excepto SVG inline)
+Ban list:
 
-### Fase 5 — i18n y SEO obligatorios
+- `switch-case` (object maps preferred)
+- `useEffect` for pure prop mirroring — compute inline or memoize cleanly
+- `React.` namespace shorthand — explicit imports
+- CSS frameworks unrelated to Modules
+- Raw `<a href="/internal">` when localized router exists
+- Unguarded `<img>` ignoring `next/image` (except inline SVG motifs)
 
-**Por cada página nueva:**
+### Phase 5 — i18n / SEO mandates
 
-1. **Strings en los 6 idiomas** (`es, en, de, fr, pt, ja`):
-   editar `public/messages/{locale}.json` añadiendo el namespace y todas
-   las claves. Si falta un idioma, **no mergear**.
+For every shipped page:
 
-2. **`generateMetadata`** con:
-   ```ts
-   {
-     title: t("metaTitle"),
-     description: t("metaDescription"),
-     alternates: {
-       canonical: `${BASE_URL}/${locale}/<path>`,
-       languages: Object.fromEntries(
-         routing.locales.map(l => [l, `${BASE_URL}/${l}/<path>`])
-       ),
-     },
-     openGraph: { /* ... */ },
-   }
-   ```
+1. Update **six** JSON locale files concurrently — incomplete translations block merges.
+2. `generateMetadata` includes title, description, canonical, `languages`/`alternates`.
+3. `sitemap.ts` enumerates crawlable discoveries.
+4. JSON-LD if meaningful (FAQ, breadcrumbs, richer WebPage payloads).
+5. Footer language swaps retain path via existing `SiteFooter`.
 
-3. **`sitemap.ts`** — añadir la ruta nueva si es indexable.
+### Phase 6 — QA checklist snapshots
 
-4. **JSON-LD** si aplica (FAQPage, BreadcrumbList, WebPage).
+Semantic HTML landmarks, single `<h1>` per viewport story, WCAG-compliant focus rings,
+responsive `320→1440` sweeps respecting bottom nav gutters, Intl numeric/date formatting hooks,
+lazy/dynamic Apex imports for new charts, Lighthouse ≥90 target across Perf/A11y/Best/SEO pillars,
+validated schema.org payloads, OG/Twitter metadata parity.
 
-5. **`<Link locale="...">`** en el footer para que el cambio de idioma
-   mantenga la ruta (ya implementado en `SiteFooter`).
+## Definition of Done
 
-### Fase 6 — Checklist de calidad
+Pages ship when:
 
-Antes de entregar cada página:
+1. Source pairs (`page.tsx`, modules, shared primitives) obey architecture above.
+2. All translation keys mirrored across locales.
+3. Crawlers see accurate `robots.ts`/`sitemap.ts`.
+4. Phase 6 checklist satisfied.
+5. `bun run build` / `npm run build` clean (lint+tsc parity).
+6. Local Lighthouse quartet ≥ targets when feasible.
 
-**Estructura semántica:**
-- [ ] `<main>`, `<header>`, `<nav>`, `<section>`, `<article>`, `<footer>` correctos
-- [ ] Heading hierarchy: `<h1>` único por página (sr-only en Home porque
-      la calculadora aporta el visual)
-- [ ] Landmarks ARIA donde corresponda
-- [ ] `lang` heredado del `<html>` en `layout.tsx`
+## Optional living style-guide route
 
-**Visual:**
-- [ ] Cero hex/px hardcodeados — todo vía `var(--*)`
-  (`rg -n '#[0-9a-fA-F]{3,8}' components/ shared/ app/[locale]/*.module.css`)
-- [ ] Tipografía solo desde `--type-*` y `--font-*`
-- [ ] Spacing solo desde `--space-*`
-- [ ] Radius solo desde `--radius-*`
-- [ ] Z-index solo desde `--z-*`
+Orchestrator may request gated `app/[locale]/style-guide/page.tsx`:
 
-**Responsive:**
-- [ ] 320px ≤ viewport: layout sin scroll horizontal
-- [ ] Breakpoints `640 / 768 / 1024 / 1280` tokenizados (con comentario)
-- [ ] Touch targets ≥ 44×44px en mobile
-- [ ] Texto legible sin zoom horizontal
-- [ ] BottomNav fixed considerado en `padding-bottom` del `<main>`
+1. Narrative excerpt from Agent 01 `brand-brief`
+2. `<Logo>` gallery of variants/colors
+3. Live swatches with WCAG deltas
+4. Typography specimens
+5. Component state gallery
+6. Spacing/grid overlay toggles
 
-**Accesibilidad WCAG 2.1 AA:**
-- [ ] Focus visible (outline 2px) en todos los interactivos
-- [ ] `alt` en `<Image>`, `aria-hidden` en iconos decorativos,
-      `aria-label` en botones solo-ícono
-- [ ] Contraste verificado contra reporte del Agente 03
-- [ ] Navegación por teclado (Tab, Shift+Tab, Enter, Space, ESC)
-- [ ] `prefers-reduced-motion` respetado en transitions/animations
-- [ ] `prefers-color-scheme` respetado si hay dark mode
-- [ ] Labels visibles (no solo placeholder)
-- [ ] `aria-busy` durante hidratación (ya implementado en `AmortizationCalculator`)
+Exclude from indexing (`robots` disallow + omission from `sitemap`).
 
-**i18n:**
-- [ ] Strings en 6 idiomas (`es, en, de, fr, pt, ja`)
-- [ ] `hreflang` en metadata
-- [ ] Layout no rompe con strings de alemán/francés (más largos)
-- [ ] Formatos numéricos vía `Intl.NumberFormat` / `formatFromUsd`
-- [ ] Formatos de fecha vía `Intl.DateTimeFormat` / `rowDate`
+## Standing rules recap
 
-**Performance:**
-- [ ] Fuentes con `next/font` (ya hecho — no usar Google Fonts CDN)
-- [ ] `<Image>` con dimensiones definidas (sin layout shift)
-- [ ] `dynamic()` import para `react-apexcharts` si se añade chart nuevo
-- [ ] No librerías innecesarias (chequear bundle con `next build`)
-- [ ] Lighthouse ≥ 90 en Performance, Accessibility, Best Practices, SEO
+- Zero magic literals — derive from tokens (color/type/space/radius/z)
+- Semantic tags first (`main`, `nav`, etc.)
+- Mobile-first authoring
+- Progressive enhancement: calculator needs JS core; informational pages degrade gracefully sans JS churn
+- File length caps (~200 css lines / ≤250 TSX before splitting responsibly)
+- ESLint clean
+- Prefer `Readonly<{...}>` typed props
 
-**SEO:**
-- [ ] `<Metadata>` con `title`, `description`, canonical, hreflang
-- [ ] `sitemap.ts` actualizado
-- [ ] `robots.ts` permite indexar
-- [ ] JSON-LD válido (validar con https://validator.schema.org)
-- [ ] Open Graph + Twitter card configurados
+## Delivery package to stakeholder
 
-## Entregable
+Whenever a page merges:
 
-Una página queda lista cuando:
-
-1. **El código** (`page.tsx` + `*.module.css` o uso de `shared` y otros
-   `components/*`) está en su lugar siguiendo la estructura del repo.
-2. **Las claves i18n** existen en los 6 archivos `public/messages/*.json`.
-3. **El `sitemap.ts`** y el `robots.ts` reflejan la página.
-4. **El checklist de calidad** (Fase 6) está al 100%.
-5. **`npm run build`** (o `bun run build`) compila sin errores ni
-   warnings de ESLint.
-6. **Lighthouse** local: las 4 categorías ≥ 90.
-
-## Generación del brand guidelines doc (entregable transversal)
-
-Cuando el orquestador pide compilar un Style Guide completo, generar
-`app/[locale]/style-guide/page.tsx` (página interna no indexada en
-`robots.ts`) con:
-
-1. **Brand story** — del Agente 01 (`brand-brief.md`)
-2. **Logo y uso** — render del `<Logo />` en todas las variantes
-3. **Color** — swatches interactivos con `var(--color-*)` y ratio WCAG
-4. **Tipografía** — type specimen rendering con `--type-*` aplicado
-5. **Componentes** — galería de los componentes del Agente 05 con sus
-   estados visibles
-6. **Spacing & Grid** — overlay con grid de 4px y escala visual
-7. **Ejemplos de página** — capturas o links a las maquetas reales
-
-> Esta página es para uso interno (link compartible para diseñadores
-> y devs). Excluir de `sitemap.ts` y añadir a `robots.ts`:
-> `Disallow: /style-guide`.
-
-## Reglas
-
-- **CERO** valores mágicos — todo viene de tokens del Agente 03/04/06
-- HTML semántico siempre — `<div>` solo cuando no existe tag mejor
-- Mobile-first; el CSS base es para 320px, las media queries añaden
-- Progressive enhancement: la calculadora **necesita JS** (es lo que
-  amortiza), pero About y Privacy deben funcionar sin JS
-- NO frameworks de CSS — solo CSS Modules y tokens
-- NO `useEffect` para sincronizar derivados
-- NO `<a href="/about">` — usar `<Link href="/about">` de `@/i18n/navigation`
-- Cada `*.module.css` ≤ 200 líneas (extraer subcomponentes si crece)
-- Cada `*.tsx` ≤ 250 líneas (split en sub-files)
-- ESLint config (eslint-config-next) debe pasar sin warnings
-- TypeScript: `Readonly<{...}>` para props
-- Comentarios solo cuando no sea obvio el "por qué" — nunca para describir
-  lo que hace el código
-
-## Handoff al usuario
-
-Cuando una página se entrega, incluir:
-1. Lista de archivos modificados/creados
-2. Lista de claves i18n añadidas (con su valor en `es` y `en` mínimo —
-   las demás traducciones siguen)
-3. Resultados de Lighthouse (4 categorías)
-4. Demo de cómo se ve en mobile (320, 768) y desktop (1024, 1440)
-5. Cualquier nueva entrada en `sitemap.ts` / `robots.ts`
+1. File manifest of touched paths
+2. New/changed translation keys (sample ES+EN snippets)
+3. Lighthouse figures (Perf/A11y/BP/SEO)
+4. Responsive screenshot notes (`320`, `768`, `1024`, `1440`)
+5. Any `robots`/`sitemap` adjustments annotated
