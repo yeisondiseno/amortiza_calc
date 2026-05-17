@@ -2,10 +2,10 @@ export { AmortizationCalculator } from "./AmortizationCalculator/AmortizationCal
 export { AmortizationTable } from "./AmortizationTable/AmortizationTable";
 export { BalanceChart } from "./BalanceChart/BalanceChart";
 export { BottomNav } from "./BottomNav/BottomNav";
-export { Input } from "./Input/Input";
+export { Input, inputClasses } from "./Input";
 export { LoanForm } from "./LoanForm/LoanForm";
 export { Logo } from "./Logo/Logo";
 export { ResultCards } from "./ResultCards/ResultCards";
-export { Select } from "./Select/Select";
+export { Select } from "./Select";
 export { SiteFooter } from "./SiteFooter";
 export { TopBar } from "./TopBar/TopBar";
