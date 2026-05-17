@@ -1,7 +1,7 @@
 "use client";
 
 // React
-import { useMemo } from "react";
+import { useCallback, useEffect, useMemo, useRef } from "react";
 // Libraries
 import {
   Controller,
@@ -158,16 +158,36 @@ export const LoanForm = ({ methods }: Props) => {
   );
 
   // Actions
-  const reformatMoneyFields = (nextCurrency: CurrencyCode) => {
-    const amount = getValues("amount");
-    const extra = getValues("extra");
-    if (amount.trim() !== "") {
-      setValue("amount", finalizeMoneyDisplay(amount, locale, nextCurrency));
+  const reformatMoneyFields = useCallback(
+    (nextCurrency: CurrencyCode) => {
+      const amount = getValues("amount");
+      const extra = getValues("extra");
+      if (amount.trim() !== "") {
+        setValue(
+          "amount",
+          finalizeMoneyDisplay(amount, locale, nextCurrency),
+        );
+      }
+      if (extra.trim() !== "") {
+        setValue("extra", finalizeMoneyDisplay(extra, locale, nextCurrency));
+      }
+    },
+    [getValues, locale, setValue],
+  );
+
+  /** Re-display amount/extra under the active locale after TopBar changes language. */
+  const prevLocaleRef = useRef<string | null>(null);
+  useEffect(() => {
+    if (prevLocaleRef.current === null) {
+      prevLocaleRef.current = locale;
+      return;
     }
-    if (extra.trim() !== "") {
-      setValue("extra", finalizeMoneyDisplay(extra, locale, nextCurrency));
+    if (prevLocaleRef.current === locale) {
+      return;
     }
-  };
+    prevLocaleRef.current = locale;
+    reformatMoneyFields(getValues("currency"));
+  }, [locale, getValues, reformatMoneyFields]);
 
   return (
     <section className={styles.section}>
