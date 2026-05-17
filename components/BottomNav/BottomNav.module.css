@@ -1,5 +1,6 @@
 .footer {
-  display: none;
+  /* Mobile-first: visible below --bp-md (768), same breakpoint as `.main` padding reserve. */
+  display: flex;
   position: fixed;
   bottom: 0;
   left: 0;
@@ -15,9 +16,10 @@
   border-top: 1px solid var(--color-outline-variant);
 }
 
-/* < --bp-md (768) — BottomNav visible only on mobile/small tablets. */
-@media (max-width: 767.98px) {
-  .footer { display: flex; }
+@media (min-width: 768px) {
+  .footer {
+    display: none;
+  }
 }
 
 .navItem {
@@ -34,7 +36,9 @@
   cursor: pointer;
   border-radius: var(--radius-card);
   color: var(--color-on-surface-variant);
-  transition: color var(--transition-fast), background-color var(--transition-fast),
+  transition:
+    color var(--transition-fast),
+    background-color var(--transition-fast),
     transform var(--transition-fast);
 }
 

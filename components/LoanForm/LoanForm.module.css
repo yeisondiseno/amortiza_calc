@@ -88,6 +88,10 @@
   .amountCurrencyRow {
     grid-template-columns: 1fr;
   }
+
+  .twoCol {
+    grid-template-columns: 1fr;
+  }
 }
 
 .currencyField {

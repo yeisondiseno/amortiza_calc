@@ -121,7 +121,7 @@ const AmortizationCalculatorLoaded = ({
               aria-selected={activeTab === tab}
               aria-controls={`tabpanel-${tab}`}
               tabIndex={activeTab === tab ? 0 : -1}
-              onClick={() => setActiveTab(tab)}
+              onClick={() => handleSelectTab(tab)}
               className={`${styles.tabBtn} ${activeTab === tab ? styles.tabBtnActive : ""}`}
             >
               {tab === "chart" ? t("chart.title") : t("table.title")}
@@ -188,6 +188,10 @@ export const AmortizationCalculator = ({ pageIntro }: Props) => {
   );
 
   if (!persistHydrated) {
+    const noopSelectTab = (_tab: TabView): void => {
+      /* Shell only — navigation wires up after hydrate */
+    };
+
     return (
       <>
         <TopBar />
@@ -196,6 +200,7 @@ export const AmortizationCalculator = ({ pageIntro }: Props) => {
           aria-busy="true"
           aria-label="Cargando calculadora"
         />
+        <BottomNav activeTab="chart" onSelectTab={noopSelectTab} />
       </>
     );
   }
