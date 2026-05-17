@@ -70,6 +70,7 @@
     "contactBody": "Bei Fragen zu dieser Datenschutzerklärung erreichen Sie uns über die auf der Website angegebenen Kontaktinformationen."
   },
   "calculator": {
+    "loading": "Rechner wird geladen",
     "topbar": {
       "calculator": "Rechner",
       "amortization": "Tilgung",

@@ -70,6 +70,7 @@
     "contactBody": "If you have any questions about this privacy policy, you can reach us via the contact information on our website."
   },
   "calculator": {
+    "loading": "Loading calculator",
     "topbar": {
       "calculator": "Calculator",
       "amortization": "Amortization",

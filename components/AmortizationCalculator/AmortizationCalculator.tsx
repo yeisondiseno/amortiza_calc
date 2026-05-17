@@ -8,6 +8,7 @@ import { useLocale, useTranslations } from "next-intl";
 // Hooks
 import { usePersistor } from "@/hooks";
 // Components
+import { CalculatorPageSkeleton } from "@/components/CalculatorPageSkeleton";
 import { TopBar } from "@/components/TopBar";
 import { LoanForm } from "@/components/LoanForm";
 import { ResultCards } from "@/components/ResultCards";
@@ -179,6 +180,7 @@ const AmortizationCalculatorLoaded = ({
 };
 
 export const AmortizationCalculator = ({ pageIntro }: Props) => {
+  const t = useTranslations("calculator");
   // Hooks
   const { valueFromStorage, isHydrated: persistHydrated } = usePersistor(
     LOAN_CALC_FORM_COOKIE,
@@ -198,8 +200,13 @@ export const AmortizationCalculator = ({ pageIntro }: Props) => {
         <main
           className={styles.main}
           aria-busy="true"
-          aria-label="Cargando calculadora"
-        />
+          aria-label={t("loading")}
+        >
+          <CalculatorPageSkeleton
+            variant="embedded"
+            srLabel={t("loading")}
+          />
+        </main>
         <BottomNav activeTab="chart" onSelectTab={noopSelectTab} />
       </>
     );

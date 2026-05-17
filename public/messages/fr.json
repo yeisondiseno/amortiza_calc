@@ -70,6 +70,7 @@
     "contactBody": "Pour toute question sur cette politique, contactez-nous via les coordonnées indiquées sur le site."
   },
   "calculator": {
+    "loading": "Chargement du calculateur",
     "topbar": {
       "calculator": "Calculateur",
       "amortization": "Amortissement",

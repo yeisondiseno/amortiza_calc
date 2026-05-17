@@ -70,6 +70,7 @@
     "contactBody": "Si tienes preguntas sobre esta política de privacidad, puedes contactarnos mediante la información indicada en el sitio."
   },
   "calculator": {
+    "loading": "Cargando calculadora",
     "topbar": {
       "calculator": "Calculadora",
       "amortization": "Amortización",
