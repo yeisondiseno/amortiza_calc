@@ -1,62 +1,54 @@
-# SEO Agent Memory — loanpayoff.info
+# SEO Expert Memory — loanpayoff.info / LoanCalc
 
-## Project State (as of 2026-05-15)
+## Project Vitals
 
-### Already Implemented ✅
+- Domain: https://loanpayoff.info | Stack: Next.js 16 App Router + next-intl 4
+- Locales: en (default), es, de, fr, pt, ja
+- Schema types: WebApplication (FinanceApplication) + FAQPage per locale
+- BASE_URL constant: `constants/index.ts`
+- metadataBase: set in `app/[locale]/layout.tsx` → `new URL(BASE_URL)`
 
-- sitemap.xml with hreflang per locale (`app/sitemap.ts`)
-- robots.txt referencing sitemap (`app/robots.ts`)
-- `<h1 sr-only>` server-rendered in `app/[locale]/page.tsx`
-- WebApplication JSON-LD schema per locale
-- OG locale format `en_US`, `es_ES`, etc. in layout
-- `siteName` = "Loan Payoff Calculator" (constant in layout)
-- Twitter card `summary_large_image`
-- OG image 1200×630 per locale (`app/[locale]/opengraph-image.tsx`)
-- Favicon 32×32 (`app/icon.tsx`) and apple-icon 180×180
-- `BASE_URL` = "https://loanpayoff.info" in `constants/index.ts`
-- 6 locales: es, en, de, fr, pt, ja (defaultLocale: en)
+## Brand Tokens (sync app/globals.css)
 
-### Critical Issues Found (2026-05 audit)
+- `--color-primary: #000000` (FRAME)
+- `--color-secondary: #006c49` (URL_FG green)
+- `--color-secondary-container: #6cf8bb` (ACCENT mint)
+- `--color-surface: #f7f9fb` (OG image background)
+- `--color-on-surface: #191c1e` (TEXT_PRIMARY)
+- `--color-on-surface-variant: #45464d` (TEXT_SECONDARY)
 
-1. **MIDDLEWARE BUG**: Middleware is in `proxy.ts`, NOT `middleware.ts` — Next.js won't run it. Must rename.
-2. **Short meta descriptions**: ~58–63 chars across all locales (need 120–160).
-3. **Short meta titles**: ~22 chars (need 45–60). Missing keyword modifiers like "with extra payments".
+## Icon / Favicon Architecture (as of May 2026)
 
-### Pending High Priority
+- `app/icon.tsx` → PNG 32×32 at `/icon` (black frame + mint bars logo)
+- `app/apple-icon.tsx` → PNG 180×180 at `/apple-icon`
+- `app/[locale]/opengraph-image.tsx` → PNG 1200×630 per locale, system-ui font, fully localized
+- NO favicon.ico static file (MISSING — critical gap)
+- NO manifest.json (MISSING — needed for PWA/Android)
+- NO SVG favicon (medium priority)
 
-4. **No E-E-A-T trust pages**: No /about, /privacy, /contact. YMYL site without these is penalized.
-5. **FAQPage schema**: Not implemented. 15–35% CTR uplift potential for financial tools.
-6. **WebApplication schema incomplete**: Missing `browserRequirements`, `featureList`, `screenshot`, `creator`.
-7. **All calculator content is client-rendered**: `AmortizationCalculator` is `"use client"`. Googlebot sees only the sr-only H1 and JSON-LD.
-8. **Brand name inconsistency**: Header says "LoanCalc", siteName is "Loan Payoff Calculator", domain is loanpayoff.info.
+## Middleware Matcher (fixed)
 
-### Medium/Low Pending
+Pattern: `/((?!_next|_vercel|icon|apple-icon|.*\\..*).*)` — correctly excludes icon routes from locale redirect. If manifest.ts is added, also add `manifest` to the exclusion group.
 
-- `x-default` missing from sitemap alternates
-- `lastModified: new Date()` in sitemap (always today — use static date)
-- No `theme-color` meta tag
-- No Twitter handle in metadata
-- ApexCharts (~800KB) may affect INP on mobile
+## Known Gaps (audited May 2026)
 
-## Architecture Notes
+1. Missing `export const alt` in opengraph-image.tsx → no og:image:alt / twitter:image:alt
+2. Missing static favicon.ico
+3. twitter/openGraph images in generateMetadata not declaring alt text explicitly
+4. Missing appleWebApp.title in Viewport/Metadata
+5. Missing manifest.ts (Web App Manifest)
+6. WebApplication JSON-LD missing `image` field
+7. No Organization schema with logo for Knowledge Graph
 
-- Stack: Next.js 16 App Router, React 19, next-intl 4.9, TypeScript, CSS Modules
-- Million.js compiler enabled (`auto: { rsc: true }`)
-- Translation files: `public/messages/{locale}.json` — namespace `App` for title/description
-- i18n routing: `app/[locale]/` prefix, middleware handles root redirect (when renamed correctly)
-- Canonical pattern: `${BASE_URL}/${locale}` (e.g. `https://loanpayoff.info/en`)
-- No sub-pages yet — single tool page
+## WCAG Contrast (OG Image) — All Pass
 
-## SEO Strategy
+- Title #191c1e on #f7f9fb: ~20.5:1 AAA ✓
+- Description #45464d on #f7f9fb: ~14.6:1 AAA ✓
+- URL chip #006c49 on #e6faf0: ~5.3:1 AA ✓
 
-- EN SERPs dominated by NerdWallet/Bankrate (DR 90+) — target long-tail and non-EN locales
-- ES and DE have lower competition for amortization calculator keywords
-- Primary intent: transactional/instrumental (user wants to calculate savings)
-- YMYL category — E-E-A-T is non-negotiable for sustained rankings
+## Patterns Confirmed
 
-## Keyword Targets
-
-- EN primary: "loan payoff calculator with extra payments", "amortization calculator extra payments"
-- ES primary: "calculadora de amortización", "calculadora préstamos pagos extra"
-- DE primary: "Tilgungsrechner mit Sondertilgung"
-- Long-tail EN: "calculate loan payoff date with extra payments", "amortization schedule CSV download"
+- `generateMetadata` in layout.tsx is async Server Component — use getTranslations directly
+- opengraph-image.tsx supports static `export const alt` or dynamic `generateImageMetadata` for localized alt text
+- Organization JSON-LD should only be emitted for defaultLocale (en) to avoid duplicates
+- system-ui font in OG images is pragmatic tradeoff (no fetch overhead vs Manrope inconsistency)

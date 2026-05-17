@@ -1,7 +1,7 @@
 "use client";
 
 // React
-import { useEffect, useId, useMemo } from "react";
+import { useCallback, useEffect, useMemo, useRef } from "react";
 // Libraries
 import {
   Controller,
@@ -15,7 +15,7 @@ import {
   HiOutlineInformationCircle,
 } from "react-icons/hi";
 // Components
-import { Input } from "@/components/Input";
+import { Input, inputClasses } from "@/components/Input";
 import { Select } from "@/components/Select";
 // Constants
 import { CURRENCY_CODES, type CurrencyCode } from "@/constants";
@@ -71,12 +71,11 @@ const FieldRow = ({
       control={control}
       name={name}
       render={({ field }) => (
-        <div className={shared.inputWrapper}>
-          {prefix && <span className={shared.adornment}>{prefix}</span>}
+        <div className={inputClasses.shell}>
+          {prefix && <span className={inputClasses.adornment}>{prefix}</span>}
           <Input
             ref={field.ref}
             name={field.name}
-            className={shared.inputField}
             type="text"
             inputMode="decimal"
             placeholder={placeholder}
@@ -84,7 +83,7 @@ const FieldRow = ({
             onBlur={field.onBlur}
             onChange={(e) => field.onChange(e.target.value)}
           />
-          {suffix && <span className={shared.adornment}>{suffix}</span>}
+          {suffix && <span className={inputClasses.adornment}>{suffix}</span>}
         </div>
       )}
     />
@@ -106,12 +105,11 @@ const MoneyFieldRow = ({
       control={control}
       name={name}
       render={({ field }) => (
-        <div className={shared.inputWrapper}>
-          {prefix && <span className={shared.adornment}>{prefix}</span>}
+        <div className={inputClasses.shell}>
+          {prefix && <span className={inputClasses.adornment}>{prefix}</span>}
           <Input
             ref={field.ref}
             name={field.name}
-            className={shared.inputField}
             type="text"
             inputMode="decimal"
             placeholder={placeholder}
@@ -157,20 +155,37 @@ export const LoanForm = ({ methods }: Props) => {
     [locale, currency, extraFrequency],
   );
 
+  // Actions
+  const reformatMoneyFields = useCallback(
+    (nextCurrency: CurrencyCode) => {
+      const amount = getValues("amount");
+      const extra = getValues("extra");
+      if (amount.trim() !== "") {
+        setValue(
+          "amount",
+          finalizeMoneyDisplay(amount, locale, nextCurrency),
+        );
+      }
+      if (extra.trim() !== "") {
+        setValue("extra", finalizeMoneyDisplay(extra, locale, nextCurrency));
+      }
+    },
+    [getValues, locale, setValue],
+  );
+
+  /** Re-display amount/extra under the active locale after TopBar changes language. */
+  const prevLocaleRef = useRef<string | null>(null);
   useEffect(() => {
-    const amount = getValues("amount");
-    const extra = getValues("extra");
-    const nextAmount =
-      amount.trim() === ""
-        ? ""
-        : finalizeMoneyDisplay(amount, locale, currency);
-    const nextExtra =
-      extra.trim() === ""
-        ? ""
-        : finalizeMoneyDisplay(extra, locale, currency);
-    if (nextAmount !== amount) setValue("amount", nextAmount);
-    if (nextExtra !== extra) setValue("extra", nextExtra);
-  }, [locale, currency, getValues, setValue]);
+    if (prevLocaleRef.current === null) {
+      prevLocaleRef.current = locale;
+      return;
+    }
+    if (prevLocaleRef.current === locale) {
+      return;
+    }
+    prevLocaleRef.current = locale;
+    reformatMoneyFields(getValues("currency"));
+  }, [locale, getValues, reformatMoneyFields]);
 
   return (
     <section className={styles.section}>
@@ -198,26 +213,27 @@ export const LoanForm = ({ methods }: Props) => {
                 control={control}
                 name="currency"
                 render={({ field }) => (
-                  <div className={shared.inputWrapper}>
-                    <Select
-                      id="loan-currency"
-                      ref={field.ref}
-                      name={field.name}
-                      value={field.value}
-                      aria-label={t("currency")}
-                      className={styles.currencySelectInner}
-                      onBlur={field.onBlur}
-                      onChange={(e) =>
-                        field.onChange(e.target.value as CurrencyCode)
-                      }
-                    >
-                      {CURRENCY_CODES.map((code) => (
-                        <option key={code} value={code}>
-                          {`${code} — ${currencyNames.of(code) ?? code}`}
-                        </option>
-                      ))}
-                    </Select>
-                  </div>
+                  <Select
+                    id="loan-currency"
+                    ref={field.ref}
+                    name={field.name}
+                    value={field.value}
+                    aria-label={t("currency")}
+                    shellClassName={styles.currencyShell}
+                    className={styles.currencySelect}
+                    onBlur={field.onBlur}
+                    onChange={(e) => {
+                      const next = e.target.value as CurrencyCode;
+                      field.onChange(next);
+                      reformatMoneyFields(next);
+                    }}
+                  >
+                    {CURRENCY_CODES.map((code) => (
+                      <option key={code} value={code}>
+                        {`${code} — ${currencyNames.of(code) ?? code}`}
+                      </option>
+                    ))}
+                  </Select>
                 )}
               />
             </div>
@@ -287,7 +303,16 @@ export const LoanForm = ({ methods }: Props) => {
             currency={currency}
           />
         </div>
-        <button type="button" className={shared.btnCalculate}>
+        <button
+          type="button"
+          className={shared.btnCalculate}
+          aria-controls="calc-results"
+          onClick={() => {
+            document
+              .getElementById("calc-results")
+              ?.scrollIntoView({ behavior: "smooth", block: "start" });
+          }}
+        >
           <HiOutlineCalculator className={shared.iconSvgSm} aria-hidden />
           {t("calculate")}
         </button>

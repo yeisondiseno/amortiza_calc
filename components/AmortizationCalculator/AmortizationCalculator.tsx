@@ -8,6 +8,7 @@ import { useLocale, useTranslations } from "next-intl";
 // Hooks
 import { usePersistor } from "@/hooks";
 // Components
+import { CalculatorPageSkeleton } from "@/components/CalculatorPageSkeleton";
 import { TopBar } from "@/components/TopBar";
 import { LoanForm } from "@/components/LoanForm";
 import { ResultCards } from "@/components/ResultCards";
@@ -65,6 +66,14 @@ const AmortizationCalculatorLoaded = ({
   const [chartView, setChartView] = useState<ChartView>("Monthly");
   const [activeTab, setActiveTab] = useState<TabView>("chart");
 
+  // Actions
+  const handleSelectTab = (tab: TabView) => {
+    setActiveTab(tab);
+    document
+      .getElementById(`tabpanel-${tab}`)
+      ?.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
+
   // Values
   const result = useMemo(
     () =>
@@ -90,17 +99,30 @@ const AmortizationCalculatorLoaded = ({
       <main className={styles.main}>
         <div className={styles.grid}>
           <LoanForm methods={loanForm} />
-          <section className={styles.results}>
+          <section
+            id="calc-results"
+            className={styles.results}
+            aria-label={t("results.interestSaved")}
+          >
             <ResultCards currency={form.currency} result={result} />
           </section>
         </div>
 
-        <div className={styles.tabBar}>
+        <div
+          role="tablist"
+          aria-label={t("table.title")}
+          className={styles.tabBar}
+        >
           {TABS.map((tab) => (
             <button
               key={tab}
+              role="tab"
               type="button"
-              onClick={() => setActiveTab(tab)}
+              id={`tab-${tab}`}
+              aria-selected={activeTab === tab}
+              aria-controls={`tabpanel-${tab}`}
+              tabIndex={activeTab === tab ? 0 : -1}
+              onClick={() => handleSelectTab(tab)}
               className={`${styles.tabBtn} ${activeTab === tab ? styles.tabBtnActive : ""}`}
             >
               {tab === "chart" ? t("chart.title") : t("table.title")}
@@ -108,7 +130,12 @@ const AmortizationCalculatorLoaded = ({
           ))}
         </div>
 
-        <div hidden={activeTab !== "chart"}>
+        <div
+          role="tabpanel"
+          id="tabpanel-chart"
+          aria-labelledby="tab-chart"
+          hidden={activeTab !== "chart"}
+        >
           <BalanceChart
             currency={form.currency}
             result={result}
@@ -116,7 +143,12 @@ const AmortizationCalculatorLoaded = ({
             setView={setChartView}
           />
         </div>
-        <div hidden={activeTab !== "table"}>
+        <div
+          role="tabpanel"
+          id="tabpanel-table"
+          aria-labelledby="tab-table"
+          hidden={activeTab !== "table"}
+        >
           <AmortizationTable currency={form.currency} result={result} />
         </div>
 
@@ -142,12 +174,13 @@ const AmortizationCalculatorLoaded = ({
           </div>
         </section>
       </main>
-      <BottomNav />
+      <BottomNav activeTab={activeTab} onSelectTab={handleSelectTab} />
     </>
   );
 };
 
 export const AmortizationCalculator = ({ pageIntro }: Props) => {
+  const t = useTranslations("calculator");
   // Hooks
   const { valueFromStorage, isHydrated: persistHydrated } = usePersistor(
     LOAN_CALC_FORM_COOKIE,
@@ -157,15 +190,24 @@ export const AmortizationCalculator = ({ pageIntro }: Props) => {
   );
 
   if (!persistHydrated) {
+    const noopSelectTab = (_tab: TabView): void => {
+      /* Shell only — navigation wires up after hydrate */
+    };
+
     return (
       <>
         <TopBar />
         <main
           className={styles.main}
           aria-busy="true"
-          aria-label="Cargando calculadora"
-        />
-        <BottomNav />
+          aria-label={t("loading")}
+        >
+          <CalculatorPageSkeleton
+            variant="embedded"
+            srLabel={t("loading")}
+          />
+        </main>
+        <BottomNav activeTab="chart" onSelectTab={noopSelectTab} />
       </>
     );
   }

@@ -70,6 +70,7 @@
     "contactBody": "Bei Fragen zu dieser Datenschutzerklärung erreichen Sie uns über die auf der Website angegebenen Kontaktinformationen."
   },
   "calculator": {
+    "loading": "Rechner wird geladen",
     "topbar": {
       "calculator": "Rechner",
       "amortization": "Tilgung",
@@ -120,7 +121,8 @@
       "exportCSV": "CSV exportieren",
       "viewFull": "Vollständigen {years}-Jahres-Plan anzeigen",
       "collapse": "Plan einklappen",
-      "empty": "Geben Sie die Darlehensdaten ein, um Ihren Plan zu sehen."
+      "empty": "Geben Sie die Darlehensdaten ein, um Ihren Plan zu sehen.",
+      "csvDownloaded": "CSV-Datei heruntergeladen."
     },
     "bottomNav": {
       "calculator": "Berechnen",

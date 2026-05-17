@@ -1,12 +1,15 @@
 .footer {
   flex-shrink: 0;
   width: 100%;
-  max-width: var(--container-max);
-  margin-inline: auto;
-  padding: var(--space-xl) var(--container-gutter)
-    calc(var(--space-xl) + env(safe-area-inset-bottom, 0));
   border-top: 1px solid var(--color-outline-variant);
   background-color: var(--color-surface-container-low);
+}
+
+.footerContent {
+  max-width: var(--container-max);
+  padding: var(--space-xl) var(--container-gutter)
+    calc(var(--space-xl) + env(safe-area-inset-bottom, 0));
+  margin-inline: auto;
 }
 
 .brandLine {
@@ -37,6 +40,13 @@
   font-family: var(--font-body);
   font-size: 0.8125rem;
   font-weight: 600;
+  border-radius: var(--radius-default);
+}
+
+.metaLink:focus-visible,
+.langLink:focus-visible {
+  outline: 2px solid var(--color-on-tertiary-container);
+  outline-offset: 2px;
 }
 
 .langNav {
