@@ -114,6 +114,10 @@
 
 .btnCalculate:hover { background-color: var(--color-on-secondary-container); }
 .btnCalculate:active { opacity: 0.92; }
+.btnCalculate:focus-visible {
+  outline: 2px solid var(--color-on-tertiary-container);
+  outline-offset: 2px;
+}
 
 .btnGhost {
   display: flex;
@@ -132,6 +136,33 @@
 }
 
 .btnGhost:hover { background-color: var(--color-surface-container-low); }
+.btnGhost:focus-visible {
+  outline: 2px solid var(--color-on-tertiary-container);
+  outline-offset: 2px;
+}
+.btnGhost:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ── Focus ring helper (use on any custom button/link to inherit AA focus) ── */
+.focusRing:focus-visible {
+  outline: 2px solid var(--color-on-tertiary-container);
+  outline-offset: 2px;
+}
+
+/* ── Visually hidden (used for aria-live announcements) ─── */
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
 
 /* ── Icons (SVG, e.g. react-icons/hi) ───────────────────────── */
 .iconSvg {

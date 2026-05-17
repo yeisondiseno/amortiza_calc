@@ -1,0 +1,93 @@
+/* =============================================================
+   Logo — geometric mark + wordmark "LoanCalc"
+   Symbol = three descending bars on a baseline → metaphor for
+   loan balance amortizing over time. Colors come from tokens
+   in app/globals.css.
+   ============================================================= */
+
+.root {
+  display: inline-flex;
+  align-items: center;
+  vertical-align: middle;
+  line-height: 1;
+  user-select: none;
+}
+
+.rootPrimary {
+  flex-direction: row;
+  gap: 0.625rem;
+}
+
+.rootStacked {
+  flex-direction: column;
+  align-items: center;
+  gap: 0.375rem;
+}
+
+.rootSymbolOnly,
+.rootWordmarkOnly {
+  gap: 0;
+}
+
+.svg {
+  display: block;
+  flex-shrink: 0;
+  width: var(--logo-height, 2rem);
+  height: var(--logo-height, 2rem);
+}
+
+.wordmark {
+  font-family: var(--font-headline);
+  font-weight: 700;
+  font-size: calc(var(--logo-height, 2rem) * 0.6);
+  letter-spacing: -0.015em;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.rootStacked .wordmark {
+  font-size: calc(var(--logo-height, 2rem) * 0.45);
+}
+
+/* ── Tone: default (color sobre fondo claro) ─────────────── */
+.toneDefault .frame {
+  fill: var(--color-primary);
+}
+
+.toneDefault .bar,
+.toneDefault .baseline {
+  fill: var(--color-secondary-container);
+}
+
+.toneDefault .wordmark {
+  color: var(--color-on-surface);
+}
+
+/* ── Tone: onDark (sobre fondos oscuros) ─────────────────── */
+.toneOnDark .frame {
+  fill: var(--color-on-primary);
+}
+
+.toneOnDark .bar,
+.toneOnDark .baseline {
+  fill: var(--color-primary);
+}
+
+.toneOnDark .wordmark {
+  color: var(--color-on-primary);
+}
+
+/* ── Tone: mono (un solo color vía currentColor) ─────────── */
+.toneMono .frame {
+  fill: currentColor;
+  opacity: 0.12;
+}
+
+.toneMono .bar,
+.toneMono .baseline {
+  fill: currentColor;
+}
+
+.toneMono .wordmark {
+  color: currentColor;
+}

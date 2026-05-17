@@ -120,7 +120,8 @@
       "exportCSV": "Exporter en CSV",
       "viewFull": "Voir le calendrier complet sur {years} ans",
       "collapse": "Réduire le calendrier",
-      "empty": "Saisissez les données du prêt pour afficher votre calendrier."
+      "empty": "Saisissez les données du prêt pour afficher votre calendrier.",
+      "csvDownloaded": "Fichier CSV téléchargé."
     },
     "bottomNav": {
       "calculator": "Calculer",

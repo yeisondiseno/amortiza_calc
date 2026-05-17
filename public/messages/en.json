@@ -120,7 +120,8 @@
       "exportCSV": "Export CSV",
       "viewFull": "View Full {years}-Year Schedule",
       "collapse": "Collapse Schedule",
-      "empty": "Enter loan details to see your schedule."
+      "empty": "Enter loan details to see your schedule.",
+      "csvDownloaded": "CSV file downloaded."
     },
     "bottomNav": {
       "calculator": "Calculate",

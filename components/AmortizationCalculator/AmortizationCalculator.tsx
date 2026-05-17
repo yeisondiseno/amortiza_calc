@@ -65,6 +65,14 @@ const AmortizationCalculatorLoaded = ({
   const [chartView, setChartView] = useState<ChartView>("Monthly");
   const [activeTab, setActiveTab] = useState<TabView>("chart");
 
+  // Actions
+  const handleSelectTab = (tab: TabView) => {
+    setActiveTab(tab);
+    document
+      .getElementById(`tabpanel-${tab}`)
+      ?.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
+
   // Values
   const result = useMemo(
     () =>
@@ -90,16 +98,29 @@ const AmortizationCalculatorLoaded = ({
       <main className={styles.main}>
         <div className={styles.grid}>
           <LoanForm methods={loanForm} />
-          <section className={styles.results}>
+          <section
+            id="calc-results"
+            className={styles.results}
+            aria-label={t("results.interestSaved")}
+          >
             <ResultCards currency={form.currency} result={result} />
           </section>
         </div>
 
-        <div className={styles.tabBar}>
+        <div
+          role="tablist"
+          aria-label={t("table.title")}
+          className={styles.tabBar}
+        >
           {TABS.map((tab) => (
             <button
               key={tab}
+              role="tab"
               type="button"
+              id={`tab-${tab}`}
+              aria-selected={activeTab === tab}
+              aria-controls={`tabpanel-${tab}`}
+              tabIndex={activeTab === tab ? 0 : -1}
               onClick={() => setActiveTab(tab)}
               className={`${styles.tabBtn} ${activeTab === tab ? styles.tabBtnActive : ""}`}
             >
@@ -108,7 +129,12 @@ const AmortizationCalculatorLoaded = ({
           ))}
         </div>
 
-        <div hidden={activeTab !== "chart"}>
+        <div
+          role="tabpanel"
+          id="tabpanel-chart"
+          aria-labelledby="tab-chart"
+          hidden={activeTab !== "chart"}
+        >
           <BalanceChart
             currency={form.currency}
             result={result}
@@ -116,7 +142,12 @@ const AmortizationCalculatorLoaded = ({
             setView={setChartView}
           />
         </div>
-        <div hidden={activeTab !== "table"}>
+        <div
+          role="tabpanel"
+          id="tabpanel-table"
+          aria-labelledby="tab-table"
+          hidden={activeTab !== "table"}
+        >
           <AmortizationTable currency={form.currency} result={result} />
         </div>
 
@@ -142,7 +173,7 @@ const AmortizationCalculatorLoaded = ({
           </div>
         </section>
       </main>
-      <BottomNav />
+      <BottomNav activeTab={activeTab} onSelectTab={handleSelectTab} />
     </>
   );
 };
@@ -165,7 +196,6 @@ export const AmortizationCalculator = ({ pageIntro }: Props) => {
           aria-busy="true"
           aria-label="Cargando calculadora"
         />
-        <BottomNav />
       </>
     );
   }

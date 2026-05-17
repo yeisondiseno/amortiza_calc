@@ -1,7 +1,7 @@
 "use client";
 
 // React
-import { useEffect, useId, useMemo } from "react";
+import { useMemo } from "react";
 // Libraries
 import {
   Controller,
@@ -157,20 +157,17 @@ export const LoanForm = ({ methods }: Props) => {
     [locale, currency, extraFrequency],
   );
 
-  useEffect(() => {
+  // Actions
+  const reformatMoneyFields = (nextCurrency: CurrencyCode) => {
     const amount = getValues("amount");
     const extra = getValues("extra");
-    const nextAmount =
-      amount.trim() === ""
-        ? ""
-        : finalizeMoneyDisplay(amount, locale, currency);
-    const nextExtra =
-      extra.trim() === ""
-        ? ""
-        : finalizeMoneyDisplay(extra, locale, currency);
-    if (nextAmount !== amount) setValue("amount", nextAmount);
-    if (nextExtra !== extra) setValue("extra", nextExtra);
-  }, [locale, currency, getValues, setValue]);
+    if (amount.trim() !== "") {
+      setValue("amount", finalizeMoneyDisplay(amount, locale, nextCurrency));
+    }
+    if (extra.trim() !== "") {
+      setValue("extra", finalizeMoneyDisplay(extra, locale, nextCurrency));
+    }
+  };
 
   return (
     <section className={styles.section}>
@@ -207,9 +204,11 @@ export const LoanForm = ({ methods }: Props) => {
                       aria-label={t("currency")}
                       className={styles.currencySelectInner}
                       onBlur={field.onBlur}
-                      onChange={(e) =>
-                        field.onChange(e.target.value as CurrencyCode)
-                      }
+                      onChange={(e) => {
+                        const next = e.target.value as CurrencyCode;
+                        field.onChange(next);
+                        reformatMoneyFields(next);
+                      }}
                     >
                       {CURRENCY_CODES.map((code) => (
                         <option key={code} value={code}>
@@ -287,7 +286,16 @@ export const LoanForm = ({ methods }: Props) => {
             currency={currency}
           />
         </div>
-        <button type="button" className={shared.btnCalculate}>
+        <button
+          type="button"
+          className={shared.btnCalculate}
+          aria-controls="calc-results"
+          onClick={() => {
+            document
+              .getElementById("calc-results")
+              ?.scrollIntoView({ behavior: "smooth", block: "start" });
+          }}
+        >
           <HiOutlineCalculator className={shared.iconSvgSm} aria-hidden />
           {t("calculate")}
         </button>

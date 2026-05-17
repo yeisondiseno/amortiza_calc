@@ -120,7 +120,8 @@
       "exportCSV": "CSV で出力",
       "viewFull": "全{years}年分のスケジュールを表示",
       "collapse": "一覧を閉じる",
-      "empty": "ローン情報を入力するとスケジュールが表示されます。"
+      "empty": "ローン情報を入力するとスケジュールが表示されます。",
+      "csvDownloaded": "CSVファイルをダウンロードしました。"
     },
     "bottomNav": {
       "calculator": "計算",

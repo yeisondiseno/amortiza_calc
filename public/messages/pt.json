@@ -120,7 +120,8 @@
       "exportCSV": "Exportar CSV",
       "viewFull": "Ver cronograma completo de {years} anos",
       "collapse": "Recolher cronograma",
-      "empty": "Informe os dados do empréstimo para ver o cronograma."
+      "empty": "Informe os dados do empréstimo para ver o cronograma.",
+      "csvDownloaded": "Arquivo CSV baixado."
     },
     "bottomNav": {
       "calculator": "Calcular",

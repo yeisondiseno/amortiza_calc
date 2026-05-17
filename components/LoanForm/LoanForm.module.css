@@ -83,6 +83,7 @@
   align-items: start;
 }
 
+/* < 480 — collapse to single column on very narrow phones (specific to amount+currency pair). */
 @media (max-width: 480px) {
   .amountCurrencyRow {
     grid-template-columns: 1fr;

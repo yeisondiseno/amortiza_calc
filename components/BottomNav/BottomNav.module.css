@@ -4,17 +4,19 @@
   bottom: 0;
   left: 0;
   width: 100%;
-  z-index: 50;
+  height: var(--bottomnav-height);
+  z-index: var(--z-sticky);
   justify-content: space-around;
   align-items: center;
-  padding: 0.75rem var(--space-md);
+  padding: var(--space-3) var(--space-md);
   background-color: rgb(255 255 255 / 0.85);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border-top: 1px solid var(--color-outline-variant);
 }
 
-@media (max-width: 768px) {
+/* < --bp-md (768) — BottomNav visible only on mobile/small tablets. */
+@media (max-width: 767.98px) {
   .footer { display: flex; }
 }
 
@@ -24,7 +26,9 @@
   align-items: center;
   justify-content: center;
   gap: 2px;
-  padding: 0.25rem 0.75rem;
+  min-width: 44px;
+  min-height: 44px;
+  padding: var(--space-xs) var(--space-3);
   background: none;
   border: none;
   cursor: pointer;
@@ -32,6 +36,11 @@
   color: var(--color-on-surface-variant);
   transition: color var(--transition-fast), background-color var(--transition-fast),
     transform var(--transition-fast);
+}
+
+.navItem:focus-visible {
+  outline: 2px solid var(--color-on-tertiary-container);
+  outline-offset: 2px;
 }
 
 .navItemActive {

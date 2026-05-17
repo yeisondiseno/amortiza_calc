@@ -4,6 +4,7 @@ export { BalanceChart } from "./BalanceChart/BalanceChart";
 export { BottomNav } from "./BottomNav/BottomNav";
 export { Input } from "./Input/Input";
 export { LoanForm } from "./LoanForm/LoanForm";
+export { Logo } from "./Logo/Logo";
 export { ResultCards } from "./ResultCards/ResultCards";
 export { Select } from "./Select/Select";
 export { SiteFooter } from "./SiteFooter";

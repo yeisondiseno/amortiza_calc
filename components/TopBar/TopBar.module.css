@@ -1,7 +1,7 @@
 .header {
   position: sticky;
   top: 0;
-  z-index: 40;
+  z-index: var(--z-sticky);
   background-color: var(--color-surface-container-lowest);
   border-bottom: 1px solid var(--color-outline-variant);
 }
@@ -16,39 +16,6 @@
   padding: var(--space-md) var(--container-gutter);
 }
 
-/* Brand */
-.brand {
-  display: flex;
-  align-items: center;
-  gap: var(--space-sm);
-}
-
-.brandIcon {
-  width: 2rem;
-  height: 2rem;
-  border-radius: var(--radius-card);
-  background-color: var(--color-primary);
-  color: var(--color-on-primary);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-}
-
-.brandGlyph {
-  width: 1.25rem;
-  height: 1.25rem;
-  flex-shrink: 0;
-}
-
-.brandName {
-  font-family: var(--font-headline);
-  font-size: 1.125rem;
-  font-weight: 700;
-  letter-spacing: -0.02em;
-  color: var(--color-on-surface);
-}
-
 /* Actions */
 .actions {
   display: flex;
@@ -59,7 +26,8 @@
 .langSelect {
   min-width: 9rem;
   flex-shrink: 0;
-  height: 2.25rem;
+  /* Touch target ≥ 44×44 (WCAG 2.5.5 AAA / a11y best practice). */
+  min-height: 44px;
   padding: 0 2rem 0 0.625rem;
   font-family: var(--font-body);
   font-size: 0.875rem;
@@ -82,8 +50,8 @@
       transparent 50%
     );
   background-position:
-    calc(100% - 14px) 0.875rem,
-    calc(100% - 10px) 0.875rem;
+    calc(100% - 14px) center,
+    calc(100% - 10px) center;
   background-size:
     5px 5px,
     5px 5px;
@@ -91,7 +59,7 @@
 }
 
 .langSelect:focus-visible {
-  outline: none;
+  outline: 2px solid var(--color-on-tertiary-container);
+  outline-offset: 2px;
   border-color: var(--color-on-tertiary-container);
-  box-shadow: 0 0 0 3px rgb(57 128 244 / 0.12);
 }
